@@ -2,7 +2,7 @@
 
 (package-file "/usr/local/share/emacs/site-lisp/cask/cask.el")
 
-(depends-on "atom-one-dark-theme")
+(depends-on "doom-themes")
 (depends-on "rust-mode")
 (depends-on "swift-mode")
 (depends-on "go-mode")

@@ -10,8 +10,21 @@
 (package-initialize)
 
 ;; color theme
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
-(load-theme 'atom-one-dark t)
+(require 'doom-themes)
+;; Global settings (defaults)
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+;; may have their own settings.
+(load-theme 'doom-one t)
+;; Enable flashing mode-line on errors
+;;(doom-themes-visual-bell-config)
+;; Enable custom neotree theme (all-the-icons must be installed!)
+;;(doom-themes-neotree-config)
+;; or for treemacs users
+;;(doom-themes-treemacs-config)
+;; Corrects (and improves) org-mode's native fontification.
+;;(doom-themes-org-config)
 
 ;; encoding
 (prefer-coding-system 'utf-8)
@@ -19,7 +32,7 @@
 (define-coding-system-alias 'utf8 'utf-8)
 
 (set-buffer-file-coding-system 'utf-8-unix)
-;(set-file-name-coding-system 'utf-8-unix)
+(set-file-name-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8-unix)
 (set-next-selection-coding-system 'utf-8-unix)
 (set-selection-coding-system 'utf-8-unix)
@@ -77,7 +90,7 @@
 (setq interprogram-paste-function 'copy-from-osx)
 
 ;; font
-(set-default-font "menlo 11")
+(set-default-font "menlo 18")
 
 (setq mac-allow-anti-aliasing t)
 (setq font-lock-maximum-decoration t
@@ -99,6 +112,7 @@
   (global-set-key (kbd "C-M-z") 'toggle-frame-maximized)
   (global-set-key (kbd "C-M-f") 'toggle-frame-fullscreen)
   (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
+  (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -131,6 +145,8 @@
     (if (get-buffer "*ansi-term*")
 	(switch-to-buffer "*ansi-term*")
       (ansi-term "/bin/bash"))))
+
+(global-set-key (kbd "C-x r") 'revert-buffer)
 
 ;; code
 (setq-default truncate-lines t)
@@ -241,47 +257,3 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
-;; mail
-;; (require 'gnus)
-;; (setq user-mail-address	"ghmlee@ghmlee.com"
-;;       user-full-name	"Graham Lee")
-
-;; (setq gnus-select-method
-;;       '(nnimap "gmail"
-;; 	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
-;; 	       (nnimap-server-port "imaps")
-;; 	       (nnimap-stream ssl)))
-
-;; (add-to-list 'gnus-secondary-select-methods '(nnimap "gmail"
-;; 						     (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
-;; 						     (nnimap-server-port "imaps")
-;; 						     (nnimap-stream ssl)
-;; 						     (nnmail-expiry-target "nnimap+gmail:[Gmail]/Trash")  ; Move expired messages to Gmail's trash.
-;; 					;						     (nnmail-expiry-wait immediate))) ; Mails marked as expired can be processed immediately.
-
-;; (setq gnus-ignored-newsgroups ".*")
-
-;; (setq gnus-fetch-old-headers t)
-
-;; (setq gnus-thread-sort-functions
-;;       '((not gnus-thread-sort-by-date)
-;;         (not gnus-thread-sort-by-number)))
-
-;; (setq gnus-summary-thread-gathering-function 'gnus-gather-threads-by-subject)
-
-;; (setq gnus-parameters
-;;       '(("nnimap.*"
-;;          (gnus-use-scoring nil)
-;;          (expiry-wait . 2)
-;;          (display . all))))
-
-;; (setq gnus-permanently-visible-groups "\\(?:INBOX\\|Sent\\)")
-;; (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-;; (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\”]\”[#’()]")
-
-;; (setq-default
-;;  gnus-summary-line-format "%U%R%z %(%&user-date; | %-15,15f  %B%s%)\n"
-;;  gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))
-;;  gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
-;;  gnus-thread-sort-functions '(gnus-thread-sort-by-date))
