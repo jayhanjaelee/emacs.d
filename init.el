@@ -46,10 +46,18 @@
 (set-file-name-coding-system 'utf-8-hfs)
 (setq locale-coding-system 'utf-8-hfs)
 
-;; misc
-;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
+;; misc					;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+;; Make *scratch* buffer blank.
+(setq initial-scratch-message nil)
 
 (setq inhibit-splash-screen t)
 (setq gdb-many-windows t)
@@ -226,7 +234,7 @@
 
 ;; python
 (add-hook 'python-mode-hook '(lambda ()
-			       (setq python-indent 2)))
+			       (setq python-indent 4)))
 
 ;; javascript
 (setq js-indent-level 2)
@@ -258,3 +266,17 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (put 'erase-buffer 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (csv yaml-mode swift-mode shut-up rust-mode powerline package-build multi-web-mode markdown-mode js3-mode ivy ido-vertical-mode helm go-mode f epl doom-themes atom-one-dark-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
