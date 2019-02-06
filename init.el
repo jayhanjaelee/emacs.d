@@ -99,6 +99,8 @@
 
 ;; font
 (set-default-font "menlo 18")
+(add-to-list 'default-frame-alist
+             '(font . "menlo 18"))
 
 (setq mac-allow-anti-aliasing t)
 (setq font-lock-maximum-decoration t
