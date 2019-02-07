@@ -117,12 +117,13 @@
 ;; key
 (when (and (eq system-type 'darwin) window-system)
   (setq ns-use-native-fullscreen nil)
-  (setq mac-command-key-is-meta 1)
-  (setq mac-command-modifier 'meta)
+  ;;(setq mac-command-key-is-meta 1)
+  (setq mac-command-modifier 'super)
   (global-set-key (kbd "C-M-z") 'toggle-frame-maximized)
   (global-set-key (kbd "C-M-f") 'toggle-frame-fullscreen)
   (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
-  (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
+  (global-set-key (kbd "s-h") 'ns-do-hide-emacs)
+  (global-set-key (kbd "s-M-h") 'ns-do-hide-others)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 (global-set-key "\C-x\C-m" 'execute-extended-command)
