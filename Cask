@@ -13,6 +13,8 @@
 (depends-on "ibuffer-vc")
 (depends-on "magit")
 (depends-on "ace-window")
+(depends-on "flx")
+(depends-on "flx-ido")
 
 ;; mode
 (depends-on "rust-mode")

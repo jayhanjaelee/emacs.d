@@ -53,6 +53,14 @@
 ;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil) ;; disable ido faces to see flx highlights.
+(setq ido-save-directory-list-file (expand-file-name "ido.last" tmp-directory-p))
+
 (require 'dired-x)
 (setq dired-omit-files "^\\...+$") ;; hidden dotfiles
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
