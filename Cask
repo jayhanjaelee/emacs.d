@@ -10,7 +10,9 @@
 
 ;; productivity
 (depends-on "projectile")
-;;(depends-on "magit")
+(depends-on "ibuffer-vc")
+(depends-on "magit")
+(depends-on "ace-window")
 
 ;; mode
 (depends-on "rust-mode")

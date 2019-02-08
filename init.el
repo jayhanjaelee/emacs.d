@@ -10,8 +10,14 @@
 (package-initialize)
 
 ;; appearance
+;(add-to-list 'default-frame-alist '(background-color . nil)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'morning-star t)
+(if (not (display-graphic-p))
+    (add-to-list 'default-frame-alist '(background-color . nil)))
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+
 (add-to-list 'load-path "~/.emacs.d/packages/")
 (require 'dired+)
 (setq diredp-hide-details-initially-flag nil)
@@ -40,22 +46,38 @@
 (setq locale-coding-system 'utf-8-hfs)
 
 ;; misc
+(setq tmp-directory-p "~/.emacs.d/tmp")
+(if (not (file-directory-p tmp-directory-p))
+    (make-directory tmp-directory-p))
+(setq bookmark-file (expand-file-name "bookmarks" tmp-directory-p))
 ;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
+(require 'dired-x)
+(setq dired-omit-files "^\\...+$") ;; hidden dotfiles
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+(global-set-key (kbd "C-c o") 'dired-omit-mode)
+
+(require 'ls-lisp)
+(setq ls-lisp-dirs-first t) ;; sort directory first
+(setq ls-lisp-use-insert-directory-program nil)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
+;; remember cursor position, for emacs 25.1 or later
+(save-place-mode 1)
+(setq save-place-file (expand-file-name "places" tmp-directory-p))
 
 (setq-default message-log-max nil)
 (kill-buffer "*Messages*")
 
-;; Make *scratch* buffer blank.
-(setq initial-scratch-message nil)
+(setq initial-scratch-message nil) ;; Make *scratch* buffer blank.
 (setq inhibit-splash-screen t)
 (setq gdb-many-windows t)
 (setq x-select-enable-clipboard t) ; Share the clipboard with x-window application
 (setq make-backup-files nil)	   ; stop creating backup~ files
 (setq auto-save-default nil)       ; stop creating #autosave# files
+(setq auto-save-list-file-prefix nil) ;; stop creating auto save list directory
 (setq ring-bell-function 'ignore)
 (setq initial-scratch-message nil)
 (setq debug-on-error t)
@@ -94,7 +116,7 @@
 (set-face-bold 'bold nil)
 (set-default-font "menlo 18")
 (add-to-list 'default-frame-alist
-             '(font . "menlo 18"))
+	     '(font . "menlo 18"))
 
 (setq mac-allow-anti-aliasing t)
 (setq font-lock-maximum-decoration t
@@ -122,13 +144,16 @@
 
 (global-set-key "\r" 'newline-and-indent) ; auto indentation
 (global-set-key (kbd "C-x t") 'treemacs-select-window)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;(global-set-key "\C-z" 'run-ansi-term)
 ;(global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-/") 'undo)
 
-(global-set-key [C-S-iso-lefttab] 'previous-buffer)
+(global-set-key [C-S-tab] 'previous-buffer)
 (global-set-key [C-tab] 'next-buffer)
+(global-set-key (kbd "s-{") 'previous-buffer)
+(global-set-key (kbd "s-}") 'next-buffer)
 
 ;(global-set-key (kbd "M-]") 'next-multiframe-window)
 ;(global-set-key (kbd "M-[") 'previous-multiframe-window)
@@ -258,11 +283,31 @@
 (setq org-log-done t)
 (put 'erase-buffer 'disabled nil)
 
+;; recentf
+(setq recentf-max-menu-items 10)
+(setq recentf-save-file (expand-file-name "recentf" tmp-directory-p))
+(recentf-mode 1)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
 ;; treemacs
 (setq treemacs-is-never-other-window t)
 
 ;; projectile
+(setq projectile-known-projects-file
+      (expand-file-name "projectile-bookmarks.eld" tmp-directory-p))
+
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-switch-project-action #'projectile-dired)
+(global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
+
+;; ibuffer-vc
+(require 'ibuffer-vc)
+(add-hook 'ibuffer-hook (lambda ()
+			  (ibuffer-vc-set-filter-groups-by-vc-root)
+			  (ibuffer-do-sort-by-recency)))
+
+;; ace-window
+(global-set-key (kbd "M-o") 'ace-window)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
