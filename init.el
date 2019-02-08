@@ -9,22 +9,15 @@
 (when (< emacs-major-version 24) (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
-;; color theme
-(require 'doom-themes)
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
-;; may have their own settings.
-(load-theme 'doom-one t)
-;; Enable flashing mode-line on errors
-;;(doom-themes-visual-bell-config)
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;;(doom-themes-neotree-config)
-;; or for treemacs users
-;;(doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
-;;(doom-themes-org-config)
+;; appearance
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'morning-star t)
+(add-to-list 'load-path "~/.emacs.d/packages/")
+(require 'dired+)
+(setq diredp-hide-details-initially-flag nil)
+(setq diredp-hide-details-propagate-flag nil)
+(treemacs-icons-dired-mode)
+;(setq treemacs-no-png-images t)
 
 ;; encoding
 (prefer-coding-system 'utf-8)
@@ -46,8 +39,8 @@
 (set-file-name-coding-system 'utf-8-hfs)
 (setq locale-coding-system 'utf-8-hfs)
 
-;; misc					;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
-
+;; misc
+;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
@@ -114,7 +107,7 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-;; key
+;; keybinding
 (when (and (eq system-type 'darwin) window-system)
   (setq ns-use-native-fullscreen nil)
   ;;(setq mac-command-key-is-meta 1)
@@ -123,16 +116,11 @@
   (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
   (global-set-key (kbd "s-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "s-M-h") 'ns-do-hide-others)
+  (global-set-key (kbd "s-1") 'treemacs-select-window)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
-
 (global-set-key "\r" 'newline-and-indent) ; auto indentation
-(global-set-key "\C-c\C-s" 'ispell-word)
-
-(global-set-key "\C-cc" 'comment-region)
-(global-set-key "\C-cu" 'uncomment-region)
+(global-set-key (kbd "C-x t") 'treemacs)
 
 ;(global-set-key "\C-z" 'run-ansi-term)
 ;(global-set-key (kbd "C-z") 'undo)
@@ -156,7 +144,7 @@
 	(switch-to-buffer "*ansi-term*")
       (ansi-term "/bin/bash"))))
 
-(global-set-key (kbd "C-x r") 'revert-buffer)
+(global-set-key (kbd "C-x g") 'revert-buffer)
 
 ;; code
 (setq-default truncate-lines t)
@@ -268,17 +256,11 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (put 'erase-buffer 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (csv yaml-mode swift-mode shut-up rust-mode powerline package-build multi-web-mode markdown-mode js3-mode ivy ido-vertical-mode helm go-mode f epl doom-themes atom-one-dark-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;; treemacs
+(setq treemacs-is-never-other-window t)
+
+;; projectile
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)

@@ -6,3 +6,5 @@ eshell/
 url/
 recentf
 bookmarks
+.cache/
+*.eld
