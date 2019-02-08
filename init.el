@@ -302,6 +302,7 @@
 
 ;; treemacs
 (setq treemacs-is-never-other-window t)
+(setq treemacs-show-hidden-files nil)
 
 ;; projectile
 (setq projectile-known-projects-file
