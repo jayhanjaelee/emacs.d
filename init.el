@@ -51,11 +51,11 @@
 
 ;; Make *scratch* buffer blank.
 (setq initial-scratch-message nil)
-
 (setq inhibit-splash-screen t)
 (setq gdb-many-windows t)
 (setq x-select-enable-clipboard t) ; Share the clipboard with x-window application
-(setq make-backup-files nil)	   ; Do not make backup files
+(setq make-backup-files nil)	   ; stop creating backup~ files
+(setq auto-save-default nil)       ; stop creating #autosave# files
 (setq ring-bell-function 'ignore)
 (setq initial-scratch-message nil)
 (setq debug-on-error t)
@@ -91,6 +91,7 @@
 (setq interprogram-paste-function 'copy-from-osx)
 
 ;; font
+(set-face-bold 'bold nil)
 (set-default-font "menlo 18")
 (add-to-list 'default-frame-alist
              '(font . "menlo 18"))
@@ -116,11 +117,11 @@
   (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
   (global-set-key (kbd "s-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "s-M-h") 'ns-do-hide-others)
-  (global-set-key (kbd "s-1") 'treemacs-select-window)
+  (global-set-key (kbd "s-0") 'treemacs)
   (add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 (global-set-key "\r" 'newline-and-indent) ; auto indentation
-(global-set-key (kbd "C-x t") 'treemacs)
+(global-set-key (kbd "C-x t") 'treemacs-select-window)
 
 ;(global-set-key "\C-z" 'run-ansi-term)
 ;(global-set-key (kbd "C-z") 'undo)
@@ -264,3 +265,4 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(setq projectile-switch-project-action #'projectile-dired)
