@@ -155,16 +155,19 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;(global-set-key "\C-z" 'run-ansi-term)
-;(global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-/") 'undo)
+(require 'undo-tree)
+(global-undo-tree-mode 1)
+(defalias 'redo 'undo-tree-redo)
+(global-set-key (kbd "s-z") 'undo)
+(global-set-key (kbd "s-Z") 'redo)
 
 (global-set-key [C-S-tab] 'previous-buffer)
 (global-set-key [C-tab] 'next-buffer)
 (global-set-key (kbd "s-{") 'previous-buffer)
 (global-set-key (kbd "s-}") 'next-buffer)
 
-;(global-set-key (kbd "M-]") 'next-multiframe-window)
-;(global-set-key (kbd "M-[") 'previous-multiframe-window)
+(global-set-key (kbd "s-`") 'next-multiframe-window)
+(global-set-key (kbd "s-~") 'previous-multiframe-window)
 
 (global-set-key (kbd "M-s") 'shell-command)
 (global-set-key (kbd "M-c") 'compile)
@@ -317,5 +320,5 @@
 			  (ibuffer-do-sort-by-recency)))
 
 ;; ace-window
-(global-set-key (kbd "M-o") 'ace-window)
+(global-set-key (kbd "M-p") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
