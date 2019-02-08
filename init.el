@@ -160,6 +160,8 @@
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-Z") 'redo)
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist `(("." . ,tmp-directory-p)))
 
 (global-set-key [C-S-tab] 'previous-buffer)
 (global-set-key [C-tab] 'next-buffer)
