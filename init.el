@@ -348,3 +348,6 @@
 
 ;; eybrowse
 (eyebrowse-mode t)
+
+;; swiper
+(global-set-key (kbd "C-c C-s") 'swiper)
