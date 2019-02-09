@@ -60,18 +60,19 @@
 (setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil) ;; disable ido faces to see flx highlights.
-(setq ido-save-directory-list-file (expand-file-name "ido.last" tmp-directory-p))
+;; (require 'flx-ido)
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (flx-ido-mode 1)
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-use-faces nil) ;; disable ido faces to see flx highlights.
+;; (setq ido-save-directory-list-file (expand-file-name "ido.last" tmp-directory-p))
 
 (require 'dired-x)
 (setq dired-omit-files "^\\...+$") ;; hidden dotfiles
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
+(setq dired-omit-verbose nil) ;; hidden annoying message
 
 (require 'ls-lisp)
 (setq ls-lisp-dirs-first t) ;; sort directory first
@@ -97,7 +98,7 @@
 (setq initial-scratch-message nil)
 (setq debug-on-error t)
 
-(icomplete-mode)
+;; (icomplete-mode)
 (which-function-mode)
 
 (put 'set-goal-column 'disabled nil)
@@ -316,7 +317,7 @@
 (setq recentf-max-menu-items 10)
 (setq recentf-save-file (expand-file-name "recentf" tmp-directory-p))
 (recentf-mode 1)
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+;;(global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; treemacs
 (setq treemacs-is-never-other-window t)
@@ -350,5 +351,15 @@
 (eyebrowse-mode t)
 (set-face-attribute 'eyebrowse-mode-line-active nil :underline nil :bold t :foreground "#c98459")
 
-;; swiper
-(global-set-key (kbd "C-c C-s") 'swiper)
+;; rg for counsel projectile rg
+;; (require 'rg)
+;; (rg-enable-default-bindings)
+
+;; ivy & swiper & counsel
+(ivy-mode 1)
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-c C-b") 'swiper-all)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-x C-r") 'counsel-recentf)
+(counsel-projectile-mode 1)

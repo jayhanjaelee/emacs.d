@@ -11,12 +11,14 @@
 ;; productivity
 (depends-on "projectile")
 (depends-on "eyebrowse")
+(depends-on "ivy")
 (depends-on "swiper")
+(depends-on "counsel")
+;;(depends-on "rg")
+(depends-on "counsel-projectile")
 (depends-on "ibuffer-vc")
 (depends-on "magit")
 (depends-on "ace-window")
-(depends-on "flx")
-(depends-on "flx-ido")
 
 ;; mode
 (depends-on "rust-mode")
