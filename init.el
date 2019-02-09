@@ -159,9 +159,11 @@
   (global-set-key (kbd "s-0") 'treemacs)
   (global-set-key (kbd "s-r") 'revert-buffer)
   (global-set-key (kbd "s-s") 'save-buffer)
-  (global-set-key (kbd "s-w") 'ido-kill-buffer)
+  (global-set-key (kbd "s-w") 'eyebrowse-close-window-config)
   (global-set-key (kbd "S-s-w") 'delete-frame)
   (global-set-key (kbd "<s-backspace>") '(lambda () (interactive) (kill-line 0)))
+  (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
+  (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
   )
 
@@ -183,8 +185,8 @@
 
 (global-set-key [C-S-tab] 'previous-buffer)
 (global-set-key [C-tab] 'next-buffer)
-(global-set-key (kbd "s-{") 'previous-buffer)
-(global-set-key (kbd "s-}") 'next-buffer)
+(global-set-key (kbd "s-[") 'previous-buffer)
+(global-set-key (kbd "s-]") 'next-buffer)
 
 (global-set-key (kbd "s-`") 'next-multiframe-window)
 (global-set-key (kbd "s-~") 'previous-multiframe-window)
@@ -343,3 +345,6 @@
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+
+;; eybrowse
+(eyebrowse-mode t)
