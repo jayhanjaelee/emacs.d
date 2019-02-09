@@ -50,20 +50,13 @@
 (if (not (file-directory-p tmp-directory-p))
     (make-directory tmp-directory-p))
 
-
-(setq desktop-dirname tmp-directory-p)
-(setq desktop-path (list tmp-directory-p))
-(desktop-change-dir tmp-directory-p)
-
 (if (display-graphic-p)
     (progn
       (setq desktop-path (list tmp-directory-p)
-	    desktop-load-locked-desktop nil
-	    desktop-save t
-	    )
-      (desktop-save-in-desktop-dir)
-      (desktop-save-mode 1)
-      ))
+	    desktop-dirname tmp-directory-p
+	    desktop-restore-eager 5
+	    desktop-load-locked-desktop nil)
+            (desktop-save-mode 1)))
 
 (setq bookmark-file (expand-file-name "bookmarks" tmp-directory-p))
 ;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
