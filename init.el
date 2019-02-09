@@ -12,9 +12,8 @@
 ;; appearance
 ;(add-to-list 'default-frame-alist '(background-color . nil)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (load-theme 'morning-star t)
-(if (not (display-graphic-p))
-    (add-to-list 'default-frame-alist '(background-color . nil)))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
@@ -59,7 +58,7 @@
             (desktop-save-mode 1)))
 
 (setq bookmark-file (expand-file-name "bookmarks" tmp-directory-p))
-;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
+(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (require 'flx-ido)
