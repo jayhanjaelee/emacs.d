@@ -49,6 +49,22 @@
 (setq tmp-directory-p "~/.emacs.d/tmp")
 (if (not (file-directory-p tmp-directory-p))
     (make-directory tmp-directory-p))
+
+
+(setq desktop-dirname tmp-directory-p)
+(setq desktop-path (list tmp-directory-p))
+(desktop-change-dir tmp-directory-p)
+
+(if (display-graphic-p)
+    (progn
+      (setq desktop-path (list tmp-directory-p)
+	    desktop-load-locked-desktop nil
+	    desktop-save t
+	    )
+      (desktop-save-in-desktop-dir)
+      (desktop-save-mode 1)
+      ))
+
 (setq bookmark-file (expand-file-name "bookmarks" tmp-directory-p))
 ;(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 (add-hook 'dired-mode-hook 'auto-revert-mode)
@@ -82,7 +98,7 @@
 (setq initial-scratch-message nil) ;; Make *scratch* buffer blank.
 (setq inhibit-splash-screen t)
 (setq gdb-many-windows t)
-(setq x-select-enable-clipboard t) ; Share the clipboard with x-window application
+(setq select-enable-clipboard t) ; Share the clipboard with x-window application
 (setq make-backup-files nil)	   ; stop creating backup~ files
 (setq auto-save-default nil)       ; stop creating #autosave# files
 (setq auto-save-list-file-prefix nil) ;; stop creating auto save list directory
@@ -122,13 +138,13 @@
 
 ;; font
 (set-face-bold 'bold nil)
-(set-default-font "menlo 18")
+(set-frame-font "menlo 18")
 (add-to-list 'default-frame-alist
 	     '(font . "menlo 18"))
 
 (setq mac-allow-anti-aliasing t)
-(setq font-lock-maximum-decoration t
-      font-lock-maximum-size nil)
+(setq font-lock-maximum-decoration t)
+;(setq font-lock-maximum-size nil)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
       jit-lock-defer-contextually t
@@ -219,10 +235,6 @@
 
 (setq cc-search-directories '("." "../include" "/usr/include" "/usr/local/include/*"
 			      "/System/Library/Frameworks" "/Library/Frameworks"))
-
-
-(add-hook 'objc-mode-hook (lambda ()
-			    (setq c-basic-offset 2)))
 
 (add-hook 'objc-mode-hook (lambda ()
 			    (setq c-basic-offset 2
