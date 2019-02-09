@@ -346,8 +346,9 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
-;; eybrowse
+;; eyebrowse
 (eyebrowse-mode t)
+(set-face-attribute 'eyebrowse-mode-line-active nil :underline nil :bold t :foreground "#c98459")
 
 ;; swiper
 (global-set-key (kbd "C-c C-s") 'swiper)
