@@ -14,11 +14,14 @@
 (depends-on "ivy")
 (depends-on "swiper")
 (depends-on "counsel")
-;;(depends-on "rg")
+(depends-on "rg")
 (depends-on "counsel-projectile")
 (depends-on "ibuffer-vc")
 (depends-on "magit")
 (depends-on "ace-window")
+(depends-on "iedit")
+(depends-on "wgrep")
+(depends-on "which-key")
 
 ;; mode
 (depends-on "rust-mode")
@@ -28,3 +31,6 @@
 (depends-on "multi-web-mode")
 (depends-on "markdown-mode")
 (depends-on "yaml-mode")
+
+;; misc
+(depends-on "exec-path-from-shell")

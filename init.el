@@ -10,6 +10,13 @@
 (package-initialize)
 
 ;; appearance
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(tooltip-mode -1)
+(display-time)				; Display time
+(setq inhibit-startup-message t)	; Inhibit startup message
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (load-theme 'morning-star t)
@@ -21,13 +28,11 @@
 (setq diredp-hide-details-initially-flag nil)
 (setq diredp-hide-details-propagate-flag nil)
 (treemacs-icons-dired-mode)
-;(setq treemacs-no-png-images t)
 
 ;; encoding
 (prefer-coding-system 'utf-8)
 (define-coding-system-alias 'UTF-8 'utf-8)
 (define-coding-system-alias 'utf8 'utf-8)
-
 (set-buffer-file-coding-system 'utf-8-unix)
 (set-file-name-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8-unix)
@@ -44,7 +49,25 @@
 (setq locale-coding-system 'utf-8-hfs)
 
 ;; misc
+;; scroll setup
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-conservatively 200)
+(setq scroll-margin 3)
+
+(setq ad-redefinition-action 'accept)
+(setq echo-keystrokes 0.001)
+(setq tab-width 2)
+
+;; no pop up frames
+(setq ns-pop-up-frames nil)
+(setq pop-up-frames nil)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 (setq tmp-directory-p "~/.emacs.d/tmp")
+
 (if (not (file-directory-p tmp-directory-p))
     (make-directory tmp-directory-p))
 
@@ -57,20 +80,12 @@
             (desktop-save-mode 1)))
 
 (setq bookmark-file (expand-file-name "bookmarks" tmp-directory-p))
-(setq path "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/go/bin")
 (add-hook 'dired-mode-hook 'auto-revert-mode)
-
-;; (require 'flx-ido)
-;; (ido-mode 1)
-;; (ido-everywhere 1)
-;; (flx-ido-mode 1)
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-use-faces nil) ;; disable ido faces to see flx highlights.
-;; (setq ido-save-directory-list-file (expand-file-name "ido.last" tmp-directory-p))
 
 (require 'dired-x)
 (setq dired-omit-files "^\\...+$") ;; hidden dotfiles
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+(setq dired-dwim-target t)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
 (setq dired-omit-verbose nil) ;; hidden annoying message
 
@@ -98,21 +113,11 @@
 (setq initial-scratch-message nil)
 (setq debug-on-error t)
 
-;; (icomplete-mode)
-(which-function-mode)
-
 (put 'set-goal-column 'disabled nil)
 
+(which-function-mode)
 (column-number-mode t)			; show column number
 (auto-compression-mode t)
-(display-time)				; Display time
-(tooltip-mode t)			; Use tooltip
-(when (functionp 'tool-bar-mode)        ; Don't use toolbar
-  (tool-bar-mode -1))
-(menu-bar-mode -1)			; Don't use menubar
-(if window-system
-    (scroll-bar-mode -1))               ; Don't use scrollbar
-(setq inhibit-startup-message t)	; Inhibit startup message
 (show-paren-mode t)                     ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 
@@ -340,7 +345,7 @@
 			  (ibuffer-do-sort-by-recency)))
 
 ;; ace-window
-(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "M-o") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 
 ;; magit
@@ -351,15 +356,17 @@
 (eyebrowse-mode t)
 (set-face-attribute 'eyebrowse-mode-line-active nil :underline nil :bold t :foreground "#c98459")
 
-;; rg for counsel projectile rg
-;; (require 'rg)
-;; (rg-enable-default-bindings)
-
 ;; ivy & swiper & counsel
 (ivy-mode 1)
-(global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-b") 'swiper-all)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
+
+;; which key
+(which-key-mode)
+(put 'dired-find-alternate-file 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
