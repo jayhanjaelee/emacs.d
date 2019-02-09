@@ -10,7 +10,6 @@
 (package-initialize)
 
 ;; appearance
-;(add-to-list 'default-frame-alist '(background-color . nil)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (load-theme 'morning-star t)
@@ -149,14 +148,22 @@
 ;; keybinding
 (when (and (eq system-type 'darwin) window-system)
   (setq ns-use-native-fullscreen nil)
-  ;;(setq mac-command-key-is-meta 1)
   (setq mac-command-modifier 'super)
+  (setq mac-option-modifier 'meta)
+  ;; mac style binding
   (global-set-key (kbd "<C-s-268632090>") 'toggle-frame-maximized)
+  (global-set-key (kbd "<M-return>") 'toggle-frame-maximized)
   (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
   (global-set-key (kbd "s-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "s-M-h") 'ns-do-hide-others)
   (global-set-key (kbd "s-0") 'treemacs)
-  (add-to-list 'default-frame-alist '(fullscreen . maximized)))
+  (global-set-key (kbd "s-r") 'revert-buffer)
+  (global-set-key (kbd "s-s") 'save-buffer)
+  (global-set-key (kbd "s-w") 'ido-kill-buffer)
+  (global-set-key (kbd "S-s-w") 'delete-frame)
+  (global-set-key (kbd "<s-backspace>") '(lambda () (interactive) (kill-line 0)))
+  ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
+  )
 
 (global-set-key "\r" 'newline-and-indent) ; auto indentation
 (global-set-key (kbd "C-x t") 'treemacs-select-window)
@@ -332,3 +339,7 @@
 ;; ace-window
 (global-set-key (kbd "M-p") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
