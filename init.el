@@ -179,6 +179,9 @@
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist `(("." . ,tmp-directory-p)))
 
+(global-set-key (kbd "s-=") 'text-scale-increase)
+(global-set-key (kbd "s--") 'text-scale-decrease)
+
 (global-set-key [C-S-tab] 'previous-buffer)
 (global-set-key [C-tab] 'next-buffer)
 (global-set-key (kbd "s-{") 'previous-buffer)
