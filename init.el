@@ -393,6 +393,11 @@
 ;; magit
 ;; -----
 ;;
+(require 'magit)
+(setq auto-revert-check-vc-info t) ;; update branch name when reverting magit buffer
+(remove-hook 'server-switch-hook 'magit-commit-diff) ;; committing performanc
+(setq vc-handled-backends nil) ;; diable builtin vc
+;;(setq magit-refresh-status-buffer nil)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
