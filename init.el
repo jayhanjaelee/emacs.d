@@ -83,6 +83,10 @@
 ;; Global Keybindings
 ;; ------------------
 ;;
+;; Unset Keybindings
+(global-unset-key (kbd "C-x C-t"))
+(global-unset-key (kbd "s-t"))
+;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
 (global-set-key (kbd "\r") 'newline-and-indent) ; auto indentation
@@ -94,8 +98,7 @@
 (global-set-key (kbd "C-x C-g") 'revert-buffer)
 (global-set-key (kbd "<f5>") 'transpose-frame)
 (global-set-key (kbd "<f6>") 'transpose-windows)
-;; Unset Keybindings
-(global-unset-key (kbd "C-x C-t"))
+(global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 
 ;; Encoding
 ;; --------
