@@ -39,5 +39,6 @@
 (depends-on "beacon")
 
 ;; org
-;;(depends-on "org")
+(depends-on "org")
 (depends-on "org-plus-contrib")
+(depends-on "org-bullets")

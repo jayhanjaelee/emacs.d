@@ -104,7 +104,12 @@
 ;; Encoding
 ;; --------
 ;;
+(setq default-input-method "korean-hangul")
 (setq default-korean-keyboard "2")
+(defun activate-default-input-method ()
+  (interactive)
+  (activate-input-method default-input-method))
+(add-hook 'org-mode-hook 'activate-default-input-method)
 (prefer-coding-system 'utf-8)
 (define-coding-system-alias 'UTF-8 'utf-8)
 (define-coding-system-alias 'utf8 'utf-8)
@@ -394,9 +399,15 @@
 ;; ---
 ;;
 (require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(setq org-directory "~/org")
+(setq org-agenda-files (list "~/org/test1.org"
+			     "~/org/test2.org"
+                             ))
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; ============================================================================
 ;; External Packages
