@@ -56,7 +56,12 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 (load-theme 'morning-star t)
 
 ;; Dired
@@ -446,7 +451,6 @@
 (global-set-key (kbd "s-7") 'eyebrowse-switch-to-window-config-7)
 (global-set-key (kbd "s-8") 'eyebrowse-switch-to-window-config-8)
 (global-set-key (kbd "s-9") 'eyebrowse-switch-to-window-config-9)
-(global-set-key (kbd "s-0") 'eyebrowse-switch-to-window-config-0)
 
 ;; ibuffer-vc
 ;; ----------
@@ -525,6 +529,7 @@
 (setq treemacs-is-never-other-window t)
 (setq treemacs-show-hidden-files nil)
 (global-set-key (kbd "C-x C-t") 'treemacs-select-window)
+(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
 
 ;; Exec-path-from-shell
 ;; --------------------
