@@ -27,7 +27,8 @@
 ;;
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+(if (window-system)
+    (scroll-bar-mode -1)) ; don't use scrollbar in only gui
 (tooltip-mode -1)
 (setq display-time-default-load-average nil)
 (setq display-time-day-and-date t)
