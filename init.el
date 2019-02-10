@@ -28,11 +28,16 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (tooltip-mode -1)
+(setq display-time-default-load-average nil)
+(setq display-time-day-and-date t)
+(setq display-time-format "%a %I:%M %p")
 (display-time)				; Display time
 (column-number-mode t)			; show column number
 (show-paren-mode t)                     ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 (which-function-mode)
+(setq which-func-unknown "?")
+(set-face-attribute 'which-func nil :box '(:color "#000000") :bold t :foreground "#c98459")
 (setq inhibit-startup-message t)	; Inhibit startup message
 ;; font
 (global-font-lock-mode t)		; Syntax highlight
@@ -78,6 +83,7 @@
 ;; Global Keybindings
 ;; ------------------
 ;;
+(global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
 (global-set-key (kbd "\r") 'newline-and-indent) ; auto indentation
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -414,7 +420,7 @@
 ;; ---------
 ;;
 (eyebrowse-mode t)
-(set-face-attribute 'eyebrowse-mode-line-active nil :underline nil :bold t :foreground "#c98459")
+(set-face-attribute 'eyebrowse-mode-line-active nil :box '(:color "#000000") :bold t :foreground "#c98459") ;; #000 is black2 #c98 is orange1 in morning star
 (global-set-key (kbd "s-1") 'eyebrowse-switch-to-window-config-1)
 (global-set-key (kbd "s-2") 'eyebrowse-switch-to-window-config-2)
 (global-set-key (kbd "s-3") 'eyebrowse-switch-to-window-config-3)
@@ -524,6 +530,50 @@
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-Z") 'redo)
 
+;; diminish
+;; --------
+;;
+;; (require 'diminish)
+;; ;; Hide jiggle-mode lighter from mode line
+;; (diminish 'projectile-mode "pj")
+;; ;; Replace abbrev-mode lighter with "Abv"
+;; (diminish 'undo-tree-mode "ut")
+;; (diminish 'auto-revert-mode)
+;; (diminish 'electric-pair-mode)
+;; (diminish 'undo-tree-visualizer-selection-mode)
+;; (diminish 'global-undo-tree-mode)
+;; (diminish 'which-key-mode)
+;; (diminish 'counsel-projectile-mode)
+;; (diminish 'counsel-mode)
+;; (diminish 'ivy-mode)
+;; (diminish 'delete-selection-mode)
+;; (diminish 'eyebrowse-mode)
+;; (diminish 'ibuffer-auto-mode)
+;; (diminish 'magit-blame-read-only-mode)
+;; (diminish 'magit-blame-mode)
+;; (diminish 'magit-blob-mode)
+;; (diminish 'global-magit-file-mode)
+;; (diminish 'magit-file-mode)
+;; (diminish 'magit-wip-initial-backup-mode)
+;; (diminish 'magit-wip-before-change-mode)
+;; (diminish 'magit-wip-after-apply-mode)
+;; (diminish 'magit-wip-after-save-mode)
+;; (diminish 'magit-wip-after-save-local-mode)
+;; (diminish 'smerge-mode)
+;; (diminish 'diff-minor-mode)
+;; (diminish 'diff-auto-refine-mode)
+;; (diminish 'magit-auto-revert-mode)
+;; (diminish 'global-auto-revert-mode)
+;; (diminish 'auto-revert-tail-mode)
+;; (diminish 'git-commit-mode)
+;; (diminish 'global-git-commit-mode)
+;; (diminish 'magit-popup-help-mode)
+;;           mml-mode mail-abbrevs-mode shell-command-with-editor-mode with-editor-mode async-bytecomp-package-mode shell-dirtrack-mode server-mode org-cdlatex-mode orgstruct-mode org-src-mode markdown-live-preview-mode outline-minor-mode multi-web-global-mode multi-web-mode compilation-minor-mode compilation-shell-minor-mode recentf-mode save-place-mode desktop-save-mode treemacs-icons-dired-mode treemacs-tag-follow-mode treemacs-filewatch-mode xref-etags-mode treemacs-follow-mode treemacs-git-mode treemacs-fringe-indicator-mode ace-window-display-mode avy-linum-mode global-hl-line-mode hl-line-mode diredp-breadcrumbs-in-header-line-mode global-dired-hide-details-mode image-dired-minor-mode image-minor-mode auto-image-file-mode dired-omit-mode dired-isearch-filenames-mode dired-hide-details-mode which-function-mode show-paren-mode display-time-mode package-build-minor-mode url-handler-mode cl-old-struct-compat-mode tooltip-mode global-eldoc-mode eldoc-mode electric-quote-mode electric-layout-mode electric-indent-mode mouse-wheel-mode tool-bar-mode paragraph-indent-minor-mode global-prettify-symbols-mode prettify-symbols-mode use-hard-newlines menu-bar-mode file-name-shadow-mode horizontal-scroll-bar-mode jit-lock-debug-mode global-font-lock-mode font-lock-mode blink-cursor-mode window-divider-mode auto-composition-mode unify-8859-on-decoding-mode unify-8859-on-encoding-mode auto-encryption-mode auto-compression-mode temp-buffer-resize-mode visible-mode buffer-read-only size-indication-mode column-number-mode line-number-mode auto-fill-function global-visual-line-mode visual-line-mode transient-mark-mode next-error-follow-minor-mode completion-in-region-mode auto-save-visited-mode auto-save-mode auto-fill-mode abbrev-mode overwrite-mode view-mode hs-minor-mode)
+;; (diminish 'abbrev-mode)
+;; (add-hook 'emacs-lisp-mode-hook
+;;   (lambda()
+;;     (setq mode-name "el")))
+
 ;; ===========================================================================
 ;; Unknown
 ;; ===========================================================================
@@ -531,3 +581,6 @@
 (setq load-prefer-newer t) ;; ?
 (put 'set-goal-column 'disabled nil) ;; ?
 (put 'narrow-to-region 'disabled nil) ;; ?
+
+;; korean input setting
+;;(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")
