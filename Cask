@@ -6,7 +6,7 @@
 (depends-on "treemacs")
 (depends-on "treemacs-icons-dired")
 (depends-on "treemacs-projectile")
-(depends-on "diminish")
+(depends-on "minions")
 
 ;; productivity
 (depends-on "projectile")
