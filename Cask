@@ -22,6 +22,7 @@
 (depends-on "iedit")
 (depends-on "wgrep")
 (depends-on "which-key")
+(depends-on "multi-term")
 
 ;; mode
 (depends-on "rust-mode")

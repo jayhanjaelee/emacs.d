@@ -199,16 +199,6 @@
 
 (global-set-key (kbd "M-s") 'shell-command)
 (global-set-key (kbd "M-c") 'compile)
-(global-set-key (kbd "M-a") 'run-ansi-term)
-
-(defun run-ansi-term ()
-  (interactive)
-  (if (equal "*ansi-term*" (buffer-name))
-      (call-interactively 'rename-buffer)
-    (if (get-buffer "*ansi-term*")
-	(switch-to-buffer "*ansi-term*")
-      (ansi-term "/bin/bash"))))
-
 (global-set-key (kbd "C-x g") 'revert-buffer)
 
 ;; code
@@ -355,6 +345,7 @@
 ;; eyebrowse
 (eyebrowse-mode t)
 (set-face-attribute 'eyebrowse-mode-line-active nil :underline nil :bold t :foreground "#c98459")
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ivy & swiper & counsel
 (ivy-mode 1)
@@ -370,3 +361,40 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; multi-term
+(setq multi-term-program "/bin/bash")
+(global-set-key (kbd "C-c C-t") 'multi-term)
+(global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
+(global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
+(defun term-send-undo () ;; undo for multi-term
+  (interactive)
+  (term-send-raw-string "\C-_"))
+(setq term-bind-key-alist
+          '(("C-c C-c" . term-interrupt-subjob)            ; default
+            ("C-c C-e" . term-send-esc)                    ; default
+            ("C-c C-j" . term-line-mode)
+            ("C-c C-k" . term-char-mode)
+            ("C-a"     . term-bol)
+            ("C-b"     . term-send-left)
+            ("C-f"     . term-send-right)
+            ("C-p"     . previous-line)                    ; default
+            ("C-n"     . next-line)                        ; default
+            ("C-s"     . isearch-forward)                  ; default
+            ("C-r"     . isearch-backward)                 ; default
+            ("C-m"     . term-send-return)                 ; default
+            ("C-y"     . term-paste)                       ; default
+            ("M-f"     . term-send-forward-word)           ; default
+            ("M-b"     . term-send-backward-word)          ; default
+            ("M-o"     . term-send-backspace)              ; default
+            ("M-p"     . term-send-up)                     ; default
+            ("M-n"     . term-send-down)                   ; default
+            ;; ("M-M"     . term-send-forward-kill-word)   ; default
+            ("M-d"     . term-send-forward-kill-word)
+            ;; ("M-N"     . term-send-backward-kill-word)  ; default
+            ("M-DEL"   . term-send-backward-kill-word)
+            ("M-r"     . term-send-reverse-search-history) ; default
+            ("M-,"     . term-send-raw)                    ; default
+            ("M-."     . comint-dynamic-complete)
+	    ("s-z"     . term-send-undo)
+	    ("C--"     . term-send-undo)))
