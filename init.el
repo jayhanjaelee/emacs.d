@@ -43,9 +43,7 @@
 ;; font
 (global-font-lock-mode t)		; Syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 18")
-(add-to-list 'default-frame-alist
-	     '(font . "menlo 18"))
+(set-frame-font "menlo 14" nil t)
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
@@ -98,6 +96,8 @@
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "C-x C-g") 'revert-buffer)
+(global-set-key (kbd "<f5>") 'transpose-frame)
+(global-set-key (kbd "<f6>") 'transpose-windows)
 ;; Unset Keybindings
 (global-unset-key (kbd "C-x C-t"))
 
