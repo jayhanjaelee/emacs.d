@@ -6,7 +6,6 @@
 (depends-on "treemacs")
 (depends-on "treemacs-icons-dired")
 (depends-on "treemacs-projectile")
-(depends-on "spaceline-all-the-icons")
 
 ;; productivity
 (depends-on "projectile")
@@ -24,7 +23,7 @@
 (depends-on "which-key")
 (depends-on "multi-term")
 
-;; mode
+;; code
 (depends-on "rust-mode")
 (depends-on "swift-mode")
 (depends-on "go-mode")

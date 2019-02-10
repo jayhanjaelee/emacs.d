@@ -13,7 +13,7 @@ brew install cask
 ## Installation
 
 ```
-git clone git@github.com:ghmlee/emacs.d.git ~/.emacs.d
+git clone git@github.com:jayhanjaelee/emacs.d.git ~/.emacs.d
 cd ~/.emacs.d
 cask install
 ```
