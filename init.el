@@ -55,12 +55,7 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (load-theme 'morning-star t)
 
 ;; Dired
