@@ -535,6 +535,14 @@
 ;; make modeline more simpler
 (minions-mode)
 
+;; beacon
+;; ------
+;; make it easier to find cursor
+(if (display-graphic-p)
+    (progn
+      (beacon-mode 1)
+      (setq beacon-color "#f2777a"))) ;; red 1 color
+
 ;; ===========================================================================
 ;; Unknown
 ;; ===========================================================================

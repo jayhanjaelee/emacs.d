@@ -35,3 +35,4 @@
 
 ;; misc
 (depends-on "exec-path-from-shell")
+(depends-on "beacon")
