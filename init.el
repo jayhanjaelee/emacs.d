@@ -14,6 +14,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (when (< emacs-major-version 24) (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
@@ -56,7 +57,12 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 (load-theme 'morning-star t)
 
 ;; Dired
@@ -91,7 +97,7 @@
 (global-set-key (kbd "s--") 'text-scale-decrease)
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
-(global-set-key (kbd "C-x g") 'revert-buffer)
+(global-set-key (kbd "C-x C-g") 'revert-buffer)
 ;; Unset Keybindings
 (global-unset-key (kbd "C-x C-t"))
 
@@ -255,6 +261,7 @@
 (setq ring-bell-function 'ignore) ;; Turn off alarm
 (setq debug-on-error nil) ;; disable debugging message
 (setq select-enable-clipboard t) ;; Share the clipboard with x-window application
+(setq disabled-command-function nil) ;; Enable all disabled command
 
 ;; ===========================================================================
 ;; Code For Development
@@ -390,7 +397,6 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-(put 'erase-buffer 'disabled nil)
 
 ;; ============================================================================
 ;; External Packages
@@ -461,9 +467,6 @@
 ;; ---------
 ;;
 (which-key-mode)
-(put 'dired-find-alternate-file 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
 
 ;; multi-term
 ;; ----------
@@ -548,8 +551,6 @@
 ;; ===========================================================================
 
 (setq load-prefer-newer t) ;; ?
-(put 'set-goal-column 'disabled nil) ;; ?
-(put 'narrow-to-region 'disabled nil) ;; ?
 
 ;; korean input setting
 ;;(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")

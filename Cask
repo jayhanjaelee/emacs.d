@@ -1,4 +1,5 @@
 (source melpa)
+(source org)
 
 (package-file "/usr/local/share/emacs/site-lisp/cask/cask.el")
 
@@ -36,3 +37,7 @@
 ;; misc
 (depends-on "exec-path-from-shell")
 (depends-on "beacon")
+
+;; org
+;;(depends-on "org")
+(depends-on "org-plus-contrib")
