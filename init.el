@@ -44,7 +44,7 @@
 ;; font
 (global-font-lock-mode t)		; Syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 14" nil t)
+(set-frame-font "menlo 18" nil t)
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
@@ -56,12 +56,7 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (load-theme 'morning-star t)
 
 ;; Dired
