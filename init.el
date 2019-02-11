@@ -450,7 +450,6 @@
 ;;
 (require 'magit)
 (setq auto-revert-check-vc-info t) ;; update branch name when reverting magit buffer
-(remove-hook 'server-switch-hook 'magit-commit-diff) ;; committing performanc
 (setq vc-handled-backends '(Git))
 ;;(setq vc-handled-backends nil) ;; for performance
 ;;(setq magit-refresh-status-buffer nil)
