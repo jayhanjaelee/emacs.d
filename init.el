@@ -600,6 +600,12 @@
 (setq gac-automatically-push-p t) ;; settting about automatic push
 (setq gac-ask-for-summary-p nil) ;; if t, always ask commit message everytime a file is saved.
 
+;; company-mode
+;; ------------
+;; auto complete
+(add-hook 'python-mode-hook 'company-mode)
+(setq company-idle-delay 0)
+
 ;; ===========================================================================
 ;; Unknown
 ;; ===========================================================================
