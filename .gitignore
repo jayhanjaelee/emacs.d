@@ -11,3 +11,5 @@ bookmarks
 tmp/
 .org-id-locations
 BROWSE
+anaconda-mode/
+.python-environments/

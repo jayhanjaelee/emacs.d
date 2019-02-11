@@ -28,6 +28,7 @@
 (depends-on "reveal-in-osx-finder")
 (depends-on "flycheck")
 (depends-on "company")
+(depends-on "company-jedi")
 
 ;; code
 (depends-on "rust-mode")

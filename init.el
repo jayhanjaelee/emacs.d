@@ -603,8 +603,22 @@
 ;; company-mode
 ;; ------------
 ;; auto complete
+(require 'company)
 (add-hook 'python-mode-hook 'company-mode)
 (setq company-idle-delay 0)
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev-visible
+        (lambda (arg) (call-interactively 'company-complete))
+        ))
+(global-set-key (kbd "<escape>") 'hippie-expand)
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;; company-jedi
+;; ------------
+;; backend for company-mode
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; ===========================================================================
 ;; Unknown
