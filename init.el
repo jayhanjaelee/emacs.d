@@ -548,7 +548,7 @@
 ;;
 (setq treemacs-is-never-other-window t)
 (setq treemacs-show-hidden-files nil)
-(global-set-key (kbd "C-x t") 'TREEMACS-select-window)
+(global-set-key (kbd "C-x t") 'treemacs-select-window)
 (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
 
 ;; Exec-path-from-shell
