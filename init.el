@@ -106,11 +106,6 @@
 (set-language-environment "English")
 (setq default-input-method "korean-hangul")
 (setq default-korean-keyboard "2")
-;; (if current-input-method nil
-;;   (setq current-input-method-title "EN"
-;; 	current-input-method "EN"
-;; 	)
-;;   )
 (prefer-coding-system 'utf-8)
 (define-coding-system-alias 'UTF-8 'utf-8)
 (define-coding-system-alias 'utf8 'utf-8)
@@ -424,7 +419,8 @@
 (require 'magit)
 (setq auto-revert-check-vc-info t) ;; update branch name when reverting magit buffer
 (remove-hook 'server-switch-hook 'magit-commit-diff) ;; committing performanc
-(setq vc-handled-backends nil) ;; diable builtin vc
+(setq vc-handled-backends '(Git))
+;;(setq vc-handled-backends nil) ;; for performance
 ;;(setq magit-refresh-status-buffer nil)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
