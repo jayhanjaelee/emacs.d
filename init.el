@@ -57,8 +57,8 @@
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (load-theme 'morning-star t)
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 
 ;; Dired
 ;; -----
@@ -423,14 +423,23 @@
 ;;
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 (setq org-directory "~/org")
-(setq org-agenda-files (list "~/org/test1.org"
-			     "~/org/test2.org"
-                             ))
+(setq org-agenda-files '("~/org"))
+(setq org-todo-keywords
+      '((sequence "TODO" "|" "DONE")
+        (sequence "BACKLOG" "READY" "PROGRESS" "|" "DONE")
+        ))
+(setq org-log-done t) ;; log timestamps when todo is done.
+;; (setq org-todo-keyword-faces
+;;       '(("BACKLOG" . (:foreground "#E5C07B" :weight bold))
+;; 	("READY" . (:foreground "#C678DD" :weight bold))
+;; 	("PROGRESS" . (:foreground "#E06C75" :weight bold))
+;; 	("DONE" . (:foreground "#98C379" :weight bold))))
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'org-mode-hook 'git-auto-commit-mode)
 
 ;; ============================================================================
 ;; External Packages
@@ -580,6 +589,17 @@
     (progn
       (beacon-mode 1)
       (setq beacon-color "#f2777a"))) ;; red 1 color
+
+;; flycheck
+;; --------
+;; syntax check
+(add-hook 'python-mode-hook #'flycheck-mode)
+
+;; git-auto-commit-mode
+;; --------------------
+;; commit and push automatically everytime a file is saved.
+(setq gac-automatically-push-p t) ;; settting about automatic push
+(setq gac-ask-for-summary-p nil) ;; if t, always ask commit message everytime a file is saved.
 
 ;; ===========================================================================
 ;; Unknown
