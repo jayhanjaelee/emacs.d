@@ -607,39 +607,27 @@
 ;; ---------
 ;; template system
 (yas-global-mode 1)
+(define-key yas-minor-mode-map [(tab)]        nil)
+(define-key yas-minor-mode-map (kbd "TAB")    nil)
+(define-key yas-minor-mode-map (kbd "<tab>")  nil)
 
 ;; company-mode
 ;; ------------
 ;; auto complete
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
-(setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev-visible
+(defun try-flyspell (arg) ;; check spelling for only comment
+  (if (nth 4 (syntax-ppss))
+      (call-interactively 'ispell-word)
+  nil))
+(setq hippie-expand-try-functions-list ;; auto complte sequence 1. try-flyspell (comment only) 2. yasnippet 3. dabbrev 4. company
+      '(try-flyspell
+        yas-hippie-try-expand
+        try-expand-dabbrev-visible
         (lambda (arg) (call-interactively 'company-complete))
         ))
 (global-set-key (kbd "<escape>") 'hippie-expand)
 (global-set-key (kbd "M-/") 'hippie-expand)
-
-
-;;  (define-key yas-minor-mode-map [(tab)]        nil)
-;;  (define-key yas-minor-mode-map (kbd "TAB")    nil)
-;;  (define-key yas-minor-mode-map (kbd "<tab>")  nil)
-
-;; (defun try-flyspell (arg)
-;;   (if (nth 4 (syntax-ppss))
-;;       (call-interactively 'flyspell-correct-word-before-point)
-;;   nil))
-
-;; (setq hippie-expand-try-functions-list
-;;       '(try-flyspell
-;;         yas-hippie-try-expand
-;;         try-expand-dabbrev-visible
-;;         (lambda (arg) (call-interactively 'company-complete))
-
-;;         ))
-
-;; (global-set-key (kbd "<tab>")  'hippie-expand)
-;; (global-set-key (kbd "TAB")  'hippie-expand)
 
 ;; company-jedi
 ;; ------------
@@ -648,7 +636,7 @@
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
-
+;; applw
 
 ;; ===========================================================================
 ;; Unknown
