@@ -106,8 +106,7 @@
 ;; Encoding
 ;; --------
 ;;
-(set-language-environment "English")
-
+(set-language-environment 'utf-8)
 ;; korean input setting
 (setq default-input-method "korean-hangul")
 (setq default-korean-keyboard "2")
