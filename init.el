@@ -103,12 +103,14 @@
 ;; Encoding
 ;; --------
 ;;
+(set-language-environment "English")
 (setq default-input-method "korean-hangul")
 (setq default-korean-keyboard "2")
-(defun activate-default-input-method ()
-  (interactive)
-  (activate-input-method default-input-method))
-(add-hook 'org-mode-hook 'activate-default-input-method)
+;; (if current-input-method nil
+;;   (setq current-input-method-title "EN"
+;; 	current-input-method "EN"
+;; 	)
+;;   )
 (prefer-coding-system 'utf-8)
 (define-coding-system-alias 'UTF-8 'utf-8)
 (define-coding-system-alias 'utf8 'utf-8)
@@ -123,6 +125,10 @@
 (require 'ucs-normalize)
 (set-file-name-coding-system 'utf-8-hfs)
 (setq locale-coding-system 'utf-8-hfs)
+;; (defun activate-default-input-method ()
+;;   (interactive)
+;;   (activate-input-method default-input-method))
+;;(add-hook 'org-mode-hook 'activate-default-input-method)
 
 ;; ===========================================================================
 ;; Miscellaneous Settings
