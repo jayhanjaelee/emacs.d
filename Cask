@@ -27,6 +27,7 @@
 (depends-on "git-auto-commit-mode")
 (depends-on "reveal-in-osx-finder")
 (depends-on "flycheck")
+(depends-on "yasnippet")
 (depends-on "company")
 (depends-on "company-jedi")
 
