@@ -42,8 +42,9 @@
 (set-face-attribute 'which-func nil :box '(:color "#000000") :bold t :foreground "#c98459")
 (setq inhibit-startup-message t)	; Inhibit startup message
 ;; font
-(global-font-lock-mode t)		; Syntax highlight
+(global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
+;;(set-fontset-font t 'hangul (font-spec :name "NanumGothic")
 (set-frame-font "menlo 18" nil t)
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
@@ -86,6 +87,7 @@
 ;; Unset Keybindings
 (global-unset-key (kbd "C-x C-t"))
 (global-unset-key (kbd "s-t"))
+(global-unset-key (kbd "s-L"))
 ;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
@@ -100,26 +102,46 @@
 (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 
+
 ;; Encoding
 ;; --------
 ;;
 (set-language-environment "English")
+
+;; korean input setting
 (setq default-input-method "korean-hangul")
 (setq default-korean-keyboard "2")
+(setq locale-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-(define-coding-system-alias 'UTF-8 'utf-8)
-(define-coding-system-alias 'utf8 'utf-8)
-(set-buffer-file-coding-system 'utf-8-unix)
-(set-file-name-coding-system 'utf-8-unix)
-(set-keyboard-coding-system 'utf-8-unix)
-(set-next-selection-coding-system 'utf-8-unix)
-(set-selection-coding-system 'utf-8-unix)
-(set-terminal-coding-system 'utf-8-unix)
-(set-clipboard-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
 ;; encoding for mac os file system
-(require 'ucs-normalize)
-(set-file-name-coding-system 'utf-8-hfs)
-(setq locale-coding-system 'utf-8-hfs)
+(if (eq system-type 'darwin)
+    (progn
+      (require 'ucs-normalize)
+      (set-file-name-coding-system 'utf-8-hfs) ;; UTF-8 based coding system for macOS HFS file names.
+      (setq locale-coding-system 'utf-8-hfs)
+      (prefer-coding-system 'utf-8-unix)
+      (set-terminal-coding-system 'utf-8-unix)
+      (set-keyboard-coding-system 'utf-8-unix)
+      (set-selection-coding-system 'utf-8-unix)
+      (prefer-coding-system 'utf-8-unix)
+      (set-terminal-coding-system 'utf-8-unix)
+      (set-keyboard-coding-system 'utf-8-unix)
+      (set-selection-coding-system 'utf-8-unix)
+      (set-buffer-file-coding-system 'utf-8-unix)
+      (set-clipboard-coding-system 'utf-8-unix)
+      ))
 ;; (defun activate-default-input-method ()
 ;;   (interactive)
 ;;   (activate-input-method default-input-method))
@@ -147,7 +169,7 @@
 (setq interprogram-paste-function 'copy-from-osx)
 (setq mac-allow-anti-aliasing t)
 ;; keybinding
-(when (and (eq system-type 'darwin) window-system)
+(when (and (eq system-type 'darwin) window-system) ;; check if mac os and gui
   (setq ns-use-native-fullscreen nil)
   (setq mac-command-modifier 'super)
   (setq mac-option-modifier 'meta)
@@ -157,7 +179,6 @@
   (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
   (global-set-key (kbd "s-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "s-M-h") 'ns-do-hide-others)
-  (global-set-key (kbd "s-0") 'treemacs)
   (global-set-key (kbd "s-r") 'revert-buffer)
   (global-set-key (kbd "s-s") 'save-buffer)
   (global-set-key (kbd "S-s-w") 'delete-frame)
@@ -170,6 +191,8 @@
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
+  (global-set-key (kbd "s-L") 'treemacs)
+  (global-set-key (kbd "s-0") 'treemacs)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
   )
 
@@ -267,6 +290,7 @@
 (setq debug-on-error nil) ;; disable debugging message
 (setq select-enable-clipboard t) ;; Share the clipboard with x-window application
 (setq disabled-command-function nil) ;; Enable all disabled command
+(setq load-prefer-newer t) ;; you're never accidentally using outdated compiled files.
 
 ;; ===========================================================================
 ;; Code For Development
@@ -525,7 +549,7 @@
 ;;
 (setq treemacs-is-never-other-window t)
 (setq treemacs-show-hidden-files nil)
-(global-set-key (kbd "C-x C-t") 'treemacs-select-window)
+(global-set-key (kbd "C-x t") 'TREEMACS-select-window)
 (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
 
 ;; Exec-path-from-shell
@@ -561,8 +585,3 @@
 ;; ===========================================================================
 ;; Unknown
 ;; ===========================================================================
-
-(setq load-prefer-newer t) ;; ?
-
-;; korean input setting
-;;(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")
