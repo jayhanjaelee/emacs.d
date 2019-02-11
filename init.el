@@ -292,6 +292,7 @@
 (setq load-prefer-newer t) ;; you're never accidentally using outdated compiled files.
 (setq ispell-program-name "/usr/local/bin/ispell")
 (flyspell-mode) ;; check spelling
+(delete-selection-mode 1) ;; replacing highlight text
 
 ;; ===========================================================================
 ;; Code For Development
