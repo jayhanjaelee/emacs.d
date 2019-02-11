@@ -88,6 +88,7 @@
 (global-unset-key (kbd "C-x C-t"))
 (global-unset-key (kbd "s-t"))
 (global-unset-key (kbd "s-L"))
+(global-unset-key (kbd "C-;"))
 ;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
@@ -101,7 +102,6 @@
 (global-set-key (kbd "<f5>") 'transpose-frame)
 (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
-
 
 ;; Encoding
 ;; --------
@@ -290,6 +290,8 @@
 (setq select-enable-clipboard t) ;; Share the clipboard with x-window application
 (setq disabled-command-function nil) ;; Enable all disabled command
 (setq load-prefer-newer t) ;; you're never accidentally using outdated compiled files.
+(setq ispell-program-name "/usr/local/bin/ispell")
+(flyspell-mode) ;; check spelling
 
 ;; ===========================================================================
 ;; Code For Development
@@ -451,6 +453,7 @@
 (require 'magit)
 (setq auto-revert-check-vc-info t) ;; update branch name when reverting magit buffer
 (setq vc-handled-backends '(Git))
+(add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
 ;;(setq vc-handled-backends nil) ;; for performance
 ;;(setq magit-refresh-status-buffer nil)
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -600,11 +603,15 @@
 (setq gac-automatically-push-p t) ;; settting about automatic push
 (setq gac-ask-for-summary-p nil) ;; if t, always ask commit message everytime a file is saved.
 
+;; yasnippet
+;; ---------
+;; template system
+(yas-global-mode 1)
+
 ;; company-mode
 ;; ------------
 ;; auto complete
-(require 'company)
-(add-hook 'python-mode-hook 'company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev-visible
@@ -613,12 +620,35 @@
 (global-set-key (kbd "<escape>") 'hippie-expand)
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+
+;;  (define-key yas-minor-mode-map [(tab)]        nil)
+;;  (define-key yas-minor-mode-map (kbd "TAB")    nil)
+;;  (define-key yas-minor-mode-map (kbd "<tab>")  nil)
+
+;; (defun try-flyspell (arg)
+;;   (if (nth 4 (syntax-ppss))
+;;       (call-interactively 'flyspell-correct-word-before-point)
+;;   nil))
+
+;; (setq hippie-expand-try-functions-list
+;;       '(try-flyspell
+;;         yas-hippie-try-expand
+;;         try-expand-dabbrev-visible
+;;         (lambda (arg) (call-interactively 'company-complete))
+
+;;         ))
+
+;; (global-set-key (kbd "<tab>")  'hippie-expand)
+;; (global-set-key (kbd "TAB")  'hippie-expand)
+
 ;; company-jedi
 ;; ------------
 ;; backend for company-mode
 (defun my/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
+
+
 
 ;; ===========================================================================
 ;; Unknown
