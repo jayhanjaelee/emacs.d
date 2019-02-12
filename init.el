@@ -186,8 +186,8 @@
   (global-set-key (kbd "s-w") 'eyebrowse-close-window-config)
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
   (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
-  (global-set-key (kbd "s-[") 'previous-buffer)
-  (global-set-key (kbd "s-]") 'next-buffer)
+  (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
+  (global-set-key (kbd "s-]") 'xah-next-user-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
@@ -278,6 +278,71 @@
           (w2b (window-buffer w2)))
      (set-window-buffer w1 w2b)
      (set-window-buffer w2 w1b)))
+
+;; switching buffer
+;; ----------------
+;; cycle user buffer & emacs buffer
+(defun xah-user-buffer-q ()
+  "Return t if current buffer is a user buffer, else nil.
+Typically, if buffer name starts with *, it's not considered a user buffer.
+This function is used by buffer switching command and close buffer command, so that next buffer shown is a user buffer.
+You can override this function to get your idea of 'user buffer'.
+version 2016-06-18"
+  (interactive)
+  (if (string-equal "*" (substring (buffer-name) 0 1))
+      nil
+    (if (string-equal major-mode "dired-mode")
+        nil
+      t
+      )))
+(defun xah-next-user-buffer ()
+  "Switch to the next user buffer.
+'user buffer' is determined by `xah-user-buffer-q'.
+URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
+Version 2016-06-19"
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (< i 20)
+      (if (not (xah-user-buffer-q))
+          (progn (next-buffer)
+                 (setq i (1+ i)))
+        (progn (setq i 100))))))
+(defun xah-previous-user-buffer ()
+  "Switch to the previous user buffer.
+'user buffer' is determined by `xah-user-buffer-q'.
+URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
+Version 2016-06-19"
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (< i 20)
+      (if (not (xah-user-buffer-q))
+          (progn (previous-buffer)
+                 (setq i (1+ i)))
+        (progn (setq i 100))))))
+(defun xah-next-emacs-buffer ()
+  "Switch to the next emacs buffer.
+'emacs buffer' here is buffer whose name starts with *.
+URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
+Version 2016-06-19"
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (and (not (string-equal "*" (substring (buffer-name) 0 1))) (< i 20))
+      (setq i (1+ i)) (next-buffer))))
+(defun xah-previous-emacs-buffer ()
+  "Switch to the previous emacs buffer.
+'emacs buffer' here is buffer whose name starts with *.
+URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
+Version 2016-06-19"
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (and (not (string-equal "*" (substring (buffer-name) 0 1))) (< i 20))
+      (setq i (1+ i)) (previous-buffer))))
+(global-set-key (kbd "<S-f11>") 'xah-previous-emacs-buffer)
+(global-set-key (kbd "<S-f12>") 'xah-next-emacs-buffer)
 
 ;; Others
 ;; ------
