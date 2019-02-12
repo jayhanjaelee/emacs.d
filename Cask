@@ -31,6 +31,7 @@
 (depends-on "yasnippet-snippets")
 (depends-on "company")
 (depends-on "company-jedi")
+(depends-on "prodigy")
 
 ;; code
 (depends-on "rust-mode")
