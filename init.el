@@ -301,11 +301,11 @@ version 2016-06-18"
 URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
 Version 2016-06-19"
   (interactive)
-  (buffer-stack-up)
+  (next-buffer)
   (let ((i 0))
     (while (< i 20)
       (if (not (xah-user-buffer-q))
-          (progn (buffer-stack-up)
+          (progn (next-buffer)
                  (setq i (1+ i)))
         (progn (setq i 100))))))
 (defun xah-previous-user-buffer ()
@@ -314,11 +314,11 @@ Version 2016-06-19"
 URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
 Version 2016-06-19"
   (interactive)
-  (buffer-stack-down)
+  (previous-buffer)
   (let ((i 0))
     (while (< i 20)
       (if (not (xah-user-buffer-q))
-          (progn (buffer-stack-down)
+          (progn (previous-buffer)
                  (setq i (1+ i)))
         (progn (setq i 100))))))
 (defun xah-next-emacs-buffer ()
@@ -708,17 +708,6 @@ Version 2016-06-19"
 ;; -----
 ;; edit equal text at same time
 (require 'iedit)
-
-;; buffer-stack
-;; -----
-;; make buffer system to be stacked.
-(setq buffer-stack-show-position 'nil) ;; todo : implemetn asterisk buffer to be not shown in minibuffer
-(autoload 'buffer-stack-down "buffer-stack"  nil t)
-(autoload 'buffer-stack-up "buffer-stack"  nil t)
-(autoload 'buffer-stack-bury-and-kill "buffer-stack"  nil t)
-(autoload 'buffer-stack-bury "buffer-stack"  nil t)
-(eval-after-load "buffer-stack" '(require 'buffer-stack-suppl)) ;; enable buffer stack for only current mode.
-(global-set-key (kbd "C-x k") 'buffer-stack-bury-and-kill)
 
 ;; prodigy
 ;; -------
