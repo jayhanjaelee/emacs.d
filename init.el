@@ -639,10 +639,14 @@
   (add-to-list 'company-backends 'company-jedi))
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
+;; iedit
+;; -----
+;; edit equal text at same time
+(require 'iedit)
+
 ;; prodigy
 ;; -------
 ;; process manager
-
 
 ;; ===========================================================================
 ;; Unknown
