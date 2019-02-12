@@ -444,6 +444,7 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook 'git-auto-commit-mode)
+;; (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold nil)))
 
 ;; ============================================================================
 ;; External Packages
@@ -519,7 +520,7 @@
 ;; ----------
 ;;
 (setq multi-term-program "/bin/bash")
-(global-set-key (kbd "C-c C-t") 'multi-term)
+;; (global-set-key (kbd "C-c C-t") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
 (defun term-send-undo () ;; undo for multi-term

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: prodigy
+# key: prodigy
+# --
+(prodigy-define-service
+  :name "$1"
+  :command "$2"
+  :args '("$3")
+  :cwd "$4"
+  :tags '(work)
+  :env '(("$5" "$6"))
+  :stop-signal 'sigkill
+  :kill-process-buffer-on-stop t)$0
