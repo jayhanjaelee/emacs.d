@@ -642,15 +642,7 @@
 ;; prodigy
 ;; -------
 ;; process manager
-(prodigy-define-service
-  :name "Django"
-  :command "python"
-  :args '("-m" "django" "runserver" "8888")
-  :cwd "~/Desktop/hanjaelee/"
-  :tags '(work)
-  :env '(("DJANGO_SETTINGS_MODULE" "hanjaelee.settings"))
-  :stop-signal 'sigkill
-  :kill-process-buffer-on-stop t)
+
 
 ;; ===========================================================================
 ;; Unknown
