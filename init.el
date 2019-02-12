@@ -279,9 +279,9 @@
      (set-window-buffer w1 w2b)
      (set-window-buffer w2 w1b)))
 
-;; switching buffer
-;; ----------------
-;; cycle user buffer & emacs buffer
+;; user buffer & emacs buffer
+;; --------------------------
+;; cycle only user buffer or emacs buffer
 (defun xah-user-buffer-q ()
   "Return t if current buffer is a user buffer, else nil.
 Typically, if buffer name starts with *, it's not considered a user buffer.
@@ -301,11 +301,11 @@ version 2016-06-18"
 URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
 Version 2016-06-19"
   (interactive)
-  (next-buffer)
+  (buffer-stack-up)
   (let ((i 0))
     (while (< i 20)
       (if (not (xah-user-buffer-q))
-          (progn (next-buffer)
+          (progn (buffer-stack-up)
                  (setq i (1+ i)))
         (progn (setq i 100))))))
 (defun xah-previous-user-buffer ()
@@ -314,11 +314,11 @@ Version 2016-06-19"
 URL `http://ergoemacs.org/emacs/elisp_next_prev_user_buffer.html'
 Version 2016-06-19"
   (interactive)
-  (previous-buffer)
+  (buffer-stack-down)
   (let ((i 0))
     (while (< i 20)
       (if (not (xah-user-buffer-q))
-          (progn (previous-buffer)
+          (progn (buffer-stack-down)
                  (setq i (1+ i)))
         (progn (setq i 100))))))
 (defun xah-next-emacs-buffer ()
@@ -509,7 +509,7 @@ Version 2016-06-19"
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook 'git-auto-commit-mode)
-;; (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold nil)))
+(add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1)))
 
 ;; ============================================================================
 ;; External Packages
@@ -708,6 +708,17 @@ Version 2016-06-19"
 ;; -----
 ;; edit equal text at same time
 (require 'iedit)
+
+;; buffer-stack
+;; -----
+;; make buffer system to be stacked.
+(setq buffer-stack-show-position 'nil) ;; todo : implemetn asterisk buffer to be not shown in minibuffer
+(autoload 'buffer-stack-down "buffer-stack"  nil t)
+(autoload 'buffer-stack-up "buffer-stack"  nil t)
+(autoload 'buffer-stack-bury-and-kill "buffer-stack"  nil t)
+(autoload 'buffer-stack-bury "buffer-stack"  nil t)
+(eval-after-load "buffer-stack" '(require 'buffer-stack-suppl)) ;; enable buffer stack for only current mode.
+(global-set-key (kbd "C-x k") 'buffer-stack-bury-and-kill)
 
 ;; prodigy
 ;; -------
