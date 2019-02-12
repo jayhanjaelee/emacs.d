@@ -556,6 +556,7 @@ Version 2016-06-19"
 ;;
 (require 'ibuffer-vc)
 (add-hook 'ibuffer-hook (lambda ()
+			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
 
