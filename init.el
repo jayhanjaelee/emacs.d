@@ -511,6 +511,7 @@ Version 2016-06-19"
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook 'git-auto-commit-mode)
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1)))
+(require 'org-tempo) ;; org template expansion using tab
 
 ;; ============================================================================
 ;; External Packages
@@ -564,8 +565,26 @@ Version 2016-06-19"
 ;; ace-window
 ;; ----------
 ;;
+(when (fboundp 'winner-mode) ;; if winner mode exist, enable it.
+  (winner-mode 1))
 (global-set-key (kbd "M-o") 'ace-window)
-(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+(setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)
+          aw-dispatch-always t
+          aw-dispatch-alist
+          '((?x aw-delete-window "Delete Window")
+            (?c aw-swap-window "Swap Window")
+            (?n aw-flip-window)
+            (?v aw-split-window-vert "Split Vert Window")
+            (?h aw-split-window-horz "Split Horz Window")
+            (?m delete-other-windows "Maximize Other Window")
+            (?g delete-other-windows)
+            (?b balance-windows)
+            (?u (lambda ()
+                  (PROGN
+                    (winner-undo)
+                    (setq this-command 'winner-undo))))
+            (?r winner-redo)
+	    (?? aw-show-dispatch-help)))
 
 ;; ivy & swiper & counsel
 ;; ----------------------
