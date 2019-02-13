@@ -90,6 +90,7 @@
 (global-unset-key (kbd "s-t"))
 (global-unset-key (kbd "s-L"))
 (global-unset-key (kbd "C-;"))
+(global-unset-key (kbd "s-'"))
 ;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
@@ -341,8 +342,8 @@ Version 2016-06-19"
   (let ((i 0))
     (while (and (not (string-equal "*" (substring (buffer-name) 0 1))) (< i 20))
       (setq i (1+ i)) (previous-buffer))))
-(global-set-key (kbd "<S-f11>") 'xah-previous-emacs-buffer)
-(global-set-key (kbd "<S-f12>") 'xah-next-emacs-buffer)
+(global-set-key (kbd "<s-f11>") 'xah-previous-emacs-buffer)
+(global-set-key (kbd "<s-f12>") 'xah-next-emacs-buffer)
 
 ;; Others
 ;; ------
@@ -587,9 +588,11 @@ Version 2016-06-19"
 ;;
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
-;; (global-set-key (kbd "C-c C-t") 'multi-term)
+(global-set-key (kbd "C-c C-v") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
+(global-set-key (kbd "s-;") 'multi-term-prev)
+(global-set-key (kbd "s-'") 'multi-term-next)
 (defun term-send-undo () ;; undo for multi-term
   (interactive)
   (term-send-raw-string "\C-_"))
