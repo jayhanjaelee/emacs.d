@@ -580,7 +580,7 @@ Version 2016-06-19"
             (?g delete-other-windows)
             (?b balance-windows)
             (?u (lambda ()
-                  (PROGN
+                  (progn
                     (winner-undo)
                     (setq this-command 'winner-undo))))
             (?r winner-redo)
