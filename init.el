@@ -597,12 +597,6 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
 
-;; rg
-;; --
-;;
-(require 'rg)
-(rg-enable-default-bindings)
-
 ;; which-key
 ;; ---------
 ;;
@@ -666,6 +660,17 @@ Version 2016-06-19"
 ;;
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+;; wgrep
+;; -----
+;; edit grep buffer
+(require 'wgrep)
+
+;; rg
+;; --
+;; ripgrep
+(require 'rg)
+(rg-enable-default-bindings)
 
 ;; Undo-tree
 ;; ---------
