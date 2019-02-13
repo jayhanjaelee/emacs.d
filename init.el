@@ -585,6 +585,7 @@ Version 2016-06-19"
 ;; multi-term
 ;; ----------
 ;;
+(require 'multi-term)
 (setq multi-term-program "/bin/bash")
 ;; (global-set-key (kbd "C-c C-t") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
