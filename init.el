@@ -597,6 +597,12 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
 
+;; rg
+;; --
+;;
+(require 'rg)
+(rg-enable-default-bindings)
+
 ;; which-key
 ;; ---------
 ;;
