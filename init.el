@@ -665,6 +665,8 @@ Version 2016-06-19"
 ;; -----
 ;; edit grep buffer
 (require 'wgrep)
+(setq wgrep-auto-save-buffer t)
+(setq wgrep-change-readonly-file t)
 
 ;; rg
 ;; --
