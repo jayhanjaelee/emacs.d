@@ -559,6 +559,7 @@ Version 2016-06-19"
 ;; ----------
 ;;
 (require 'ibuffer-vc)
+(define-key ibuffer-mode-map (kbd "M-o") 'ace-window)
 (add-hook 'ibuffer-hook (lambda ()
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
