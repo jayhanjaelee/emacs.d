@@ -104,6 +104,7 @@
 (global-set-key (kbd "<f5>") 'transpose-frame)
 (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 
 ;; Encoding
 ;; --------
@@ -514,6 +515,9 @@ Version 2016-06-19"
 (add-hook 'org-mode-hook 'git-auto-commit-mode)
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1)))
 (require 'org-tempo) ;; org template expansion using tab
+(org-babel-do-load-languages ;; add programming languages to org babel list
+  'org-babel-load-languages
+  '((python . t)))
 
 ;; ============================================================================
 ;; External Packages
