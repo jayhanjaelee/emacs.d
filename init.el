@@ -496,6 +496,7 @@ Version 2016-06-19"
 ;;
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (setq org-directory "~/org")
@@ -513,7 +514,7 @@ Version 2016-06-19"
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook 'git-auto-commit-mode)
-(add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1)))
+(add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
 (require 'org-tempo) ;; org template expansion using tab
 (org-babel-do-load-languages ;; add programming languages to org babel list
   'org-babel-load-languages
@@ -562,9 +563,9 @@ Version 2016-06-19"
 ;; ibuffer-vc
 ;; ----------
 ;;
+(setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (add-hook 'ibuffer-hook (lambda ()
 			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-			  (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
