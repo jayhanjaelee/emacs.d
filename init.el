@@ -558,8 +558,9 @@ Version 2016-06-19"
 ;; ibuffer-vc
 ;; ----------
 ;;
-(require 'ibuffer-vc)
 (add-hook 'ibuffer-hook (lambda ()
+			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
+			  (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
