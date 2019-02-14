@@ -604,6 +604,7 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
+(setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 
 ;; which-key
 ;; ---------
