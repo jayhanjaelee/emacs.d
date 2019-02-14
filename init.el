@@ -104,6 +104,7 @@
 (global-set-key (kbd "<f5>") 'transpose-frame)
 (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 
 ;; Encoding
 ;; --------
@@ -514,6 +515,9 @@ Version 2016-06-19"
 (add-hook 'org-mode-hook 'git-auto-commit-mode)
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1)))
 (require 'org-tempo) ;; org template expansion using tab
+(org-babel-do-load-languages ;; add programming languages to org babel list
+  'org-babel-load-languages
+  '((python . t)))
 
 ;; ============================================================================
 ;; External Packages
@@ -558,9 +562,10 @@ Version 2016-06-19"
 ;; ibuffer-vc
 ;; ----------
 ;;
-(require 'ibuffer-vc)
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
+			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
+			  (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
