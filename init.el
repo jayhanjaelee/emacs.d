@@ -94,7 +94,7 @@
 ;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
-(global-set-key (kbd "\r") 'newline-and-indent) ; auto indentation
+(global-set-key (kbd "\r") 'newline-and-indent) ;; auto indentation
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "s-=") 'text-scale-increase)
 (global-set-key (kbd "s--") 'text-scale-decrease)
@@ -105,6 +105,7 @@
 (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
 
 ;; Encoding
 ;; --------
