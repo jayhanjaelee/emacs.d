@@ -544,6 +544,7 @@ Version 2016-06-19"
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
+(setq projectile-use-git-grep t)
 ;; (setq projectile-switch-project-action #'projectile-dired)
 
 ;; eyebrowse
