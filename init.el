@@ -70,7 +70,7 @@
 (setq diredp-hide-details-initially-flag nil)
 (setq diredp-hide-details-propagate-flag nil)
 (treemacs-icons-dired-mode) ;; dired png icons
-(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
+;;(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
@@ -213,6 +213,7 @@
       (expand-file-name "projectile-bookmarks.eld" tmp-directory-p)) ;; projectile
 (setq undo-tree-history-directory-alist `(("." . ,tmp-directory-p))) ;; undo-tree
 (setq save-place-file (expand-file-name "places" tmp-directory-p)) ;; save-place-mode
+(setq projectile-cache-file (expand-file-name "projectile.cache" tmp-directory-p)) ;; save-place-mode
 
 ;; scroll setup
 ;; ------------
@@ -239,6 +240,11 @@
 	    desktop-restore-eager 5
 	    desktop-load-locked-desktop nil)
             (desktop-save-mode 1)))
+
+;; auto-revert-mode
+;; ----------------
+;;
+(global-auto-revert-mode 1)
 
 ;; save-placemode
 ;; ---------------

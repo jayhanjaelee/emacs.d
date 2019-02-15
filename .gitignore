@@ -13,3 +13,4 @@ tmp/
 BROWSE
 anaconda-mode/
 .python-environments/
+projectile.cache
