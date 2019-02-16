@@ -214,6 +214,10 @@
 (setq undo-tree-history-directory-alist `(("." . ,tmp-directory-p))) ;; undo-tree
 (setq save-place-file (expand-file-name "places" tmp-directory-p)) ;; save-place-mode
 (setq projectile-cache-file (expand-file-name "projectile.cache" tmp-directory-p)) ;; save-place-mode
+(setq tramp-persistency-file-name (expand-file-name ".tramp" tmp-directory-p))
+(setq org-id-locations-file (expand-file-name ".org-id-locations" tmp-directory-p)) ;; !!!not sure file path
+(setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
+(setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
@@ -271,6 +275,7 @@
 ;; -------
 ;;
 (setq recentf-max-menu-items 10)
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf (solution of tramp auto connection issue)
 (recentf-mode 1)
 
 ;; transpose frame & window
@@ -370,6 +375,7 @@ Version 2016-06-19"
 (setq ispell-program-name "/usr/local/bin/ispell")
 (flyspell-mode) ;; check spelling
 (delete-selection-mode 1) ;; replacing highlight text
+(setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
 
 ;; ===========================================================================
 ;; Code For Development
@@ -581,7 +587,6 @@ Version 2016-06-19"
 			  (ibuffer-do-sort-by-recency)))
 
 
-
 ;; ace-window
 ;; ----------
 ;;
@@ -628,6 +633,7 @@ Version 2016-06-19"
 ;;
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
+;;(setq multi-term-program-switches "--login")
 (global-set-key (kbd "C-c C-v") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
