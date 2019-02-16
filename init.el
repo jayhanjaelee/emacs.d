@@ -70,7 +70,7 @@
 (setq diredp-hide-details-initially-flag nil)
 (setq diredp-hide-details-propagate-flag nil)
 (treemacs-icons-dired-mode) ;; dired png icons
-(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
+;;(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
@@ -94,7 +94,7 @@
 ;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
-(global-set-key (kbd "\r") 'newline-and-indent) ; auto indentation
+(global-set-key (kbd "\r") 'newline-and-indent) ;; auto indentation
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "s-=") 'text-scale-increase)
 (global-set-key (kbd "s--") 'text-scale-decrease)
@@ -105,6 +105,7 @@
 (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
 
 ;; Encoding
 ;; --------
@@ -212,6 +213,11 @@
       (expand-file-name "projectile-bookmarks.eld" tmp-directory-p)) ;; projectile
 (setq undo-tree-history-directory-alist `(("." . ,tmp-directory-p))) ;; undo-tree
 (setq save-place-file (expand-file-name "places" tmp-directory-p)) ;; save-place-mode
+(setq projectile-cache-file (expand-file-name "projectile.cache" tmp-directory-p)) ;; save-place-mode
+(setq tramp-persistency-file-name (expand-file-name ".tramp" tmp-directory-p))
+(setq org-id-locations-file (expand-file-name ".org-id-locations" tmp-directory-p)) ;; !!!not sure file path
+(setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
+(setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
@@ -239,6 +245,11 @@
 	    desktop-load-locked-desktop nil)
             (desktop-save-mode 1)))
 
+;; auto-revert-mode
+;; ----------------
+;;
+(global-auto-revert-mode 1)
+
 ;; save-placemode
 ;; ---------------
 ;; remember cursor position, for emacs 25.1 or later
@@ -264,6 +275,7 @@
 ;; -------
 ;;
 (setq recentf-max-menu-items 10)
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf (solution of tramp auto connection issue)
 (recentf-mode 1)
 
 ;; transpose frame & window
@@ -363,6 +375,7 @@ Version 2016-06-19"
 (setq ispell-program-name "/usr/local/bin/ispell")
 (flyspell-mode) ;; check spelling
 (delete-selection-mode 1) ;; replacing highlight text
+(setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
 
 ;; ===========================================================================
 ;; Code For Development
@@ -499,26 +512,38 @@ Version 2016-06-19"
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(setq org-directory "~/org")
+;; Default directoris for my notes and website.
+(setq org-log-done t) ;; log timestamps when todo is done.
+(setq org-directory (expand-file-name "~/org"))
+(setq org-default-notes-file (concat org-directory "/mygtd.org"))
 (setq org-agenda-files '("~/org"))
+;; todo
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
         (sequence "BACKLOG" "READY" "PROGRESS" "|" "DONE")
         ))
-(setq org-log-done t) ;; log timestamps when todo is done.
-;; (setq org-todo-keyword-faces
-;;       '(("BACKLOG" . (:foreground "#E5C07B" :weight bold))
-;; 	("READY" . (:foreground "#C678DD" :weight bold))
-;; 	("PROGRESS" . (:foreground "#E06C75" :weight bold))
-;; 	("DONE" . (:foreground "#98C379" :weight bold))))
+(setq org-todo-keyword-faces
+      '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	)) ;; inspired by trello
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(add-hook 'org-mode-hook 'git-auto-commit-mode)
+(add-hook 'org-mode-hook 'git-auto-commit-mode) ;; enable auto commit
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
 (require 'org-tempo) ;; org template expansion using tab
+;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
   'org-babel-load-languages
   '((python . t)))
+(setq org-reverse-note-order t)
+;; capture
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/mygtd.org" "Tasks")
+         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
+        ("k" "Kanban" entry (file+headline "~/org/mygtd.org" "Tasks")
+         "* BACKLOG %?\nAdded: %U\n" :prepend t :kill-buffer t)
+        ))
 
 ;; ============================================================================
 ;; External Packages
@@ -543,6 +568,7 @@ Version 2016-06-19"
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
+(setq projectile-use-git-grep t)
 ;; (setq projectile-switch-project-action #'projectile-dired)
 
 ;; eyebrowse
@@ -568,9 +594,11 @@ Version 2016-06-19"
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (add-hook 'ibuffer-hook (lambda ()
 			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
+			  (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
+
 
 ;; ace-window
 ;; ----------
@@ -618,6 +646,7 @@ Version 2016-06-19"
 ;;
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
+;;(setq multi-term-program-switches "--login")
 (global-set-key (kbd "C-c C-v") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
