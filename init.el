@@ -512,26 +512,38 @@ Version 2016-06-19"
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(setq org-directory "~/org")
+;; Default directoris for my notes and website.
+(setq org-log-done t) ;; log timestamps when todo is done.
+(setq org-directory (expand-file-name "~/org"))
+(setq org-default-notes-file (concat org-directory "/mygtd.org"))
 (setq org-agenda-files '("~/org"))
+;; todo
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
         (sequence "BACKLOG" "READY" "PROGRESS" "|" "DONE")
         ))
-(setq org-log-done t) ;; log timestamps when todo is done.
-;; (setq org-todo-keyword-faces
-;;       '(("BACKLOG" . (:foreground "#E5C07B" :weight bold))
-;; 	("READY" . (:foreground "#C678DD" :weight bold))
-;; 	("PROGRESS" . (:foreground "#E06C75" :weight bold))
-;; 	("DONE" . (:foreground "#98C379" :weight bold))))
+(setq org-todo-keyword-faces
+      '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	)) ;; inspired by trello
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(add-hook 'org-mode-hook 'git-auto-commit-mode)
+(add-hook 'org-mode-hook 'git-auto-commit-mode) ;; enable auto commit
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
 (require 'org-tempo) ;; org template expansion using tab
+;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
   'org-babel-load-languages
   '((python . t)))
+(setq org-reverse-note-order t)
+;; capture
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/mygtd.org" "Tasks")
+         "* TODO %?\nAdded: %U\n" :prepend t :kill-buffer t)
+        ("k" "Kanban" entry (file+headline "~/org/mygtd.org" "Tasks")
+         "* BACKLOG %?\nAdded: %U\n" :prepend t :kill-buffer t)
+        ))
 
 ;; ============================================================================
 ;; External Packages
