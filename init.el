@@ -218,6 +218,7 @@
 (setq org-id-locations-file (expand-file-name ".org-id-locations" tmp-directory-p)) ;; !!!not sure file path
 (setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
 (setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
+(setq transient-history-file (expand-file-name "history" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
