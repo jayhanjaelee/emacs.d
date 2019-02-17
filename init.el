@@ -520,7 +520,7 @@ Version 2016-06-19"
 ;; todo
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
-        (sequence "BACKLOG" "READY" "PROGRESS" "|" "DONE")
+        (sequence "BACKLOG(!)" "READY(!)" "PROGRESS(!)" "|" "DONE")
         ))
 (setq org-todo-keyword-faces
       '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
