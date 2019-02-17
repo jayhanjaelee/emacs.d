@@ -218,6 +218,7 @@
 (setq org-id-locations-file (expand-file-name ".org-id-locations" tmp-directory-p)) ;; !!!not sure file path
 (setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
 (setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
+(setq transient-history-file (expand-file-name "history" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
@@ -520,7 +521,7 @@ Version 2016-06-19"
 ;; todo
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
-        (sequence "BACKLOG" "READY" "PROGRESS" "|" "DONE")
+        (sequence "BACKLOG(!)" "READY(!)" "PROGRESS(!)" "|" "DONE")
         ))
 (setq org-todo-keyword-faces
       '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
