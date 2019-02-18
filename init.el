@@ -46,7 +46,7 @@
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
 ;;(set-fontset-font t 'hangul (font-spec :name "NanumGothic")
-(set-frame-font "menlo 18" nil t)
+(set-frame-font "menlo 14" nil t)
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
@@ -387,6 +387,11 @@ Version 2016-06-19"
 (setq-default truncate-lines t)
 (setq-default line-spacing 2)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+
+;; sh
+;; --
+;;
+(setq sh-basic-offset 2)
 
 ;; objc
 ;; ----
