@@ -16,3 +16,4 @@ anaconda-mode/
 projectile.cache
 tramp
 transient/
+packages/prodigy-conf.el

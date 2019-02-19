@@ -46,7 +46,7 @@
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
 ;;(set-fontset-font t 'hangul (font-spec :name "NanumGothic")
-(set-frame-font "menlo 14" nil t)
+(set-frame-font "menlo 18" nil t)
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
@@ -795,6 +795,8 @@ Version 2016-06-19"
 ;; prodigy
 ;; -------
 ;; process manager
+(if (file-exists-p "~/.emacs.d/packages/.prodigy-conf.el")
+    (require 'prodigy-conf))
 
 ;; ===========================================================================
 ;; Unknown
