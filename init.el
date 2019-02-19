@@ -46,7 +46,7 @@
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
 ;;(set-fontset-font t 'hangul (font-spec :name "NanumGothic")
-(set-frame-font "menlo 18" nil t)
+(set-frame-font "menlo 14" nil t)
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
@@ -101,8 +101,9 @@
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "C-x C-g") 'revert-buffer)
-(global-set-key (kbd "<f5>") 'transpose-frame)
-(global-set-key (kbd "<f6>") 'transpose-windows)
+(global-set-key (kbd "<f6>") 'prodigy) ;; kill buffers by regexp
+(global-set-key (kbd "<f7>") 'transpose-frame)
+;; (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
@@ -383,10 +384,10 @@ Version 2016-06-19"
 ;; ===========================================================================
 
 ;; settings
-(setq tab-width 2) ;; set tab width
+(setq-default tab-width 2) ;; set tab width
 (setq-default truncate-lines t)
 (setq-default line-spacing 2)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(add-hook 'before-save-hook #'delete-trailing-whitespace) ;; delete whitespace when file was saved.
 
 ;; sh
 ;; --
@@ -473,8 +474,8 @@ Version 2016-06-19"
 ;; python
 ;; ------
 ;;
-(add-hook 'python-mode-hook '(lambda ()
-			       (setq python-indent 4)))
+(add-hook 'python-mode-hook (lambda ()
+			       (setq python-indent-offset 4)))
 
 ;; javascript
 ;; ----------
@@ -653,7 +654,7 @@ Version 2016-06-19"
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
 ;;(setq multi-term-program-switches "--login")
-(global-set-key (kbd "C-c C-v") 'multi-term)
+(global-set-key (kbd "<f5>") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-;") 'multi-term-prev)
@@ -795,7 +796,7 @@ Version 2016-06-19"
 ;; prodigy
 ;; -------
 ;; process manager
-(if (file-exists-p "~/.emacs.d/packages/.prodigy-conf.el")
+(if (file-exists-p "~/.emacs.d/packages/prodigy-conf.el")
     (require 'prodigy-conf))
 
 ;; ===========================================================================
