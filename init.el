@@ -642,6 +642,9 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
 (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
+;; (setq ivy-re-builders-alist
+;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
+;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
 
 ;; which-key
 ;; ---------
@@ -798,6 +801,11 @@ Version 2016-06-19"
 ;; process manager
 (if (file-exists-p "~/.emacs.d/packages/prodigy-conf.el")
     (require 'prodigy-conf))
+
+;; realgud
+;; -------
+;; debugger
+(require 'realgud)
 
 ;; ===========================================================================
 ;; Unknown
