@@ -39,7 +39,7 @@
 (depends-on "swift-mode")
 (depends-on "go-mode")
 (depends-on "js3-mode")
-(depends-on "multi-web-mode")
+(depends-on "web-mode")
 (depends-on "markdown-mode")
 (depends-on "yaml-mode")
 
