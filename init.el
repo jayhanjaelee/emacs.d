@@ -810,6 +810,13 @@ Version 2016-06-19"
 (require 'realgud)
 (setq realgud:pdb-command-name "python -m pdb")
 (setq realgud:ipdb-command-name "python -m ipdb")
+(defun python-add-breakpoint ()
+  "Add a break point"
+  (interactive)
+  (newline-and-indent)
+  (insert "import ipdb; ipdb.set_trace()")
+  (highlight-lines-matching-regexp "^[ ]*import ipdb; ipdb.set_trace()"))
+(define-key python-mode-map (kbd "C-c C-t") 'python-add-breakpoint)
 
 ;; ===========================================================================
 ;; Unknown
