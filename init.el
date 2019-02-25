@@ -226,7 +226,8 @@
 ;;
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq scroll-conservatively 200)
 (setq scroll-margin 3)
 
@@ -809,7 +810,8 @@ Version 2016-06-19"
 ;; debugger
 (require 'realgud)
 (setq realgud:pdb-command-name "python -m pdb")
-(setq realgud:ipdb-command-name "python -m ipdb")
+(add-hook 'python-mode-hook
+          (lambda () (local-set-key (kbd "<f8>") #'realgud:ipdb)))
 (defun python-add-breakpoint ()
   "Add a break point"
   (interactive)
