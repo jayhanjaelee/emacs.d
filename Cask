@@ -42,6 +42,7 @@
 (depends-on "web-mode")
 (depends-on "markdown-mode")
 (depends-on "yaml-mode")
+(depends-on "nginx-mode")
 
 ;; misc
 (depends-on "exec-path-from-shell")
