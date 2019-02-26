@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ssh
+# key: ssh
+# --
+Host $1
+  HostName $2
+  User $3
+	Port $4$0
