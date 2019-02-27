@@ -43,6 +43,9 @@
 (depends-on "markdown-mode")
 (depends-on "yaml-mode")
 (depends-on "nginx-mode")
+(depends-on "dockerfile-mode")
+(depends-on "ssh-config-mode")
+(depends-on "pip-requirements")
 
 ;; misc
 (depends-on "exec-path-from-shell")

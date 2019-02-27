@@ -560,6 +560,20 @@ Version 2016-06-19"
 ;; nginx config mode
 (require 'nginx-mode)
 
+;; dockerfile
+;; ----------
+;; dockerfile mode
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+;; ssh-config-mode
+;; ---------------
+;; autoload
+
+;; pip-requirements
+;; ----------------
+;; autoload
+
 ;; ============================================================================
 ;; External Packages
 ;; ============================================================================
@@ -580,11 +594,12 @@ Version 2016-06-19"
 ;; ----------
 ;;
 (projectile-mode +1)
+(setq projectile-use-git-grep t)
+(setq projectile-completion-system 'ivy)
+;; (setq projectile-switch-project-action #'projectile-dired)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
-(setq projectile-use-git-grep t)
-;; (setq projectile-switch-project-action #'projectile-dired)
 
 ;; eyebrowse
 ;; ---------
@@ -643,6 +658,8 @@ Version 2016-06-19"
 ;; ----------------------
 ;;
 (ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-b") 'swiper-all)
