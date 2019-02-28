@@ -69,7 +69,6 @@
 ;; show details in dired+.
 (setq diredp-hide-details-initially-flag nil)
 (setq diredp-hide-details-propagate-flag nil)
-(treemacs-icons-dired-mode) ;; dired png icons
 ;;(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
@@ -218,7 +217,6 @@
 (setq tramp-persistency-file-name (expand-file-name ".tramp" tmp-directory-p))
 (setq org-id-locations-file (expand-file-name ".org-id-locations" tmp-directory-p)) ;; !!!not sure file path
 (setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
-(setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
 (setq transient-history-file (expand-file-name "history" tmp-directory-p))
 
 ;; scroll setup
@@ -720,14 +718,6 @@ Version 2016-06-19"
 	    ("C--"     . term-send-undo)
 	    ("M-o"     . ace-windowb)
 	    ("<s-backspace>" . term-send-raw)))
-
-;; treemacs
-;; --------
-;;
-(setq treemacs-is-never-other-window t)
-(setq treemacs-show-hidden-files nil)
-(global-set-key (kbd "C-x t") 'treemacs-select-window)
-(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
 
 ;; Exec-path-from-shell
 ;; --------------------

@@ -4,9 +4,6 @@
 (package-file "/usr/local/share/emacs/site-lisp/cask/cask.el")
 
 ;; appearance
-(depends-on "treemacs")
-(depends-on "treemacs-icons-dired")
-(depends-on "treemacs-projectile")
 (depends-on "minions")
 
 ;; productivity
