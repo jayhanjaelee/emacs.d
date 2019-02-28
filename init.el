@@ -196,8 +196,8 @@
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
-  (global-set-key (kbd "s-L") 'treemacs)
-  (global-set-key (kbd "s-0") 'treemacs)
+  ;; (global-set-key (kbd "s-L") 'treemacs)
+  ;; (global-set-key (kbd "s-0") 'treemacs)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
   )
 
