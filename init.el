@@ -196,8 +196,6 @@
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
-  ;; (global-set-key (kbd "s-L") 'treemacs)
-  ;; (global-set-key (kbd "s-0") 'treemacs)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
   )
 
@@ -228,6 +226,10 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (setq scroll-conservatively 200)
 (setq scroll-margin 3)
+(setq hscroll-step 1)
+(setq hscroll-margin 3)
+(global-set-key [wheel-right] 'scroll-left)
+(global-set-key [wheel-left] 'scroll-right)
 
 ;; no pop up frames
 ;; ----------------
