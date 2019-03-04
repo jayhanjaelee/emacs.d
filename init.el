@@ -363,6 +363,15 @@ Version 2016-06-19"
 (global-set-key (kbd "<s-f11>") 'xah-previous-emacs-buffer)
 (global-set-key (kbd "<s-f12>") 'xah-next-emacs-buffer)
 
+;; Uniquify
+;; --------
+;; readability of buffer file name.
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
+
 ;; Others
 ;; ------
 ;;
