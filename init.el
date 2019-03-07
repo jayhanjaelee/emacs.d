@@ -45,8 +45,10 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-;;(set-fontset-font t 'hangul (font-spec :name "NanumGothic")
 (set-frame-font "menlo 14" nil t)
+;; korean font setting
+;; (set-frame-font "D2Coding 14" nil t)
+;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
 (setq font-lock-maximum-decoration t)
 (setq font-lock-support-mode 'jit-lock-mode)
 (setq jit-lock-stealth-time 16
@@ -528,7 +530,6 @@ Version 2016-06-19"
 ;; ---
 ;;
 (require 'org)
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -784,6 +785,7 @@ Version 2016-06-19"
 ;; commit and push automatically everytime a file is saved.
 (setq gac-automatically-push-p t) ;; settting about automatic push
 (setq gac-ask-for-summary-p nil) ;; if t, always ask commit message everytime a file is saved.
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; yasnippet
 ;; ---------
@@ -796,27 +798,27 @@ Version 2016-06-19"
 ;; company-mode
 ;; ------------
 ;; auto complete
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-idle-delay 0)
-(defun try-flyspell (arg) ;; check spelling for only comment
-  (if (nth 4 (syntax-ppss))
-      (call-interactively 'ispell-word)
-  nil))
-(setq hippie-expand-try-functions-list ;; auto complte sequence 1. try-flyspell (comment only) 2. yasnippet 3. dabbrev 4. company
-      '(try-flyspell
-        yas-hippie-try-expand
-        try-expand-dabbrev-visible
-        (lambda (arg) (call-interactively 'company-complete))
-        ))
-(global-set-key (kbd "<escape>") 'hippie-expand)
-(global-set-key (kbd "M-/") 'hippie-expand)
+;; (add-hook 'after-init-hook 'global-company-mode)
+;; (setq company-idle-delay 0)
+;; (defun try-flyspell (arg) ;; check spelling for only comment
+;;   (if (nth 4 (syntax-ppss))
+;;       (call-interactively 'ispell-word)
+;;   nil))
+;; (setq hippie-expand-try-functions-list ;; auto complte sequence 1. try-flyspell (comment only) 2. yasnippet 3. dabbrev 4. company
+;;       '(try-flyspell
+;;         yas-hippie-try-expand
+;;         try-expand-dabbrev-visible
+;;         (lambda (arg) (call-interactively 'company-complete))
+;;         ))
+;; (global-set-key (kbd "<escape>") 'hippie-expand)
+;; (global-set-key (kbd "M-/") 'hippie-expand)
 
 ;; company-jedi
 ;; ------------
 ;; backend for company-mode
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'my/python-mode-hook)
+;; (defun my/python-mode-hook ()
+;;   (add-to-list 'company-backends 'company-jedi))
+;; (add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; iedit
 ;; -----
