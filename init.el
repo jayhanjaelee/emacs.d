@@ -194,8 +194,10 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
-  (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
-  (global-set-key (kbd "s-]") 'xah-next-user-buffer)
+  ;; (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
+  ;; (global-set-key (kbd "s-]") 'xah-next-user-buffer)
+	(global-set-key (kbd "s-[") 'previous-buffer)
+  (global-set-key (kbd "s-]") 'next-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
@@ -530,6 +532,7 @@ Version 2016-06-19"
 ;; ---
 ;;
 (require 'org)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -550,7 +553,6 @@ Version 2016-06-19"
 	)) ;; inspired by trello
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(add-hook 'org-mode-hook 'git-auto-commit-mode) ;; enable auto commit
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
 (require 'org-tempo) ;; org template expansion using tab
 ;; org-babel
@@ -635,7 +637,7 @@ Version 2016-06-19"
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (add-hook 'ibuffer-hook (lambda ()
 			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-			  (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+			  ;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
@@ -669,7 +671,7 @@ Version 2016-06-19"
 ;; ----------------------
 ;;
 (ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
+;; (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq enable-recursive-minibuffers t)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c C-s") 'swiper)
