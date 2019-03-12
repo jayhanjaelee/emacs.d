@@ -780,13 +780,6 @@ Version 2016-06-19"
 ;; syntax check
 (add-hook 'python-mode-hook #'flycheck-mode)
 
-;; git-auto-commit-mode
-;; --------------------
-;; commit and push automatically everytime a file is saved.
-(setq gac-automatically-push-p t) ;; settting about automatic push
-(setq gac-ask-for-summary-p nil) ;; if t, always ask commit message everytime a file is saved.
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
 ;; yasnippet
 ;; ---------
 ;; template system
