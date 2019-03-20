@@ -93,6 +93,8 @@
 (global-unset-key (kbd "s-L"))
 (global-unset-key (kbd "C-;"))
 (global-unset-key (kbd "s-'"))
+(global-unset-key (kbd "C-c C-v"))
+(global-unset-key (kbd "C-c C-p"))
 ;; Set Keybindings
 (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
@@ -103,8 +105,7 @@
 (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "C-x C-g") 'revert-buffer)
-(global-set-key (kbd "<f6>") 'prodigy) ;; kill buffers by regexp
-(global-set-key (kbd "<f7>") 'transpose-frame)
+(global-set-key (kbd "<f5>") 'transpose-frame)
 ;; (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
@@ -695,44 +696,44 @@ Version 2016-06-19"
 (require 'multi-term)
 (setq multi-term-program "/bin/bash")
 ;;(setq multi-term-program-switches "--login")
-(global-set-key (kbd "<f5>") 'multi-term)
+(global-set-key (kbd "C-c C-v") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
-(global-set-key (kbd "s-;") 'multi-term-prev)
-(global-set-key (kbd "s-'") 'multi-term-next)
+(global-set-key (kbd "M-[") 'multi-term-prev)
+(global-set-key (kbd "M-]") 'multi-term-next)
 (defun term-send-undo () ;; undo for multi-term
   (interactive)
   (term-send-raw-string "\C-_"))
 (setq term-bind-key-alist
-          '(("C-c C-c" . term-interrupt-subjob)            ; default
-            ("C-c C-e" . term-send-esc)                    ; default
-            ("C-c C-j" . term-line-mode)
-            ("C-c C-k" . term-char-mode)
-            ("C-a"     . term-bol)
-            ("C-b"     . term-send-left)
-            ("C-f"     . term-send-right)
-            ("C-p"     . previous-line)                    ; default
-            ("C-n"     . next-line)                        ; default
-            ("C-s"     . isearch-forward)                  ; default
-            ("C-r"     . isearch-backward)                 ; default
-            ("C-m"     . term-send-return)                 ; default
-            ("C-y"     . term-paste)                       ; default
-            ("M-f"     . term-send-forward-word)           ; default
-            ("M-b"     . term-send-backward-word)          ; default
-            ("M-o"     . term-send-backspace)              ; default
-            ("M-p"     . term-send-up)                     ; default
-            ("M-n"     . term-send-down)                   ; default
-            ;; ("M-M"     . term-send-forward-kill-word)   ; default
-            ("M-d"     . term-send-forward-kill-word)
-            ;; ("M-N"     . term-send-backward-kill-word)  ; default
-            ("M-DEL"   . term-send-backward-kill-word)
-            ("M-r"     . term-send-reverse-search-history) ; default
-            ("M-,"     . term-send-raw)                    ; default
-            ("M-."     . comint-dynamic-complete)
-	    ("s-z"     . term-send-undo)
-	    ("C--"     . term-send-undo)
-	    ("M-o"     . ace-windowb)
-	    ("<s-backspace>" . term-send-raw)))
+      '(("C-c C-c" . term-interrupt-subjob)            ; default
+        ("C-c C-e" . term-send-esc)                    ; default
+        ("C-c C-j" . term-line-mode)
+        ("C-c C-k" . term-char-mode)
+        ("C-a"     . term-bol)
+        ("C-b"     . term-send-left)
+        ("C-f"     . term-send-right)
+        ("C-p"     . previous-line)                    ; default
+        ("C-n"     . next-line)                        ; default
+        ("C-s"     . isearch-forward)                  ; default
+        ("C-r"     . isearch-backward)                 ; default
+        ("C-m"     . term-send-return)                 ; default
+        ("C-y"     . term-paste)                       ; default
+        ("M-f"     . term-send-forward-word)           ; default
+        ("M-b"     . term-send-backward-word)          ; default
+        ("M-o"     . term-send-backspace)              ; default
+        ("M-p"     . term-send-up)                     ; default
+        ("M-n"     . term-send-down)                   ; default
+        ;; ("M-M"     . term-send-forward-kill-word)   ; default
+        ("M-d"     . term-send-forward-kill-word)
+        ;; ("M-N"     . term-send-backward-kill-word)  ; default
+        ("M-DEL"   . term-send-backward-kill-word)
+        ("M-r"     . term-send-reverse-search-history) ; default
+        ("M-,"     . term-send-raw)                    ; default
+        ("M-."     . comint-dynamic-complete)
+				("s-z"     . term-send-undo)
+				("C--"     . term-send-undo)
+				("M-o"     . ace-window)
+				("<s-backspace>" . term-send-raw)))
 
 ;; Exec-path-from-shell
 ;; --------------------
@@ -823,6 +824,7 @@ Version 2016-06-19"
 ;; prodigy
 ;; -------
 ;; process manager
+(global-set-key (kbd "C-c C-p") 'prodigy)
 (if (file-exists-p "~/.emacs.d/packages/prodigy-conf.el")
     (require 'prodigy-conf))
 
