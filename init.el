@@ -378,6 +378,18 @@ Version 2016-06-19"
 (setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
 
+;; kill other buffers
+;; ------------------
+;;
+(defun kill-other-buffers ()
+	"Kill all other buffers."
+	(interactive)
+	(message "kill other buffers.")
+	(mapc 'kill-buffer
+				(delq (current-buffer)
+							(remove-if-not '(lambda (x) (or (buffer-file-name x) (eq 'dired-mode (buffer-local-value 'major-mode x)))) (buffer-list)))))
+(global-set-key (kbd "M-s-w") 'kill-other-buffers)
+
 ;; Others
 ;; ------
 ;;
