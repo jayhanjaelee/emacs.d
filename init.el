@@ -382,12 +382,10 @@ Version 2016-06-19"
 ;; ------------------
 ;;
 (defun kill-other-buffers ()
-	"Kill all other buffers."
-	(interactive)
+  (interactive)
 	(message "kill other buffers.")
-	(mapc 'kill-buffer
-				(delq (current-buffer)
-							(remove-if-not '(lambda (x) (or (buffer-file-name x) (eq 'dired-mode (buffer-local-value 'major-mode x)))) (buffer-list)))))
+  (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
+
 (global-set-key (kbd "M-s-w") 'kill-other-buffers)
 
 ;; Others
