@@ -610,7 +610,7 @@ Version 2016-06-19"
 (projectile-mode +1)
 (setq projectile-use-git-grep t)
 (setq projectile-completion-system 'ivy)
-;; (setq projectile-switch-project-action #'projectile-dired)
+(setq projectile-switch-project-action #'projectile-dired)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
@@ -680,7 +680,7 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
-(setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
+;; (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
@@ -773,10 +773,10 @@ Version 2016-06-19"
 ;; beacon
 ;; ------
 ;; make it easier to find cursor
-(if (display-graphic-p)
-    (progn
-      (beacon-mode 1)
-      (setq beacon-color "#f2777a"))) ;; red 1 color
+;; (if (display-graphic-p)
+;;     (progn
+;;       (beacon-mode 1)
+;;       (setq beacon-color "#f2777a"))) ;; red 1 color
 
 ;; flycheck
 ;; --------
