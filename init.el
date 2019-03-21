@@ -720,8 +720,10 @@ Version 2016-06-19"
 				("C-a"     . term-send-raw)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
-        ("C-p"     . previous-line)                    ; default
-        ("C-n"     . next-line)                        ; default
+				("C-p"     . term-send-raw)
+				("C-n"     . term-send-raw)
+        ;; ("C-p"     . previous-line)                    ; default
+        ;; ("C-n"     . next-line)                        ; default
         ;; ("C-s"     . isearch-forward)                  ; default
         ;; ("C-r"     . isearch-backward)                 ; default
         ("C-m"     . term-send-return)                 ; default
