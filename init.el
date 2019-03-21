@@ -378,16 +378,6 @@ Version 2016-06-19"
 (setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
 
-;; kill other buffers
-;; ------------------
-;;
-(defun kill-other-buffers ()
-  (interactive)
-	(message "kill other buffers.")
-  (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
-
-(global-set-key (kbd "M-s-w") 'kill-other-buffers)
-
 ;; Others
 ;; ------
 ;;
@@ -652,7 +642,14 @@ Version 2016-06-19"
 			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 			  (ibuffer-vc-set-filter-groups-by-vc-root)
 			  (ibuffer-do-sort-by-recency)))
-
+;; Ensure ibuffer opens with point at the current buffer's entry.
+(defadvice ibuffer
+  (around ibuffer-point-to-most-recent) ()
+  "Open ibuffer with cursor pointed to most recent buffer name."
+  (let ((recent-buffer-name (buffer-name)))
+    ad-do-it
+    (ibuffer-jump-to-buffer recent-buffer-name)))
+(ad-activate 'ibuffer)
 
 ;; ace-window
 ;; ----------
