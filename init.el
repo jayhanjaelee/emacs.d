@@ -680,7 +680,7 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
-;; (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
+(setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
@@ -709,13 +709,14 @@ Version 2016-06-19"
         ("C-c C-e" . term-send-esc)                    ; default
         ("C-c C-j" . term-line-mode)
         ("C-c C-k" . term-char-mode)
-        ("C-a"     . term-bol)
+        ;; ("C-a"     . term-bol)
+				("C-a"     . term-send-raw)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
         ("C-p"     . previous-line)                    ; default
         ("C-n"     . next-line)                        ; default
-        ("C-s"     . isearch-forward)                  ; default
-        ("C-r"     . isearch-backward)                 ; default
+        ;; ("C-s"     . isearch-forward)                  ; default
+        ;; ("C-r"     . isearch-backward)                 ; default
         ("C-m"     . term-send-return)                 ; default
         ("C-y"     . term-paste)                       ; default
         ("M-f"     . term-send-forward-word)           ; default
