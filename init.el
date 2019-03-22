@@ -75,7 +75,8 @@
 ;;(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)
+														 (local-set-key (kbd "C-c o") 'dired-omit-mode)))
 ;;
 (setq dired-dwim-target t) ;; convenient manipulating for files
 (setq dired-omit-verbose nil) ;; hidden annoying message about omit
@@ -97,7 +98,6 @@
 (global-unset-key (kbd "C-c C-p"))
 ;; Set Keybindings
 ;; (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
-(global-set-key (kbd "C-c o") 'dired-omit-mode)
 (global-set-key (kbd "\r") 'newline-and-indent) ;; auto indentation
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "s-=") 'text-scale-increase)
