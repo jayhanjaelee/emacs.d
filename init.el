@@ -394,6 +394,10 @@ Version 2016-06-19"
 (flyspell-mode) ;; check spelling
 (delete-selection-mode 1) ;; replacing highlight text
 (setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
+;; disable prompt when killing buffers running process.
+(setq kill-buffer-query-functions
+  (remq 'process-kill-buffer-query-function
+         kill-buffer-query-functions))
 
 ;; ===========================================================================
 ;; Code For Development
