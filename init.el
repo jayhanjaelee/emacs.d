@@ -96,7 +96,7 @@
 (global-unset-key (kbd "C-c C-v"))
 (global-unset-key (kbd "C-c C-p"))
 ;; Set Keybindings
-(global-set-key (kbd "<S-SPC>") 'toggle-input-method)
+;; (global-set-key (kbd "<S-SPC>") 'toggle-input-method)
 (global-set-key (kbd "C-c o") 'dired-omit-mode)
 (global-set-key (kbd "\r") 'newline-and-indent) ;; auto indentation
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -110,8 +110,6 @@
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
-(global-set-key (kbd "C-x r") 'rename-buffer)
-(global-set-key (kbd "C-x C-r") 'rename-buffer)
 
 ;; Encoding
 ;; --------
@@ -493,7 +491,9 @@ Version 2016-06-19"
 ;; ------
 ;;
 (add-hook 'python-mode-hook (lambda ()
-			       (setq python-indent-offset 4)))
+															(setq python-indent-offset 4)
+															(local-unset-key (kbd "C-c C-s"))
+															(local-unset-key (kbd "C-c C-v"))))
 
 ;; javascript
 ;; ----------
@@ -557,6 +557,7 @@ Version 2016-06-19"
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
+(add-hook 'org-mode-hook (lambda () (local-unset-key (kbd "C-c C-v"))))
 (require 'org-tempo) ;; org template expansion using tab
 ;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
@@ -720,13 +721,8 @@ Version 2016-06-19"
         ("C-c C-e" . term-send-esc)                    ; default
         ("C-c C-j" . term-line-mode)
         ("C-c C-k" . term-char-mode)
-        ;; ("C-a"     . term-bol)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
-        ;; ("C-p"     . previous-line)                    ; default
-        ;; ("C-n"     . next-line)                        ; default
-        ;; ("C-s"     . isearch-forward)                  ; default
-        ;; ("C-r"     . isearch-backward)                 ; default
         ("C-m"     . term-send-return)                 ; default
         ("C-y"     . term-paste)                       ; default
         ("M-f"     . term-send-forward-word)           ; default
@@ -734,9 +730,9 @@ Version 2016-06-19"
         ("M-o"     . term-send-backspace)              ; default
         ("M-p"     . term-send-up)                     ; default
         ("M-n"     . term-send-down)                   ; default
-        ;; ("M-M"     . term-send-forward-kill-word)   ; default
+        ("M-M"     . term-send-forward-kill-word)   ; default
         ("M-d"     . term-send-forward-kill-word)
-        ;; ("M-N"     . term-send-backward-kill-word)  ; default
+        ("M-N"     . term-send-backward-kill-word)  ; default
         ("M-DEL"   . term-send-backward-kill-word)
         ("M-r"     . term-send-reverse-search-history) ; default
         ("M-,"     . term-send-raw)                    ; default
