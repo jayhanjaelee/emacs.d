@@ -110,6 +110,8 @@
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
+(global-set-key (kbd "C-x r") 'rename-buffer)
+(global-set-key (kbd "C-x C-r") 'rename-buffer)
 
 ;; Encoding
 ;; --------
@@ -717,11 +719,8 @@ Version 2016-06-19"
         ("C-c C-j" . term-line-mode)
         ("C-c C-k" . term-char-mode)
         ;; ("C-a"     . term-bol)
-				("C-a"     . term-send-raw)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
-				("C-p"     . term-send-raw)
-				("C-n"     . term-send-raw)
         ;; ("C-p"     . previous-line)                    ; default
         ;; ("C-n"     . next-line)                        ; default
         ;; ("C-s"     . isearch-forward)                  ; default
