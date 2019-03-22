@@ -34,9 +34,9 @@
 (setq display-time-day-and-date t)
 (setq display-time-format "%a %I:%M %p")
 (setq frame-title-format nil)
-(display-time)				; Display time
-(column-number-mode t)			; show column number
-(show-paren-mode t)                     ; Show parenthesis match
+(display-time)				      ; Display time
+;; (column-number-mode nil)			; show column number
+(show-paren-mode t)         ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 (which-function-mode)
 (setq which-func-unknown "?")
