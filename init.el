@@ -837,7 +837,8 @@ Version 2016-06-19"
 ;; prodigy
 ;; -------
 ;; process manager
-(global-set-key (kbd "C-c C-p") 'prodigy)
+;; (global-set-key (kbd "C-c r") 'prodigy)
+;; (global-set-key (kbd "C-c C-r") 'prodigy)
 (if (file-exists-p "~/.emacs.d/packages/prodigy-conf.el")
     (require 'prodigy-conf))
 
