@@ -35,6 +35,7 @@
 (setq display-time-format "%a %I:%M %p")
 (setq frame-title-format nil)
 (display-time)				      ; Display time
+(line-number-mode 1)			  ; line number mode in modeline
 ;; (column-number-mode nil)			; show column number
 (show-paren-mode t)         ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
@@ -858,20 +859,23 @@ Version 2016-06-19"
 ;; dumb-jump
 ;; ---------
 ;; go to definition
-;; (require 'dumb-jump)
-;; (dumb-jump-mode)
-;; (setq dumb-jump-selector 'ivy)
-;; (global-unset-key (kbd "C-M-g"))
-;; (global-unset-key (kbd "C-M-p"))
-;; (global-set-key (kbd "<C-s-268632071>") 'dumb-jump-go)
-;; (global-set-key (kbd "<C-s-268632080>") 'dumb-jump-back)
+(require 'dumb-jump)
+(dumb-jump-mode)
+(setq dumb-jump-selector 'ivy)
+(define-key dumb-jump-mode-map (kbd "C-M-p") nil)
+(global-set-key (kbd "<C-s-268632074>") 'dumb-jump-go)
+(global-set-key (kbd "<C-s-268632080>") 'dumb-jump-back)
 
 ;; git gutter
 ;; ---------
 ;; To see git diff
-;; (global-git-gutter-mode +1)
-;; (setq git-gutter:window-width 2)
-;; (setq git-gutter:added-sign "|")
+(global-git-gutter-mode +1)
+(setq git-gutter:window-width 1)
+(setq git-gutter:added-sign "|"
+			git-gutter:modified-sign "|"
+			git-gutter:deleted-sign "|")
+;; (custom-set-variables
+;;  '(git-gutter:hide-gutter t))
 
 ;; ===========================================================================
 ;; Unknown
