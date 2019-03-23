@@ -249,10 +249,10 @@
 (if (display-graphic-p)
     (progn
       (setq desktop-path (list tmp-directory-p)
-	    desktop-dirname tmp-directory-p
-	    desktop-restore-eager 5
-	    desktop-load-locked-desktop nil)
-            (desktop-save-mode 1)))
+						desktop-dirname tmp-directory-p
+						desktop-restore-eager 5
+						desktop-load-locked-desktop nil)
+      (desktop-save-mode 1)))
 
 ;; auto-revert-mode
 ;; ----------------
@@ -292,17 +292,17 @@
 ;;
 (require 'transpose-frame)
 (defun transpose-windows ()
-   "Transpose two windows.  If more or less than two windows are visible, error."
-   (interactive)
-   (unless (= 2 (count-windows))
-     (error "There are not 2 windows."))
-   (let* ((windows (window-list))
-          (w1 (car windows))
-          (w2 (nth 1 windows))
-          (w1b (window-buffer w1))
-          (w2b (window-buffer w2)))
-     (set-window-buffer w1 w2b)
-     (set-window-buffer w2 w1b)))
+  "Transpose two windows.  If more or less than two windows are visible, error."
+  (interactive)
+  (unless (= 2 (count-windows))
+    (error "There are not 2 windows."))
+  (let* ((windows (window-list))
+         (w1 (car windows))
+         (w2 (nth 1 windows))
+         (w1b (window-buffer w1))
+         (w2b (window-buffer w2)))
+    (set-window-buffer w1 w2b)
+    (set-window-buffer w2 w1b)))
 
 ;; user buffer & emacs buffer
 ;; --------------------------
@@ -396,8 +396,8 @@ Version 2016-06-19"
 (setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
 ;; disable prompt when killing buffers running process.
 (setq kill-buffer-query-functions
-  (remq 'process-kill-buffer-query-function
-         kill-buffer-query-functions))
+			(remq 'process-kill-buffer-query-function
+						kill-buffer-query-functions))
 
 ;; ===========================================================================
 ;; Code For Development
@@ -419,37 +419,37 @@ Version 2016-06-19"
 ;;
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 (add-to-list 'magic-mode-alist
-	     `(,(lambda ()
-		  (and (string= (file-name-extension buffer-file-name) "h")
-		       (re-search-forward "@\\<interface\\>"
-					  magic-mode-regexp-match-limit t)))
-	       . objc-mode))
+						 `(,(lambda ()
+									(and (string= (file-name-extension buffer-file-name) "h")
+											 (re-search-forward "@\\<interface\\>"
+																					magic-mode-regexp-match-limit t)))
+							 . objc-mode))
 ;;
 (require 'find-file) ;; for the "cc-other-file-alist" variable
 (nconc (cadr (assoc "\\.h\\'" cc-other-file-alist)) '(".m" ".mm"))
 ;;
 (defadvice ff-get-file-name (around ff-get-file-name-framework
-				    (search-dirs
-				     fname-stub
-				     &optional suffix-list))
+																		(search-dirs
+																		 fname-stub
+																		 &optional suffix-list))
   "Search for Mac framework headers as well as POSIX headers."
   (or
    (if (string-match "\\(.*?\\)/\\(.*\\)" fname-stub)
        (let* ((framework (match-string 1 fname-stub))
-	      (header (match-string 2 fname-stub))
-	      (fname-stub (concat framework ".framework/Headers/" header)))
-	 ad-do-it))
+							(header (match-string 2 fname-stub))
+							(fname-stub (concat framework ".framework/Headers/" header)))
+				 ad-do-it))
    ad-do-it))
 (ad-enable-advice 'ff-get-file-name 'around 'ff-get-file-name-framework)
 (ad-activate 'ff-get-file-name)
 ;;
 (setq cc-search-directories '("." "../include" "/usr/include" "/usr/local/include/*"
-			      "/System/Library/Frameworks" "/Library/Frameworks"))
+															"/System/Library/Frameworks" "/Library/Frameworks"))
 ;;
 (add-hook 'objc-mode-hook (lambda ()
-			    (setq c-basic-offset 2
-				  tab-width 2
-				  indent-tabs-mode t)))
+														(setq c-basic-offset 2
+																	tab-width 2
+																	indent-tabs-mode t)))
 
 ;; rust
 ;; ----
@@ -468,28 +468,28 @@ Version 2016-06-19"
 ;;
 (require 'go-mode)
 (add-hook 'go-mode-hook
-	  (lambda ()
-	    (setq-default)
-	    (setq tab-width 2)
-	    (setq standard-indent 2)
-	    (setq indent-tabs-mode nil)))
+					(lambda ()
+						(setq-default)
+						(setq tab-width 2)
+						(setq standard-indent 2)
+						(setq indent-tabs-mode nil)))
 
 ;; java
 ;; ----
 ;;
 (add-hook 'java-mode-hook
-	  (lambda ()
-	    "Treat Java 1.5 @-style annotations as comments."
-	    (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
-	    (modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
+					(lambda ()
+						"Treat Java 1.5 @-style annotations as comments."
+						(setq c-comment-start-regexp "(@|/(/|[*][*]?))")
+						(modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
 ;;
 (add-hook 'java-mode-hook (lambda ()
-			    (setq c-basic-offset 2)))
+														(setq c-basic-offset 2)))
 ;;
 (add-hook 'java-mode-hook (lambda ()
-			    (setq c-basic-offset 2
-				  tab-width 2
-				  indent-tabs-mode t)))
+														(setq c-basic-offset 2
+																	tab-width 2
+																	indent-tabs-mode t)))
 
 ;; python
 ;; ------
@@ -555,9 +555,9 @@ Version 2016-06-19"
         ))
 (setq org-todo-keyword-faces
       '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-	("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-	("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-	)) ;; inspired by trello
+				("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+				("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+				)) ;; inspired by trello
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
@@ -565,8 +565,8 @@ Version 2016-06-19"
 (require 'org-tempo) ;; org template expansion using tab
 ;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
-  'org-babel-load-languages
-  '((python . t)))
+ 'org-babel-load-languages
+ '((python . t)))
 (setq org-reverse-note-order t)
 ;; capture
 (setq org-capture-templates
@@ -646,18 +646,18 @@ Version 2016-06-19"
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (add-hook 'ibuffer-hook (lambda ()
-			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-			  ;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
-			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
-			  (ibuffer-vc-set-filter-groups-by-vc-root)
-			  (ibuffer-do-sort-by-recency)))
+													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
+													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
+													(ibuffer-vc-set-filter-groups-by-vc-root)
+													(ibuffer-do-sort-by-recency)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
 (defadvice ibuffer
-  (around ibuffer-point-to-most-recent) ()
-  "Open ibuffer with cursor pointed to most recent buffer name."
-  (let ((recent-buffer-name (buffer-name)))
-    ad-do-it
-    (ibuffer-jump-to-buffer recent-buffer-name)))
+		(around ibuffer-point-to-most-recent) ()
+		"Open ibuffer with cursor pointed to most recent buffer name."
+		(let ((recent-buffer-name (buffer-name)))
+			ad-do-it
+			(ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
 
 ;; ace-window
@@ -667,22 +667,22 @@ Version 2016-06-19"
   (winner-mode 1))
 (global-set-key (kbd "M-o") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)
-          aw-dispatch-always t
-          aw-dispatch-alist
-          '((?x aw-delete-window "Delete Window")
-            (?c aw-swap-window "Swap Window")
-            (?n aw-flip-window)
-            (?v aw-split-window-vert "Split Vert Window")
-            (?h aw-split-window-horz "Split Horz Window")
-            (?m delete-other-windows "Maximize Other Window")
-            (?g delete-other-windows)
-            (?b balance-windows)
-            (?u (lambda ()
-                  (progn
-                    (winner-undo)
-                    (setq this-command 'winner-undo))))
-            (?r winner-redo)
-	    (?? aw-show-dispatch-help)))
+      aw-dispatch-always t
+      aw-dispatch-alist
+      '((?x aw-delete-window "Delete Window")
+        (?c aw-swap-window "Swap Window")
+        (?n aw-flip-window)
+        (?v aw-split-window-vert "Split Vert Window")
+        (?h aw-split-window-horz "Split Horz Window")
+        (?m delete-other-windows "Maximize Other Window")
+        (?g delete-other-windows)
+        (?b balance-windows)
+        (?u (lambda ()
+              (progn
+                (winner-undo)
+                (setq this-command 'winner-undo))))
+        (?r winner-redo)
+				(?? aw-show-dispatch-help)))
 
 ;; ivy & swiper & counsel
 ;; ----------------------
