@@ -29,6 +29,7 @@
 (depends-on "company-jedi")
 (depends-on "prodigy")
 (depends-on "realgud")
+(depends-on "dumb-jump")
 
 ;; code
 (depends-on "rust-mode")

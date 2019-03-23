@@ -110,6 +110,8 @@
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
+(global-set-key (kbd "C-c i") 'imenu)
+(global-set-key (kbd "C-c C-i") 'imenu)
 
 ;; Encoding
 ;; --------
@@ -853,6 +855,12 @@ Version 2016-06-19"
   (insert "import ipdb; ipdb.set_trace()")
   (highlight-lines-matching-regexp "^[ ]*import ipdb; ipdb.set_trace()"))
 (define-key python-mode-map (kbd "C-c C-t") 'python-add-breakpoint)
+
+;; dumb-jump
+;; ---------
+;; go to definition
+(dumb-jump-mode)
+(global-set-key (kbd "C-M-g") 'dumb-jump-go)
 
 ;; ===========================================================================
 ;; Unknown
