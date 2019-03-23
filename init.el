@@ -110,8 +110,7 @@
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
-(global-set-key (kbd "C-c i") 'imenu)
-(global-set-key (kbd "C-c C-i") 'imenu)
+(global-set-key (kbd "C-.") 'imenu)
 
 ;; Encoding
 ;; --------
@@ -859,8 +858,20 @@ Version 2016-06-19"
 ;; dumb-jump
 ;; ---------
 ;; go to definition
-(dumb-jump-mode)
-(global-set-key (kbd "C-M-g") 'dumb-jump-go)
+;; (require 'dumb-jump)
+;; (dumb-jump-mode)
+;; (setq dumb-jump-selector 'ivy)
+;; (global-unset-key (kbd "C-M-g"))
+;; (global-unset-key (kbd "C-M-p"))
+;; (global-set-key (kbd "<C-s-268632071>") 'dumb-jump-go)
+;; (global-set-key (kbd "<C-s-268632080>") 'dumb-jump-back)
+
+;; git gutter
+;; ---------
+;; To see git diff
+;; (global-git-gutter-mode +1)
+;; (setq git-gutter:window-width 2)
+;; (setq git-gutter:added-sign "|")
 
 ;; ===========================================================================
 ;; Unknown

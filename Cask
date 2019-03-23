@@ -5,6 +5,7 @@
 
 ;; appearance
 (depends-on "minions")
+(depends-on "git-gutter")
 
 ;; productivity
 (depends-on "projectile")
