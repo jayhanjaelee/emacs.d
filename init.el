@@ -112,6 +112,7 @@
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
 (global-set-key (kbd "C-.") 'imenu)
+(global-set-key (kbd "C-'") 'erase-buffer)
 
 ;; Encoding
 ;; --------
