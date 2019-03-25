@@ -728,6 +728,7 @@ Version 2016-06-19"
         ("C-c C-e" . term-send-esc)                    ; default
         ("C-c C-j" . term-line-mode)
         ("C-c C-k" . term-char-mode)
+				("C-l"     . comint-clear-buffer)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
         ("C-m"     . term-send-return)                 ; default
