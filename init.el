@@ -85,6 +85,7 @@
 (require 'ls-lisp)
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
+(setq dired-listing-switches "-alh") ;; human readable size in dired
 
 ;; Global Keybindings
 ;; ------------------
