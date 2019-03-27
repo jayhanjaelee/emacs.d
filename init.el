@@ -36,7 +36,7 @@
 (setq frame-title-format nil)
 (display-time)				      ; Display time
 (line-number-mode 1)			  ; line number mode in modeline
-;; (column-number-mode nil)			; show column number
+(column-number-mode 1)			; show column number
 (show-paren-mode t)         ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 (which-function-mode)
