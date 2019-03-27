@@ -721,6 +721,10 @@ Version 2016-06-19"
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "M-[") 'multi-term-prev)
 (global-set-key (kbd "M-]") 'multi-term-next)
+(add-hook 'term-mode-hook (lambda () (setq scroll-margin 0)
+														(setq hscroll-margin 0)
+														(setq multi-term-scroll-to-bottom-on-output t)
+														(setq multi-term-scroll-show-maximum-output t)))
 (defun term-send-undo () ;; undo for multi-term
   (interactive)
   (term-send-raw-string "\C-_"))
@@ -729,6 +733,7 @@ Version 2016-06-19"
         ("C-c C-e" . term-send-esc)                    ; default
         ("C-c C-j" . term-line-mode)
         ("C-c C-k" . term-char-mode)
+				("C-l"     . comint-clear-buffer)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
         ("C-m"     . term-send-return)                 ; default
