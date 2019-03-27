@@ -527,6 +527,7 @@ Version 2016-06-19"
 (setq web-mode-enable-auto-pairing t)
 (setq web-mode-enable-auto-expanding t)
 (setq web-mode-enable-css-colorization t)
+(add-hook 'web-mode-hook (lambda () (local-set-key (kbd "C-c C-s") 'swiper)))
 
 ;; markdown
 ;; --------
@@ -724,8 +725,8 @@ Version 2016-06-19"
 (global-set-key (kbd "M-[") 'multi-term-prev)
 (global-set-key (kbd "M-]") 'multi-term-next)
 (add-hook 'term-mode-hook (lambda ()
-														(setq scroll-margin 0)
-														(setq hscroll-margin 0)
+														(setq-local scroll-margin 0)
+														(setq-local hscroll-margin 0)
 														(setq multi-term-scroll-to-bottom-on-output t)
 														(setq multi-term-scroll-show-maximum-output t)))
 (defun term-send-undo () ;; undo for multi-term
