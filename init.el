@@ -518,9 +518,11 @@ Version 2016-06-19"
 ;;
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)) ;; You can also edit plain js, jsx, css, scss, xml files.
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 (setq web-mode-engines-alist '(("django" . "\\.html\\'")))
 (setq web-mode-markup-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
+(setq web-mode-code-indent-offset 2) ;; javascript, php
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-enable-auto-pairing t)
 (setq web-mode-enable-auto-expanding t)
@@ -700,7 +702,7 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (counsel-projectile-mode 1)
-(setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
+;; (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
