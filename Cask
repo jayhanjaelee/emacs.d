@@ -31,6 +31,7 @@
 (depends-on "prodigy")
 (depends-on "realgud")
 (depends-on "dumb-jump")
+(depends-on "avy")
 
 ;; code
 (depends-on "rust-mode")

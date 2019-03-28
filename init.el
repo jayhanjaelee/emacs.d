@@ -113,7 +113,6 @@
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
 (global-set-key (kbd "C-.") 'imenu)
-(global-set-key (kbd "C-'") 'erase-buffer)
 
 ;; Encoding
 ;; --------
@@ -199,10 +198,10 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
-  ;; (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
-  ;; (global-set-key (kbd "s-]") 'xah-next-user-buffer)
-	(global-set-key (kbd "s-[") 'previous-buffer)
-  (global-set-key (kbd "s-]") 'next-buffer)
+  (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
+  (global-set-key (kbd "s-]") 'xah-next-user-buffer)
+	;; (global-set-key (kbd "s-[") 'previous-buffer)
+  ;; (global-set-key (kbd "s-]") 'next-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
@@ -889,6 +888,12 @@ Version 2016-06-19"
 			git-gutter:deleted-sign "|")
 ;; (custom-set-variables
 ;;  '(git-gutter:hide-gutter t))
+
+;; avy
+;; ---
+;;
+(avy-setup-default)
+(global-set-key (kbd "C-c C-j") 'avy-resume)
 
 ;; ===========================================================================
 ;; Unknown
