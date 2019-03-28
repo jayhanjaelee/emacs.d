@@ -527,7 +527,7 @@ Version 2016-06-19"
 (setq web-mode-enable-auto-pairing t)
 (setq web-mode-enable-auto-expanding t)
 (setq web-mode-enable-css-colorization t)
-(add-hook 'web-mode-hook (lambda () (local-set-key (kbd "C-c C-s") 'swiper)))
+(add-hook 'web-mode-hook (lambda () (local-unset-key (kbd "C-c C-s"))))
 
 ;; markdown
 ;; --------
