@@ -198,10 +198,10 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
-  (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
-  (global-set-key (kbd "s-]") 'xah-next-user-buffer)
-	;; (global-set-key (kbd "s-[") 'previous-buffer)
-  ;; (global-set-key (kbd "s-]") 'next-buffer)
+  ;; (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
+  ;; (global-set-key (kbd "s-]") 'xah-next-user-buffer)
+	(global-set-key (kbd "s-[") 'previous-buffer)
+  (global-set-key (kbd "s-]") 'next-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
@@ -320,9 +320,10 @@ version 2016-06-18"
   (if (string-equal "*" (substring (buffer-name) 0 1))
       nil
     (if (string-equal major-mode "dired-mode")
-        nil
-      t
-      )))
+				nil
+			t
+			)
+		))
 (defun xah-next-user-buffer ()
   "Switch to the next user buffer.
 'user buffer' is determined by `xah-user-buffer-q'.
