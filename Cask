@@ -8,6 +8,7 @@
 (depends-on "git-gutter")
 
 ;; productivity
+(depends-on "hydra")
 (depends-on "projectile")
 (depends-on "eyebrowse")
 (depends-on "ivy")
