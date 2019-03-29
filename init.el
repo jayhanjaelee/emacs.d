@@ -894,6 +894,9 @@ Version 2016-06-19"
 ;;
 (avy-setup-default)
 (global-set-key (kbd "C-c C-j") 'avy-resume)
+(global-set-key (kbd "M-g k") 'avy-goto-line-above)
+(global-set-key (kbd "M-g j") 'avy-goto-line-below)
+(global-set-key (kbd "M-g l") 'avy-goto-line)
 
 ;; ===========================================================================
 ;; Unknown
