@@ -695,7 +695,10 @@ Version 2016-06-19"
 ;; ----------------------
 ;;
 (ivy-mode 1)
-;; (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
+(setq ivy-wrap t)
+(setq ivy-use-ignore-default 'always)
+(setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+(setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq enable-recursive-minibuffers t)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c C-s") 'swiper)
