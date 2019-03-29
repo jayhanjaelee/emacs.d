@@ -628,6 +628,7 @@ Version 2016-06-19"
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
+(add-to-list 'projectile-other-file-alist '("html" "js" "css"))
 
 ;; eyebrowse
 ;; ---------
@@ -715,6 +716,8 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (global-set-key (kbd "C-.") 'counsel-imenu)
 (counsel-projectile-mode 1)
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)
+														 (local-set-key (kbd "C-c o") 'dired-omit-mode)))
 ;; (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching

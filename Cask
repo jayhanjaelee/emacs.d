@@ -11,6 +11,7 @@
 (depends-on "projectile")
 (depends-on "eyebrowse")
 (depends-on "ivy")
+(depends-on "ivy-hydra")
 (depends-on "swiper")
 (depends-on "counsel")
 (depends-on "counsel-projectile")
