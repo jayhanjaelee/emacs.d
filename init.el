@@ -112,7 +112,7 @@
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
-(global-set-key (kbd "C-.") 'imenu)
+;; (global-set-key (kbd "C-.") 'imenu)
 
 ;; Encoding
 ;; --------
@@ -198,10 +198,10 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
-  ;; (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
-  ;; (global-set-key (kbd "s-]") 'xah-next-user-buffer)
-	(global-set-key (kbd "s-[") 'previous-buffer)
-  (global-set-key (kbd "s-]") 'next-buffer)
+  (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
+  (global-set-key (kbd "s-]") 'xah-next-user-buffer)
+	;; (global-set-key (kbd "s-[") 'previous-buffer)
+  ;; (global-set-key (kbd "s-]") 'next-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
@@ -225,6 +225,7 @@
 (setq org-id-locations-file (expand-file-name ".org-id-locations" tmp-directory-p)) ;; !!!not sure file path
 (setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
 (setq transient-history-file (expand-file-name "history" tmp-directory-p))
+(setq eshell-directory-name (expand-file-name "eshell" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
@@ -319,11 +320,10 @@ version 2016-06-18"
   (interactive)
   (if (string-equal "*" (substring (buffer-name) 0 1))
       nil
-    (if (string-equal major-mode "dired-mode")
+    (if (or (string-prefix-p "magit" (prin1-to-string major-mode)) (string-equal major-mode "dired-mode"))
 				nil
 			t
-			)
-		))
+			)))
 (defun xah-next-user-buffer ()
   "Switch to the next user buffer.
 'user buffer' is determined by `xah-user-buffer-q'.
@@ -698,13 +698,22 @@ Version 2016-06-19"
 (setq ivy-wrap t)
 (setq ivy-use-ignore-default 'always)
 (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+;; hide buffers by major mode.
+(defun my-ivy-ignore-dired-buffers (buf)
+  (when (get-buffer buf)
+    (with-current-buffer buf
+      (when (or (eq major-mode 'dired-mode) (string-prefix-p "magit" (prin1-to-string major-mode)))
+        t))))
+(add-hook 'ivy-ignore-buffers 'my-ivy-ignore-dired-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
+(setq ivy-count-format "(%d/%d) ")
 (setq enable-recursive-minibuffers t)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-b") 'swiper-all)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
+(global-set-key (kbd "C-.") 'counsel-imenu)
 (counsel-projectile-mode 1)
 ;; (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 ;; (setq ivy-re-builders-alist
@@ -735,7 +744,7 @@ Version 2016-06-19"
 (defun term-send-undo () ;; undo for multi-term
   (interactive)
   (term-send-raw-string "\C-_"))
-
+;; keybinding for multi-term.
 (setq term-bind-key-alist
       '(("C-c C-c" . term-interrupt-subjob)            ; default
         ("C-c C-e" . term-send-esc)                    ; default
