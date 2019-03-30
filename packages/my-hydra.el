@@ -1,16 +1,26 @@
 (provide 'my-hydra)
+;;   "
+;;  ^Navigation^ | ^Mark^        | ^Actions^        | ^View^
+;; -^----------^-+-^----^--------+-^-------^--------+-^----^-------
+;;   _k_:    ʌ   | _m_: mark     | _D_: delete      | _g_: refresh
+;;  _h_ _l_      | _u_: unmark   | _S_: save        | _s_: sort
+;;   _j_:    v   | _*_: specific | _a_: all actions | _/_: filter
+;; -^----------^-+-^----^--------+-^-------^--------+-^----^-------
+;; "
 
 ;; hydra-ibuffer
 (defhydra hydra-ibuffer-main (:color pink :hint nil)
-  "
- ^Navigation^ | ^Mark^        | ^Actions^        | ^View^
--^----------^-+-^----^--------+-^-------^--------+-^----^-------
-  _k_:    ʌ   | _m_: mark     | _D_: delete      | _g_: refresh
- _RET_: visit | _u_: unmark   | _S_: save        | _s_: sort
-  _j_:    v   | _*_: specific | _a_: all actions | _/_: filter
--^----------^-+-^----^--------+-^-------^--------+-^----^-------
+ "
+^ ^ ^ ^ ^ ^ | ^Mark^        | ^Actions^        | ^View^
+^-^-^-^-^-^-+-------------+-^-------^--------+-^----^-------
+^ ^ _k_ ^ ^ | _m_: mark     | _D_: delete      | _g_: refresh
+_h_ ^+^ _l_ | _u_: unmark   | _S_: save        | _s_: sort
+^ ^ _j_ ^ ^ | _*_: specific | _a_: all actions | _/_: filter
+^-^-^-^-^-^-+-^----^--------+-^-------^--------+-^----^-------
 "
   ("j" ibuffer-forward-line)
+	("h" ibuffer-backward-filter-group)
+	("l" ibuffer-forward-filter-group)
   ("RET" ibuffer-visit-buffer :color blue)
   ("k" ibuffer-backward-line)
 
@@ -122,7 +132,11 @@ T - tag prefix
   ("G" dired-do-chgrp)
   ("g" revert-buffer)        ;; read all directories again (refresh)
   ("i" dired-maybe-insert-subdir)
-  ("l" dired-do-redisplay)   ;; relist the marked or singel directory
+  ;; ("l" dired-do-redisplay)   ;; relist the marked or singel directory
+	("h" dired-prev-dirline)
+	("j" dired-next-line)
+	("k" dired-previous-line)
+	("l" dired-next-dirline)
   ("M" dired-do-chmod)
   ("m" dired-mark)
   ("O" dired-display-file)

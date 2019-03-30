@@ -652,10 +652,9 @@ Version 2016-06-19"
 ;;
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
-(setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													(ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-do-sort-by-recency)))
@@ -716,8 +715,7 @@ Version 2016-06-19"
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (global-set-key (kbd "C-.") 'counsel-imenu)
 (counsel-projectile-mode 1)
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)
-														 (local-set-key (kbd "C-c o") 'dired-omit-mode)))
+(require 'ivy-hydra)
 ;; (setq counsel-projectile-switch-project-action 'counsel-projectile-switch-project-action-dired)
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
@@ -725,7 +723,7 @@ Version 2016-06-19"
 
 ;; which-key
 ;; ---------
-;;
+;; cheatsheet
 (which-key-mode)
 
 ;; multi-term
@@ -889,6 +887,7 @@ Version 2016-06-19"
 ;; go to definition
 (require 'dumb-jump)
 (dumb-jump-mode)
+
 (setq dumb-jump-selector 'ivy)
 (define-key dumb-jump-mode-map (kbd "C-M-p") nil)
 (global-set-key (kbd "<C-s-268632074>") 'dumb-jump-go)
