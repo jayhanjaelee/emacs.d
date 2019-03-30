@@ -913,9 +913,9 @@ Version 2016-06-19"
 ;; -----
 ;;
 (require 'my-hydra)
-(define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
-(add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
-(define-key dired-mode-map "." 'hydra-dired/body)
+;; (define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
+;; (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
+;; (define-key dired-mode-map "." 'hydra-dired/body)
 (global-set-key (kbd "M-g") 'hydra-avy/body)
 
 ;; ===========================================================================

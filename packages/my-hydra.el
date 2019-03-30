@@ -116,17 +116,12 @@ _h_ ^+^ _l_ | _u_: unmark   | _S_: save        | _s_: sort
 ;; hydra-dired
 (defhydra hydra-dired (:hint nil :color pink)
   "
-_+_ mkdir          _v_iew           _m_ark             _(_ details        _i_nsert-subdir    wdired
-_C_opy             _O_ view other   _U_nmark all       _)_ omit-mode      _$_ hide-subdir    C-x C-q : edit
-_D_elete           _o_pen other     _u_nmark           _l_ redisplay      _w_ kill-subdir    C-c C-c : commit
-_R_ename           _M_ chmod        _t_oggle           _g_ revert buf     _e_ ediff          C-c ESC : abort
-_Y_ rel symlink    _G_ chgrp        _E_xtension mark   _s_ort             _=_ pdiff
-_S_ymlink          ^ ^              _F_ind marked      _._ toggle hydra   \\ flyspell
-_r_sync            ^ ^              ^ ^                ^ ^                _?_ summary
-_z_ compress-file  _A_ find regexp
-_Z_ compress       _Q_ repl regexp
-
-T - tag prefix
+^ ^ ^ ^ ^ ^ | ^Mark^         | ^Actions^        | ^View^
+^-^-^-^-^-^-+-^----^---------+-^-------^--------+-^----^-------
+^ ^ _k_ ^ ^ | _m_: mark      | _F_: find marked | _g_: refresh
+_h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
+^ ^ _j_ ^ ^ |	_U_: unmark All| _v_: view				| _?_: summary
+^-^-^-^-^-^-+-^----^---------+------------------+--------------
 "
   ("\\" dired-do-ispell)
   ("(" dired-hide-details-mode)
@@ -152,7 +147,7 @@ T - tag prefix
   ("M" dired-do-chmod)
   ("m" dired-mark)
   ("O" dired-display-file)
-  ("o" dired-find-file-other-window)
+  ("o" dired-find-file-other-window "otehr window" :color blue)
   ("Q" dired-do-find-regexp-and-replace)
   ("R" dired-do-rename)
   ("r" dired-do-rsynch)
@@ -166,7 +161,7 @@ T - tag prefix
   ("Y" dired-do-relsymlink)
   ("z" diredp-compress-this-file)
   ("Z" dired-do-compress)
-  ("q" nil)
+  ("q" nil "quit" :color blue)
   ("." nil :color blue))
 
 ;; hydra-avy
