@@ -12,10 +12,11 @@
 (defhydra hydra-ibuffer-main (:color pink :hint nil)
  "
 ^ ^ ^ ^ ^ ^ | ^Mark^        | ^Actions^        | ^View^
-^-^-^-^-^-^-+-------------+-^-------^--------+-^----^-------
+^-^-^-^-^-^-+-^----^--------+-^-------^--------+-^----^-------
 ^ ^ _k_ ^ ^ | _m_: mark     | _D_: delete      | _g_: refresh
 _h_ ^+^ _l_ | _u_: unmark   | _S_: save        | _s_: sort
 ^ ^ _j_ ^ ^ | _*_: specific | _a_: all actions | _/_: filter
+^ ^ ^ ^ ^ ^ | _%_: regexp   | ^       ^        |
 ^-^-^-^-^-^-+-^----^--------+-^-------^--------+-^----^-------
 "
   ("j" ibuffer-forward-line)
@@ -27,6 +28,7 @@ _h_ ^+^ _l_ | _u_: unmark   | _S_: save        | _s_: sort
   ("m" ibuffer-mark-forward)
   ("u" ibuffer-unmark-forward)
   ("*" hydra-ibuffer-mark/body :color blue)
+	("%" hydra-ibuffer-regexp/body :color blue)
 
   ("D" ibuffer-do-delete)
   ("S" ibuffer-do-save)
@@ -39,6 +41,16 @@ _h_ ^+^ _l_ | _u_: unmark   | _S_: save        | _s_: sort
   ("o" ibuffer-visit-buffer-other-window "other window" :color blue)
   ("q" quit-window "quit ibuffer" :color blue)
   ("." nil "toggle hydra" :color blue))
+
+(defhydra hydra-ibuffer-regexp (:color teal :columns 5
+																			 :after-exit (hydra-ibuffer-main/body))
+	"Regexp"
+  ("n" ibuffer-mark-by-name-regexp "name")
+	("m" ibuffer-mark-by-mode-regexp "mode")
+	("f" ibuffer-mark-by-file-name-regexp "filename")
+	("g" ibuffer-mark-by-content-regexp "content")
+	("L" ibuffer-mark-by-locked "lock")
+	("b" hydra-ibuffer-main/body "back" :color blue))
 
 (defhydra hydra-ibuffer-mark (:color teal :columns 5
                               :after-exit (hydra-ibuffer-main/body))
@@ -158,7 +170,7 @@ T - tag prefix
   ("." nil :color blue))
 
 ;; hydra-avy
-(defhydra hydra-avy (:exit t)
+(defhydra hydra-avy (:columns 4 :exit t)
 	"avy"
 	("g" goto-line "goto-line")
 	("j" avy-goto-line-below "goto-line-below")
