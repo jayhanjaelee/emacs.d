@@ -161,7 +161,7 @@ _h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
   ("Y" dired-do-relsymlink)
   ("z" diredp-compress-this-file)
   ("Z" dired-do-compress)
-  ("q" nil "quit" :color blue)
+  ("q" quit-window "quit" :color blue)
   ("." nil :color blue))
 
 ;; hydra-avy
@@ -174,6 +174,7 @@ _h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
 	("m" avy-resume "resume")
 	("q" nil "quit"))
 
+;; hydra-window
 (defhydra hydra-window (:color amaranth)
   "window"
   ("h" windmove-left)
