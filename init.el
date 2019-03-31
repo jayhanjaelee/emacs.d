@@ -110,7 +110,8 @@
 (global-set-key (kbd "<f5>") 'transpose-frame)
 ;; (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
-(global-set-key (kbd "C-x k") 'kill-current-buffer)
+;; (global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "C-x k") 'kill-buffer-and-window)
 (global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
 ;; (global-set-key (kbd "C-.") 'imenu)
 
