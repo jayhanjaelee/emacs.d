@@ -655,8 +655,7 @@ Version 2016-06-19"
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
 													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
-													(add-to-list 'ibuffer-never-show-predicates "magit*") ;; disable to show asterisk buffer
-													;; (setq ibuffer-never-show-predicates '("^\\*" "/$"))
+													(add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													(ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-do-sort-by-recency)))
@@ -668,6 +667,13 @@ Version 2016-06-19"
 			ad-do-it
 			(ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
+;; hide dired buffer in ibuffer.
+(defun my-dired-mode-buffer-p (buf)
+  "Non-nil if buffer BUF is in `dired-mode'."
+  (with-current-buffer buf
+    (derived-mode-p 'dired-mode)))
+(with-eval-after-load "ibuffer"
+  (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
 
 ;; ace-window
 ;; ----------
