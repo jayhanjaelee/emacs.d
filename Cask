@@ -1,4 +1,5 @@
 (source melpa)
+(source gnu)
 (source org)
 
 (package-file "/usr/local/share/emacs/site-lisp/cask/cask.el")
@@ -34,6 +35,8 @@
 (depends-on "realgud")
 (depends-on "dumb-jump")
 (depends-on "avy")
+(depends-on "undo-tree")
+(depends-on "goto-chg")
 
 ;; code
 (depends-on "rust-mode")

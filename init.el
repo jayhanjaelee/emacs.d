@@ -655,6 +655,8 @@ Version 2016-06-19"
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
 													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													(add-to-list 'ibuffer-never-show-predicates "/$") ;; disable to show asterisk buffer
+													;; (setq ibuffer-never-show-predicates '("^\\*" "/$"))
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													(ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-do-sort-by-recency)))
@@ -916,8 +918,15 @@ Version 2016-06-19"
 ;; (define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
 ;; (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
 ;; (define-key dired-mode-map "." 'hydra-dired/body)
+;; (add-hook 'dired-initial-position-hook #'hydra-dired/body)
 (global-set-key (kbd "M-g") 'hydra-avy/body)
 (global-set-key (kbd "C-M-o") 'hydra-window/body)
+
+;; goto-chg
+;; --------
+;;
+(global-set-key (kbd "C-.") 'goto-last-change)
+(global-set-key (kbd "C-,") 'goto-last-change-reverse)
 
 ;; ===========================================================================
 ;; Unknown
