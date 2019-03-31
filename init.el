@@ -655,7 +655,7 @@ Version 2016-06-19"
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
 													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
-													(add-to-list 'ibuffer-never-show-predicates "/$") ;; disable to show asterisk buffer
+													(add-to-list 'ibuffer-never-show-predicates "magit*") ;; disable to show asterisk buffer
 													;; (setq ibuffer-never-show-predicates '("^\\*" "/$"))
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													(ibuffer-vc-set-filter-groups-by-vc-root)
