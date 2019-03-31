@@ -708,12 +708,12 @@ Version 2016-06-19"
 (setq ivy-use-ignore-default 'always)
 (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
 ;; hide buffers by major mode.
-(defun my-ivy-ignore-dired-buffers (buf)
+(defun my-ivy-ignore-buffers (buf)
   (when (get-buffer buf)
     (with-current-buffer buf
       (when (or (eq major-mode 'dired-mode) (string-prefix-p "magit" (prin1-to-string major-mode)))
         t))))
-(add-hook 'ivy-ignore-buffers 'my-ivy-ignore-dired-buffers)
+(add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq ivy-count-format "(%d/%d) ")
 (setq enable-recursive-minibuffers t)
