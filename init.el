@@ -677,6 +677,9 @@ Version 2016-06-19"
 ;; ace-window
 ;; ----------
 ;;
+(custom-set-faces
+ '(aw-leading-char-face
+   ((t (:inherit ace-jump-face-foreground :height 3.0)))))
 (when (fboundp 'winner-mode) ;; if winner mode exist, enable it.
   (winner-mode 1))
 (global-set-key (kbd "M-o") 'ace-window)
