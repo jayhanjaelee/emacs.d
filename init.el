@@ -14,7 +14,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (when (< emacs-major-version 24) (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
@@ -110,9 +109,8 @@
 (global-set-key (kbd "<f5>") 'transpose-frame)
 ;; (global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
-;; (global-set-key (kbd "C-x k") 'kill-current-buffer)
-(global-set-key (kbd "C-x k") 'kill-buffer-and-window)
-(global-set-key (kbd "C-x K") 'kill-matching-buffers) ;; kill buffers by regexp
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
+(global-set-key (kbd "C-x K") 'kill-buffer-and-window)
 ;; (global-set-key (kbd "C-.") 'imenu)
 
 ;; Encoding
@@ -717,6 +715,7 @@ Version 2016-06-19"
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq ivy-count-format "(%d/%d) ")
 (setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-b") 'swiper-all)
@@ -922,6 +921,7 @@ Version 2016-06-19"
 ;; -----
 ;;
 (require 'my-hydra)
+
 ;; (define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
 ;; (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
 ;; (define-key dired-mode-map "." 'hydra-dired/body)
