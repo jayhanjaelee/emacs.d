@@ -75,8 +75,12 @@
 ;;(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)
-														 (local-set-key (kbd "C-c o") 'dired-omit-mode)))
+(add-hook 'dired-mode-hook (lambda ()
+														 (dired-omit-mode 1)
+														 (local-set-key (kbd "C-c o") 'dired-omit-mode)
+														 ;; enable dired filter mode (external package)
+														 (dired-filter-mode)))
+(setq dired-filter-stack nil)
 ;;
 (setq dired-dwim-target t) ;; convenient manipulating for files
 (setq dired-omit-verbose nil) ;; hidden annoying message about omit
@@ -85,6 +89,9 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 (setq dired-listing-switches "-alh") ;; human readable size in dired
+;; dired-subtree (external package)
+(define-key dired-mode-map "i" 'dired-subtree-insert)
+(define-key dired-mode-map ";" 'dired-subtree-remove)
 
 ;; Global Keybindings
 ;; ------------------
@@ -921,7 +928,6 @@ Version 2016-06-19"
 ;; -----
 ;;
 (require 'my-hydra)
-
 ;; (define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
 ;; (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
 ;; (define-key dired-mode-map "." 'hydra-dired/body)

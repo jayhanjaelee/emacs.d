@@ -37,6 +37,8 @@
 (depends-on "avy")
 (depends-on "undo-tree")
 (depends-on "goto-chg")
+(depends-on "dired-subtree")
+(depends-on "dired-filter")
 
 ;; code
 (depends-on "rust-mode")
