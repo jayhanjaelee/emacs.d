@@ -89,6 +89,9 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 (setq dired-listing-switches "-alh") ;; human readable size in dired
+;; (setq dired-use-ls-dired  nil)
+;; (setq insert-directory-program "/usr/local/bin/gls")
+;; (setq dired-listing-switches "-alh --group-directories-first") ;; human readable size in dired
 ;; dired-subtree (external package)
 (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-toggle)
 (define-key dired-mode-map "i" 'dired-subtree-insert)
