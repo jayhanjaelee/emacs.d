@@ -97,6 +97,23 @@
 (define-key dired-mode-map "i" 'dired-subtree-insert)
 (define-key dired-mode-map ";" 'dired-subtree-remove)
 
+;; (defun xah-dired-sort ()
+;;   "Sort dired dir listing in different ways.
+;; Prompt for a choice.
+;; URL `http://ergoemacs.org/emacs/dired_sort.html'
+;; Version 2018-12-23"
+;;   (interactive)
+;;   (let ($sort-by $arg)
+;;     (setq $sort-by (ivy-completing-read "Sort by:" '( "date" "size" "name" )))
+;;     (cond
+;;      ((equal $sort-by "name") (setq $arg "-alh "))
+;;      ((equal $sort-by "date") (setq $arg "-alh -t"))
+;;      ((equal $sort-by "size") (setq $arg "-alh -S"))
+;;      ;; ((equal $sort-by "dir") (setq $arg "-Al --group-directories-first"))
+;;      (t (error "logic error 09535" )))
+;;     (dired-sort-other $arg )))
+;; (define-key dired-mode-map (kbd "s") 'xah-dired-sort)
+
 ;; Global Keybindings
 ;; ------------------
 ;;
