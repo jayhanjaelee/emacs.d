@@ -174,6 +174,41 @@ _h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
 	("m" avy-resume "resume")
 	("q" nil "quit"))
 
+;;* Helpers
+(require 'windmove)
+
+(defun hydra-move-splitter-left (arg)
+  "Move window splitter left."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (shrink-window-horizontally arg)
+    (enlarge-window-horizontally arg)))
+
+(defun hydra-move-splitter-right (arg)
+  "Move window splitter right."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (enlarge-window-horizontally arg)
+    (shrink-window-horizontally arg)))
+
+(defun hydra-move-splitter-up (arg)
+  "Move window splitter up."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (enlarge-window arg)
+    (shrink-window arg)))
+
+(defun hydra-move-splitter-down (arg)
+  "Move window splitter down."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (shrink-window arg)
+    (enlarge-window arg)))
+
 ;; hydra-window
 (defhydra hydra-window (:color amaranth)
   "window"
@@ -181,6 +216,10 @@ _h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
   ("j" windmove-down)
   ("k" windmove-up)
   ("l" windmove-right)
+	("H" hydra-move-splitter-left)
+  ("J" hydra-move-splitter-down)
+  ("K" hydra-move-splitter-up)
+  ("L" hydra-move-splitter-right)
   ("v" (lambda ()
          (interactive)
          (split-window-right)
