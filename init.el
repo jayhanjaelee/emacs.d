@@ -644,6 +644,7 @@ Version 2016-06-19"
 (setq eyebrowse-new-workspace t
 			eyebrowse-wrap-around t)
 (set-face-attribute 'eyebrowse-mode-line-active nil :box '(:color "#000000") :bold t :foreground "#c98459") ;; #000 is black2 #c98 is orange1 in morning star
+(global-set-key (kbd "s-'") 'eyebrowse-last-window-config)
 (global-set-key (kbd "s-1") 'eyebrowse-switch-to-window-config-1)
 (global-set-key (kbd "s-2") 'eyebrowse-switch-to-window-config-2)
 (global-set-key (kbd "s-3") 'eyebrowse-switch-to-window-config-3)
