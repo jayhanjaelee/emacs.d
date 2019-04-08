@@ -975,6 +975,12 @@ Version 2016-06-19"
 (global-set-key (kbd "C-.") 'goto-last-change)
 (global-set-key (kbd "C-,") 'goto-last-change-reverse)
 
+;; livedown
+;; --------
+;; markdown preview
+(add-to-list 'load-path "~/.emacs.d/packages/emacs-livedown")
+(require 'livedown)
+
 ;; ===========================================================================
 ;; Unknown
 ;; ===========================================================================
