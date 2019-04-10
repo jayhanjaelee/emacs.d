@@ -264,6 +264,7 @@
 (setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
 (setq transient-history-file (expand-file-name "history" tmp-directory-p))
 (setq eshell-directory-name (expand-file-name "eshell" tmp-directory-p))
+(setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
@@ -440,6 +441,8 @@ Version 2016-06-19"
 (setq kill-buffer-query-functions
 			(remq 'process-kill-buffer-query-function
 						kill-buffer-query-functions))
+
+(setq recenter-positions '(top middle bottom))
 
 ;; ===========================================================================
 ;; Code For Development
@@ -966,7 +969,7 @@ Version 2016-06-19"
 ;; (add-hook 'ibuffer-hook #'hydra-ibuffer-main/body)
 ;; (define-key dired-mode-map "." 'hydra-dired/body)
 ;; (add-hook 'dired-initial-position-hook #'hydra-dired/body)
-(global-set-key (kbd "M-g") 'hydra-avy/body)
+;; (global-set-key (kbd "M-g") 'hydra-avy/body)
 (global-set-key (kbd "C-M-o") 'hydra-window/body)
 
 ;; goto-chg
@@ -980,6 +983,18 @@ Version 2016-06-19"
 ;; markdown preview
 (add-to-list 'load-path "~/.emacs.d/packages/emacs-livedown")
 (require 'livedown)
+
+;; treemacs
+;; --------
+;;
+(require 'treemacs)
+;; (setq treemacs-is-never-other-window t)
+(setq treemacs-width 25)
+(setq treemacs-show-hidden-files nil)
+(setq treemacs-no-png-images t)
+(global-set-key (kbd "C-x t") 'treemacs-select-window)
+(define-key treemacs-mode-map (kbd "M-o") 'ace-window)
+(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
 
 ;; ===========================================================================
 ;; Unknown
