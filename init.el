@@ -757,6 +757,7 @@ Version 2016-06-19"
         t))))
 (add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
+(setq ivy-virtual-abbreviate 'abbrev)
 (setq ivy-count-format "(%d/%d) ")
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
@@ -772,6 +773,10 @@ Version 2016-06-19"
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
+(require 'ivy-rich)
+(ivy-rich-mode 1)
+(setq ivy-format-function #'ivy-format-function-default)
+(setq ivy-rich-path-style 'abbrev)
 
 ;; which-key
 ;; ---------
