@@ -21,6 +21,15 @@
 ;; Simple Settings
 ;; ===========================================================================
 
+;; Speed Up startup
+;; --------
+;;
+(setq gc-cons-threshold 50000000)
+(add-hook 'emacs-startup-hook 'my/set-gc-threshold)
+(defun my/set-gc-threshold ()
+  "Reset `gc-cons-threshold' to its default value."
+  (setq gc-cons-threshold 800000))
+
 ;; Appearance
 ;; ----------
 ;;
@@ -39,6 +48,7 @@
 (show-paren-mode t)         ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 (which-function-mode)
+(global-hl-line-mode 1)
 (setq which-func-unknown "?")
 (set-face-attribute 'which-func nil :box '(:color "#000000") :bold t :foreground "#c98459")
 (setq inhibit-startup-message t)	; Inhibit startup message
@@ -61,7 +71,12 @@
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'morning-star t)
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 (set-fringe-mode '(0 . 0)) ;; remove fringe
 
 ;; Dired
@@ -587,7 +602,7 @@ Version 2016-06-19"
 ;; org
 ;; ---
 ;;
-(require 'org)
+;; (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -693,6 +708,8 @@ Version 2016-06-19"
 ;; ibuffer-vc
 ;; ----------
 ;;
+;; (setq ibuffer-filter-group-name-face "#f2777a")
+;; (set-face-attribute 'ibuffer-filter-group-name-face nil :bold t :foreground "#f2777a")
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
@@ -775,8 +792,9 @@ Version 2016-06-19"
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
 (require 'ivy-rich)
 (ivy-rich-mode 1)
-(setq ivy-format-function #'ivy-format-function-default)
+(setq ivy-format-function #'ivy-format-function-line)
 (setq ivy-rich-path-style 'abbrev)
+(setq ivy--highlight-function 'hl-line)
 
 ;; which-key
 ;; ---------
@@ -798,7 +816,8 @@ Version 2016-06-19"
 														(setq-local scroll-margin 0)
 														(setq-local hscroll-margin 0)
 														(setq multi-term-scroll-to-bottom-on-output t)
-														(setq multi-term-scroll-show-maximum-output t)))
+														(setq multi-term-scroll-show-maximum-output t)
+														(setq-local global-hl-line-mode nil)))
 (defun term-send-undo () ;; undo for multi-term
   (interactive)
   (term-send-raw-string "\C-_"))
