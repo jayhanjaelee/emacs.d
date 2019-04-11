@@ -81,7 +81,7 @@
 														 ;; enable dired filter mode (external package)
 														 (dired-filter-mode)))
 (setq dired-filter-stack nil)
-;;
+(add-hook 'dired-mode-hook 'auto-revert-mode) ;; enable auto revert mode in dired mode.
 (setq dired-dwim-target t) ;; convenient manipulating for files
 (setq dired-omit-verbose nil) ;; hidden annoying message about omit
 ;; sort directory first in dired
