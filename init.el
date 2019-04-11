@@ -851,7 +851,7 @@ Version 2016-06-19"
 (require 'undo-tree)
 (global-undo-tree-mode 1)
 (defalias 'redo 'undo-tree-redo)
-(setq undo-tree-auto-save-history t)
+;; (setq undo-tree-auto-save-history t)
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-Z") 'redo)
 
@@ -986,15 +986,20 @@ Version 2016-06-19"
 
 ;; treemacs
 ;; --------
-;;
+;; tree style project navigation
 (require 'treemacs)
-;; (setq treemacs-is-never-other-window t)
+(setq treemacs-is-never-other-window t)
 (setq treemacs-width 25)
 (setq treemacs-show-hidden-files nil)
 (setq treemacs-no-png-images t)
 (global-set-key (kbd "C-x t") 'treemacs-select-window)
 (define-key treemacs-mode-map (kbd "M-o") 'ace-window)
 (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
+;; vi style keymap
+(define-key treemacs-mode-map (kbd "j") 'treemacs-next-line)
+(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line)
+(define-key treemacs-mode-map (kbd "M-j") 'treemacs-next-neighbour)
+(define-key treemacs-mode-map (kbd "M-k") 'treemacs-previous-neighbour)
 
 ;; ===========================================================================
 ;; Unknown
