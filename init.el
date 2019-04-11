@@ -992,6 +992,7 @@ Version 2016-06-19"
 (setq treemacs-width 25)
 (setq treemacs-show-hidden-files nil)
 (setq treemacs-no-png-images t)
+(global-set-key (kbd "C-x C-t") 'treemacs)
 (global-set-key (kbd "C-x t") 'treemacs-select-window)
 (define-key treemacs-mode-map (kbd "M-o") 'ace-window)
 (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
