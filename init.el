@@ -22,7 +22,7 @@
 ;; ===========================================================================
 
 ;; Speed Up startup
-;; --------
+;; ----------------
 ;;
 (defvar default-file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
