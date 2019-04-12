@@ -71,12 +71,7 @@
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'morning-star t)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (set-fringe-mode '(0 . 0)) ;; remove fringe
 
 ;; Dired
