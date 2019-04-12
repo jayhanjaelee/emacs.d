@@ -734,6 +734,12 @@ Version 2016-06-19"
     (derived-mode-p 'dired-mode)))
 (with-eval-after-load "ibuffer"
   (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
+(defface my-ibuffer-filter-group-name-face
+  '((t :foreground "#f2777a"
+       ))
+	"Face for bifufer-filter-group-name."
+	)
+(setq ibuffer-filter-group-name-face 'my-ibuffer-filter-group-name-face)
 
 ;; ace-window
 ;; ----------
@@ -774,7 +780,7 @@ Version 2016-06-19"
         t))))
 (add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
-(setq ivy-virtual-abbreviate 'abbrev)
+(setq ivy-virtual-abbreviate 'abbreviate)
 (setq ivy-count-format "(%d/%d) ")
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
