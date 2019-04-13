@@ -22,13 +22,22 @@
 ;; ===========================================================================
 
 ;; Speed Up startup
-;; --------
+;; ----------------
 ;;
-(setq gc-cons-threshold 50000000)
-(add-hook 'emacs-startup-hook 'my/set-gc-threshold)
-(defun my/set-gc-threshold ()
-  "Reset `gc-cons-threshold' to its default value."
-  (setq gc-cons-threshold 800000))
+(defvar default-file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(setq gc-cons-threshold 80000000)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            "Restore defalut values after init."
+            (setq file-name-handler-alist default-file-name-handler-alist)
+            (setq gc-cons-threshold 800000)
+            (if (boundp 'after-focus-change-function)
+                (add-function :after after-focus-change-function
+                              (lambda ()
+                                (unless (frame-focus-state)
+                                  (garbage-collect))))
+              (add-hook 'focus-out-hook 'garbage-collect))))
 
 ;; Appearance
 ;; ----------
@@ -597,7 +606,7 @@ Version 2016-06-19"
 ;; org
 ;; ---
 ;;
-;; (require 'org)
+(require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -729,6 +738,12 @@ Version 2016-06-19"
     (derived-mode-p 'dired-mode)))
 (with-eval-after-load "ibuffer"
   (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
+(defface my-ibuffer-filter-group-name-face
+  '((t :foreground "#f2777a"
+       ))
+	"Face for bifufer-filter-group-name."
+	)
+(setq ibuffer-filter-group-name-face 'my-ibuffer-filter-group-name-face)
 
 ;; ace-window
 ;; ----------
@@ -769,7 +784,7 @@ Version 2016-06-19"
         t))))
 (add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
-(setq ivy-virtual-abbreviate 'abbrev)
+(setq ivy-virtual-abbreviate 'abbreviate)
 (setq ivy-count-format "(%d/%d) ")
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
