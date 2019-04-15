@@ -627,9 +627,12 @@ Version 2016-06-19"
 				("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
 				)) ;; inspired by trello
 (require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(add-hook 'org-mode-hook (lambda () (set-face-bold 'bold 1))) ;; set face to bold in only org mode.
-(add-hook 'org-mode-hook (lambda () (local-unset-key (kbd "C-c C-v"))))
+(add-hook 'org-mode-hook (lambda ()
+													 (setq-local global-hl-line-mode nil)
+													 (org-bullets-mode 1)
+													 (set-face-bold 'bold 1) ;; set face to bold in only org mode.
+													 (local-unset-key (kbd "C-c C-v"))
+													 ))
 (require 'org-tempo) ;; org template expansion using tab
 ;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
@@ -712,8 +715,6 @@ Version 2016-06-19"
 ;; ibuffer-vc
 ;; ----------
 ;;
-;; (setq ibuffer-filter-group-name-face "#f2777a")
-;; (set-face-attribute 'ibuffer-filter-group-name-face nil :bold t :foreground "#f2777a")
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
