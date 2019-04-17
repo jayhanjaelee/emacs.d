@@ -811,6 +811,7 @@ Version 2016-06-19"
 ;; which-key
 ;; ---------
 ;; cheatsheet
+(require 'which-key)
 (which-key-mode)
 
 ;; multi-term
