@@ -42,6 +42,7 @@
 (depends-on "goto-chg")
 (depends-on "dired-subtree")
 (depends-on "dired-filter")
+(depends-on "auto-package-update")
 
 ;; code
 (depends-on "rust-mode")

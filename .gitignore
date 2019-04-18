@@ -18,3 +18,4 @@ tramp
 transient/
 packages/prodigy-conf.el
 tutorial/
+.last-package-update-day

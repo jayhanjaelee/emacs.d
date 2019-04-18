@@ -285,6 +285,7 @@
 (setq transient-history-file (expand-file-name "history" tmp-directory-p))
 (setq eshell-directory-name (expand-file-name "eshell" tmp-directory-p))
 (setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
+(setq auto-package-update-last-update-day-filename (expand-file-name ".last-package-update-day" tmp-directory-p))
 
 ;; scroll setup
 ;; ------------
@@ -1041,6 +1042,14 @@ Version 2016-06-19"
 (define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line)
 (define-key treemacs-mode-map (kbd "M-j") 'treemacs-next-neighbour)
 (define-key treemacs-mode-map (kbd "M-k") 'treemacs-previous-neighbour)
+
+;; auto-package-update
+;; -------------------
+;;
+(require 'auto-package-update)
+(setq auto-package-update-delete-old-versions t
+      auto-package-update-interval 1)
+(auto-package-update-maybe)
 
 ;; ===========================================================================
 ;; Unknown
