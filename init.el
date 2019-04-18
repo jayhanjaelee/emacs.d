@@ -346,6 +346,9 @@
 ;; recentf
 ;; -------
 ;;
+(require 'recentf)
+(setq recentf-filename-handlers
+      (append '(abbreviate-file-name) recentf-filename-handlers))
 (setq recentf-max-menu-items 10)
 (setq recentf-auto-cleanup 'never) ;; disable before we start recentf (solution of tramp auto connection issue)
 (recentf-mode 1)
