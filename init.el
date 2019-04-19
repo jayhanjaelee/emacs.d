@@ -264,6 +264,8 @@
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
+	(global-set-key (kbd "<s-left>") 'projectile-previous-project-buffer)
+	(global-set-key (kbd "<s-right>") 'projectile-next-project-buffer)
   )
 
 ;; tmp files
