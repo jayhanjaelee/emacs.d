@@ -468,8 +468,6 @@ Version 2016-06-19"
 			(remq 'process-kill-buffer-query-function
 						kill-buffer-query-functions))
 
-(setq recenter-positions '(top middle bottom))
-
 ;; ===========================================================================
 ;; Code For Development
 ;; ===========================================================================
