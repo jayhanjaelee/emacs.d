@@ -57,7 +57,7 @@
 (show-paren-mode t)         ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 (which-function-mode)
-(global-hl-line-mode 1)
+;; (global-hl-line-mode 1)
 (setq which-func-unknown "?")
 (set-face-attribute 'which-func nil :box '(:color "#000000") :bold t :foreground "#c98459")
 (setq inhibit-startup-message t)	; Inhibit startup message
@@ -724,8 +724,8 @@ Version 2016-06-19"
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
-													(add-to-list 'ibuffer-never-show-predicates "magit*")
+													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													(ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-do-sort-by-recency)))
@@ -780,15 +780,15 @@ Version 2016-06-19"
 ;;
 (ivy-mode 1)
 (setq ivy-wrap t)
-(setq ivy-use-ignore-default 'always)
-(setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+;; (setq ivy-use-ignore-default 'always)
+;; (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
 ;; hide buffers by major mode.
-(defun my-ivy-ignore-buffers (buf)
-  (when (get-buffer buf)
-    (with-current-buffer buf
-      (when (or (eq major-mode 'dired-mode) (string-prefix-p "magit" (prin1-to-string major-mode)))
-        t))))
-(add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
+;; (defun my-ivy-ignore-buffers (buf)
+;;   (when (get-buffer buf)
+;;     (with-current-buffer buf
+;;       (when (or (eq major-mode 'dired-mode) (string-prefix-p "magit" (prin1-to-string major-mode)))
+;;         t))))
+;; (add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq ivy-virtual-abbreviate 'abbreviate)
 (setq ivy-count-format "(%d/%d) ")
