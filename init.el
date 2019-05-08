@@ -264,8 +264,6 @@
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
-	(global-set-key (kbd "<s-left>") 'projectile-previous-project-buffer)
-	(global-set-key (kbd "<s-right>") 'projectile-next-project-buffer)
   )
 
 ;; tmp files
@@ -806,11 +804,11 @@ Version 2016-06-19"
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
-(require 'ivy-rich)
-(ivy-rich-mode 1)
-(setq ivy-format-function #'ivy-format-function-line)
-(setq ivy-rich-path-style 'abbrev)
-(setq ivy--highlight-function 'hl-line)
+;; (require 'ivy-rich)
+;; (ivy-rich-mode 1)
+;; (setq ivy-format-function #'ivy-format-function-line)
+;; (setq ivy-rich-path-style 'abbrev)
+;; (setq ivy--highlight-function 'hl-line)
 
 ;; which-key
 ;; ---------
