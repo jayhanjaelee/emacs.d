@@ -256,10 +256,10 @@
   (global-set-key (kbd "<C-tab>") 'eyebrowse-next-window-config)
   (global-set-key (kbd "s-{") 'eyebrowse-prev-window-config)
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
-  (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
-  (global-set-key (kbd "s-]") 'xah-next-user-buffer)
-	;; (global-set-key (kbd "s-[") 'previous-buffer)
-  ;; (global-set-key (kbd "s-]") 'next-buffer)
+  ;; (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
+  ;; (global-set-key (kbd "s-]") 'xah-next-user-buffer)
+	(global-set-key (kbd "s-[") 'previous-buffer)
+  (global-set-key (kbd "s-]") 'next-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
@@ -738,12 +738,12 @@ Version 2016-06-19"
 			(ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
 ;; hide dired buffer in ibuffer.
-(defun my-dired-mode-buffer-p (buf)
-  "Non-nil if buffer BUF is in `dired-mode'."
-  (with-current-buffer buf
-    (derived-mode-p 'dired-mode)))
-(with-eval-after-load "ibuffer"
-  (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
+;; (defun my-dired-mode-buffer-p (buf)
+;;   "Non-nil if buffer BUF is in `dired-mode'."
+;;   (with-current-buffer buf
+;;     (derived-mode-p 'dired-mode)))
+;; (with-eval-after-load "ibuffer"
+;;   (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
 (defface my-ibuffer-filter-group-name-face
   '((t :foreground "#f2777a"
        ))
