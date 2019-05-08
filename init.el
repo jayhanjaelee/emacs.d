@@ -795,8 +795,8 @@ Version 2016-06-19"
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
 (global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-c C-s") 'swiper)
-(global-set-key (kbd "C-c C-b") 'swiper-all)
+;; (global-set-key (kbd "C-c C-s") 'swiper)
+;; (global-set-key (kbd "C-c C-b") 'swiper-all)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (global-set-key (kbd "C-.") 'counsel-imenu)
@@ -1048,7 +1048,7 @@ Version 2016-06-19"
 ;;
 (require 'auto-package-update)
 (setq auto-package-update-delete-old-versions t
-      auto-package-update-interval 1)
+      auto-package-update-interval 7)
 (auto-package-update-maybe)
 
 ;; ===========================================================================
