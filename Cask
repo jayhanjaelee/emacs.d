@@ -20,7 +20,6 @@
 (depends-on "swiper")
 (depends-on "counsel")
 (depends-on "counsel-projectile")
-(depends-on "ibuffer-vc")
 (depends-on "magit")
 (depends-on "ace-window")
 (depends-on "iedit")
@@ -42,7 +41,7 @@
 (depends-on "goto-chg")
 (depends-on "dired-subtree")
 (depends-on "dired-filter")
-(depends-on "auto-package-update")
+(depends-on "ibuffer-projectile")
 
 ;; code
 (depends-on "rust-mode")
