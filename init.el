@@ -717,8 +717,8 @@ Version 2016-06-19"
 (global-set-key (kbd "s-8") 'eyebrowse-switch-to-window-config-8)
 (global-set-key (kbd "s-9") 'eyebrowse-switch-to-window-config-9)
 
-;; ibuffer-vc
-;; ----------
+;; ibuffer-projectile
+;; ------------------
 ;;
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
@@ -727,7 +727,8 @@ Version 2016-06-19"
 													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
-													(ibuffer-vc-set-filter-groups-by-vc-root)
+													;; (ibuffer-vc-set-filter-groups-by-vc-root)
+													(ibuffer-projectile-set-filter-groups)
 													(ibuffer-do-sort-by-recency)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
 (defadvice ibuffer
@@ -792,8 +793,8 @@ Version 2016-06-19"
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq ivy-virtual-abbreviate 'abbreviate)
 (setq ivy-count-format "(%d/%d) ")
-(setq enable-recursive-minibuffers t)
-(minibuffer-depth-indicate-mode)
+;; (setq enable-recursive-minibuffers t)
+;; (minibuffer-depth-indicate-mode)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 ;; (global-set-key (kbd "C-c C-s") 'swiper)
 ;; (global-set-key (kbd "C-c C-b") 'swiper-all)
@@ -806,11 +807,11 @@ Version 2016-06-19"
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
-(require 'ivy-rich)
-(ivy-rich-mode 1)
-(setq ivy-format-function #'ivy-format-function-line)
-(setq ivy-rich-path-style 'abbrev)
-(setq ivy--highlight-function 'hl-line)
+;; (require 'ivy-rich)
+;; (ivy-rich-mode 1)
+;; (setq ivy-format-function #'ivy-format-function-line)
+;; (setq ivy-rich-path-style 'abbrev)
+;; (setq ivy--highlight-function 'hl-line)
 
 ;; which-key
 ;; ---------
@@ -1042,14 +1043,6 @@ Version 2016-06-19"
 (define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line)
 (define-key treemacs-mode-map (kbd "M-j") 'treemacs-next-neighbour)
 (define-key treemacs-mode-map (kbd "M-k") 'treemacs-previous-neighbour)
-
-;; auto-package-update
-;; -------------------
-;;
-(require 'auto-package-update)
-(setq auto-package-update-delete-old-versions t
-      auto-package-update-interval 7)
-(auto-package-update-maybe)
 
 ;; ===========================================================================
 ;; Unknown
