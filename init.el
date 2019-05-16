@@ -439,11 +439,11 @@ Version 2016-06-19"
 ;; Uniquify
 ;; --------
 ;; readability of buffer file name.
-;; (require 'uniquify)
-;; (setq uniquify-buffer-name-style 'forward)
-;; (setq uniquify-separator "/")
-;; (setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
-;; (setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward)
+;; (setq uniquify-separator "|")
+(setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
 
 ;; Others
 ;; ------
@@ -725,7 +725,6 @@ Version 2016-06-19"
 													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
-													;; (ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-projectile-set-filter-groups)
 													(ibuffer-do-sort-by-recency)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
