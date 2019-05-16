@@ -170,7 +170,7 @@
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-buffer-and-window)
-;; (global-set-key (kbd "C-.") 'imenu)
+(global-set-key (kbd "C-'") 'swiper)
 
 ;; Encoding
 ;; --------
@@ -1017,8 +1017,8 @@ Version 2016-06-19"
 ;; goto-chg
 ;; --------
 ;;
-(global-set-key (kbd "C-.") 'goto-last-change)
-(global-set-key (kbd "C-,") 'goto-last-change-reverse)
+(global-set-key (kbd "C-,") 'goto-last-change)
+(global-set-key (kbd "C-<") 'goto-last-change-reverse)
 
 ;; livedown
 ;; --------
