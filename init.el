@@ -50,7 +50,7 @@
 (setq display-time-default-load-average nil)
 (setq display-time-day-and-date t)
 (setq display-time-format "%a %I:%M %p")
-(setq frame-title-format nil)
+(setq frame-title-format "\n")
 (display-time)				      ; Display time
 (line-number-mode 1)			  ; line number mode in modeline
 (column-number-mode 1)			; show column number
@@ -264,6 +264,8 @@
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
+	(global-set-key (kbd "<s-left>") 'projectile-previous-project-buffer)
+	(global-set-key (kbd "<s-right>") 'projectile-next-project-buffer)
   )
 
 ;; tmp files
@@ -439,11 +441,11 @@ Version 2016-06-19"
 ;; Uniquify
 ;; --------
 ;; readability of buffer file name.
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward)
-;; (setq uniquify-separator "|")
-(setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
-(setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
+;; (require 'uniquify)
+;; (setq uniquify-buffer-name-style 'forward)
+;; (setq uniquify-separator "/")
+;; (setq uniquify-after-kill-buffer-p t)    ;; rename after killing uniquified
+;; (setq uniquify-ignore-buffers-re "^\\*") ;; don't muck with special buffers
 
 ;; Others
 ;; ------
@@ -725,6 +727,7 @@ Version 2016-06-19"
 													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
+													;; (ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-projectile-set-filter-groups)
 													(ibuffer-do-sort-by-recency)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
