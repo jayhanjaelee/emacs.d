@@ -47,11 +47,12 @@
 (if (window-system)
     (scroll-bar-mode -1)) ; don't use scrollbar in only gui
 (tooltip-mode -1)
-(setq display-time-default-load-average nil)
-(setq display-time-day-and-date t)
-(setq display-time-format "%a %I:%M %p")
+(display-time-mode -1)
 (setq frame-title-format "\n")
-(display-time)				      ; Display time
+;; (display-time)				      ; Display time
+;; (setq display-time-default-load-average nil)
+;; (setq display-time-day-and-date t)
+;; (setq display-time-format "%a %I:%M %p")
 (line-number-mode 1)			  ; line number mode in modeline
 (column-number-mode 1)			; show column number
 (show-paren-mode t)         ; Show parenthesis match
