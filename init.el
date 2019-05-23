@@ -638,6 +638,7 @@ Version 2016-06-19"
 													 (org-bullets-mode 1)
 													 (set-face-bold 'bold 1) ;; set face to bold in only org mode.
 													 (local-unset-key (kbd "C-c C-v"))
+													 (local-set-key (kbd "C-'") 'swiper)
 													 ))
 (require 'org-tempo) ;; org template expansion using tab
 ;; org-babel
