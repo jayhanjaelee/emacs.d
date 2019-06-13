@@ -53,6 +53,7 @@
 (depends-on "dockerfile-mode")
 (depends-on "ssh-config-mode")
 (depends-on "pip-requirements")
+(depends-on "groovy-mode")
 
 ;; misc
 (depends-on "exec-path-from-shell")

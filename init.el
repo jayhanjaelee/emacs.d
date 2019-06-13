@@ -65,7 +65,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 14" nil t)
+(set-frame-font "menlo 16" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -543,6 +543,7 @@ Version 2016-06-19"
 						(setq tab-width 2)
 						(setq standard-indent 2)
 						(setq indent-tabs-mode nil)))
+(add-to-list 'auto-mode-alist '("\\.mod\\'" . go-mode))
 
 ;; java
 ;; ----
@@ -672,6 +673,11 @@ Version 2016-06-19"
 ;; pip-requirements
 ;; ----------------
 ;; autoload
+
+;; groovy-mode
+;; -----------
+;;
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;; ============================================================================
 ;; External Packages
@@ -805,30 +811,6 @@ Version 2016-06-19"
 (global-set-key (kbd "C-.") 'counsel-imenu)
 (counsel-projectile-mode 1)
 (require 'ivy-hydra)
-(setq counsel-projectile-switch-project-action
-			'(1
-			 ("o" counsel-projectile-switch-project-action "jump to a project buffer or file")
-			 ("f" counsel-projectile-switch-project-action-find-file "jump to a project file")
-			 ("d" counsel-projectile-switch-project-action-dired "open project in dired")
-			 ("D" counsel-projectile-switch-project-action-find-dir "jump to a project directory")
-			 ("b" counsel-projectile-switch-project-action-switch-to-buffer "jump to a project buffer")
-			 ("m" counsel-projectile-switch-project-action-find-file-manually "find file manually from project root")
-			 ("S" counsel-projectile-switch-project-action-save-all-buffers "save all project buffers")
-			 ("k" counsel-projectile-switch-project-action-kill-buffers "kill all project buffers")
-			 ("K" counsel-projectile-switch-project-action-remove-known-project "remove project from known projects")
-			 ("c" counsel-projectile-switch-project-action-compile "run project compilation command")
-			 ("C" counsel-projectile-switch-project-action-configure "run project configure command")
-			 ("E" counsel-projectile-switch-project-action-edit-dir-locals "edit project dir-locals")
-			 ("v" counsel-projectile-switch-project-action-vc "open project in vc-dir / magit / monky")
-			 ("sg" counsel-projectile-switch-project-action-grep "search project with grep")
-			 ("si" counsel-projectile-switch-project-action-git-grep "search project with git grep")
-			 ("ss" counsel-projectile-switch-project-action-ag "search project with ag")
-			 ("sr" counsel-projectile-switch-project-action-rg "search project with rg")
-			 ("xs" counsel-projectile-switch-project-action-run-shell "invoke shell from project root")
-			 ("xe" counsel-projectile-switch-project-action-run-eshell "invoke eshell from project root")
-			 ("xt" counsel-projectile-switch-project-action-run-term "invoke term from project root")
-			 ("Oc" counsel-projectile-switch-project-action-org-capture "capture into project")
-			 ("Oa" counsel-projectile-switch-project-action-org-agenda "open project agenda")))
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
