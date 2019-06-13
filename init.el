@@ -677,7 +677,6 @@ Version 2016-06-19"
 ;; groovy-mode
 ;; -----------
 ;;
-;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;; ============================================================================
 ;; External Packages
