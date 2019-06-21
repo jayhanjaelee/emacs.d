@@ -758,6 +758,18 @@ Version 2016-06-19"
 	"Face for bifufer-filter-group-name."
 	)
 (setq ibuffer-filter-group-name-face 'my-ibuffer-filter-group-name-face)
+;; ibuffer collaps all & expand
+(defun ibuffer-collapse-all-filter-groups ()
+  "Collapse all filter groups at once"
+  (interactive)
+  (setq ibuffer-hidden-filter-groups
+        (mapcar #'car (ibuffer-current-filter-groups-with-position)))
+  (ibuffer-update nil t))
+(defun ibuffer-expand-all-filter-groups ()
+  "Expand all filter groups at once"
+  (interactive)
+  (setq ibuffer-hidden-filter-groups nil)
+  (ibuffer-update nil t))
 
 ;; ace-window
 ;; ----------
