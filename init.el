@@ -731,12 +731,13 @@ Version 2016-06-19"
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													;; (ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-projectile-set-filter-groups)
-													(ibuffer-do-sort-by-recency)))
+													(ibuffer-do-sort-by-recency)
+													(local-set-key (kbd "<tab>") 'toggle-ibuffer-all-filter-groups)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
 (defadvice ibuffer
 		(around ibuffer-point-to-most-recent) ()
@@ -770,6 +771,20 @@ Version 2016-06-19"
   (interactive)
   (setq ibuffer-hidden-filter-groups nil)
   (ibuffer-update nil t))
+;; toggle ibuffer filter groups
+(defun toggle-ibuffer-all-filter-groups ()
+  "Toggle background color between seashell and honeydew.
+URL `http://ergoemacs.org/emacs/elisp_toggle_command.html'
+Version 2015-12-17"
+  (interactive)
+  ;; use a property 'state'. Value is t or nil
+  (if (get 'toggle-ibuffer-all-filter-groups 'state)
+      (progn
+				(call-interactively 'ibuffer-collapse-all-filter-groups)
+        (put 'toggle-ibuffer-all-filter-groups 'state nil))
+    (progn
+			(call-interactively 'ibuffer-expand-all-filter-groups)
+      (put 'toggle-ibuffer-all-filter-groups 'state t))))
 
 ;; ace-window
 ;; ----------
