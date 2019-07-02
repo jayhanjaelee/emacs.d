@@ -815,8 +815,8 @@ Version 2015-12-17"
 ;;
 (ivy-mode 1)
 (setq ivy-wrap t)
-;; (setq ivy-use-ignore-default 'always)
-;; (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+(setq ivy-use-ignore-default 'always)
+(setq ivy-ignore-buffers '("\\` " "\\`\\*"))
 ;; hide buffers by major mode.
 ;; (defun my-ivy-ignore-buffers (buf)
 ;;   (when (get-buffer buf)
