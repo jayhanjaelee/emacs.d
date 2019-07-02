@@ -83,7 +83,7 @@
 (load-theme 'morning-star t)
 (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (set-fringe-mode '(0 . 0)) ;; remove fringe
-(setq-default cursor-type 'bar)
+(setq-default cursor-type 'box)
 
 ;; Dired
 ;; -----
