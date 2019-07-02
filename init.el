@@ -97,7 +97,7 @@
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda ()
-														 (dired-omit-mode 1)
+														 ;;(dired-omit-mode 1)
 														 (local-set-key (kbd "C-c o") 'dired-omit-mode)
 														 ;; enable dired filter mode (external package)
 														 (dired-filter-mode)))
