@@ -856,7 +856,7 @@ Version 2015-12-17"
 ;; ----------
 ;;
 (require 'multi-term)
-(setq multi-term-program "/bin/bash")
+(setq multi-term-program "/usr/local/bin/zsh")
 ;;(setq multi-term-program-switches "--login")
 (global-set-key (kbd "C-c C-v") 'multi-term)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
