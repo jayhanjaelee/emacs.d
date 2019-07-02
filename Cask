@@ -7,6 +7,8 @@
 ;; appearance
 (depends-on "minions")
 (depends-on "git-gutter")
+(depends-on "treemacs")
+(depends-on "treemacs-projectile")
 
 ;; productivity
 (depends-on "hydra")
