@@ -84,7 +84,7 @@
 (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (set-fringe-mode '(0 . 0)) ;; remove fringe
 (setq-default cursor-type 'bar)
-(visual-line-mode 1)
+(global-visual-line-mode 1)
 
 ;; Dired
 ;; -----
@@ -739,7 +739,7 @@ Version 2016-06-19"
 													(ibuffer-projectile-set-filter-groups)
 													(ibuffer-do-sort-by-recency)
 													(local-set-key (kbd "<tab>") 'toggle-ibuffer-all-filter-groups)
-													(setq-local visual-line-mode nil)))
+													(visual-line-mode -1)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
 (defadvice ibuffer
 		(around ibuffer-point-to-most-recent) ()
