@@ -731,8 +731,8 @@ Version 2016-06-19"
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
-													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
+													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													(add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													;; (ibuffer-vc-set-filter-groups-by-vc-root)
 													(ibuffer-projectile-set-filter-groups)
@@ -747,12 +747,12 @@ Version 2016-06-19"
 			(ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
 ;; hide dired buffer in ibuffer.
-;; (defun my-dired-mode-buffer-p (buf)
-;;   "Non-nil if buffer BUF is in `dired-mode'."
-;;   (with-current-buffer buf
-;;     (derived-mode-p 'dired-mode)))
-;; (with-eval-after-load "ibuffer"
-;;   (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
+(defun my-dired-mode-buffer-p (buf)
+  "Non-nil if buffer BUF is in `dired-mode'."
+  (with-current-buffer buf
+    (derived-mode-p 'dired-mode)))
+(with-eval-after-load "ibuffer"
+  (add-to-list 'ibuffer-never-show-predicates #'my-dired-mode-buffer-p))
 (defface my-ibuffer-filter-group-name-face
   '((t :foreground "#f2777a"
        ))
@@ -815,15 +815,15 @@ Version 2015-12-17"
 ;;
 (ivy-mode 1)
 (setq ivy-wrap t)
-;; (setq ivy-use-ignore-default 'always)
-;; (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+(setq ivy-use-ignore-default 'always)
+(setq ivy-ignore-buffers '("\\` " "\\`\\*"))
 ;; hide buffers by major mode.
-;; (defun my-ivy-ignore-buffers (buf)
-;;   (when (get-buffer buf)
-;;     (with-current-buffer buf
-;;       (when (or (eq major-mode 'dired-mode) (string-prefix-p "magit" (prin1-to-string major-mode)))
-;;         t))))
-;; (add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
+(defun my-ivy-ignore-buffers (buf)
+  (when (get-buffer buf)
+    (with-current-buffer buf
+      (when (or (eq major-mode 'dired-mode) (string-prefix-p "magit" (prin1-to-string major-mode)))
+        t))))
+(add-hook 'ivy-ignore-buffers 'my-ivy-ignore-buffers)
 (setq ivy-use-virtual-buffers t) ;; add recnet file to switch buffer.
 (setq ivy-virtual-abbreviate 'abbreviate)
 (setq ivy-count-format "(%d/%d) ")
