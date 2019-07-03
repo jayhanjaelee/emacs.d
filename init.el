@@ -65,7 +65,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 14" nil t)
+(set-frame-font "menlo 15" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -83,7 +83,7 @@
 (load-theme 'morning-star t)
 (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 (set-fringe-mode '(0 . 0)) ;; remove fringe
-(setq-default cursor-type 'box)
+(setq-default cursor-type 'bar)
 
 ;; Dired
 ;; -----
@@ -731,7 +731,7 @@ Version 2016-06-19"
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
 													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-													(add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
 													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
 													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
 													;; (ibuffer-vc-set-filter-groups-by-vc-root)
@@ -815,8 +815,8 @@ Version 2015-12-17"
 ;;
 (ivy-mode 1)
 (setq ivy-wrap t)
-(setq ivy-use-ignore-default 'always)
-(setq ivy-ignore-buffers '("\\` " "\\`\\*"))
+;; (setq ivy-use-ignore-default 'always)
+;; (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
 ;; hide buffers by major mode.
 ;; (defun my-ivy-ignore-buffers (buf)
 ;;   (when (get-buffer buf)
