@@ -845,6 +845,8 @@ Version 2015-12-17"
 ;; (setq ivy-format-function #'ivy-format-function-line)
 ;; (setq ivy-rich-path-style 'abbrev)
 ;; (setq ivy--highlight-function 'hl-line)
+(setq ivy-fixed-height-minibuffer 1)
+(setq ivy-height 15)
 
 ;; which-key
 ;; ---------
