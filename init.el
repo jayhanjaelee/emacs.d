@@ -91,6 +91,8 @@
 ;;
 (add-to-list 'load-path "~/.emacs.d/packages/")
 (require 'dired+) ;; powerful dired
+;; reuse dired buffer so that dired buffer is not created more than one.
+(diredp-toggle-find-file-reuse-dir 1)
 ;; show details in dired+.
 (setq diredp-hide-details-initially-flag nil)
 (setq diredp-hide-details-propagate-flag nil)
