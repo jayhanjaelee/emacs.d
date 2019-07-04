@@ -842,11 +842,11 @@ Version 2015-12-17"
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
-;; (require 'ivy-rich)
-;; (ivy-rich-mode 1)
-;; (setq ivy-format-function #'ivy-format-function-line)
-;; (setq ivy-rich-path-style 'abbrev)
-;; (setq ivy--highlight-function 'hl-line)
+(require 'ivy-rich)
+(ivy-rich-mode 1)
+(setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+(setq ivy-rich-path-style 'abbrev)
+(setq ivy--highlight-function 'hl-line)
 (setq ivy-fixed-height-minibuffer 1)
 (setq ivy-height 15)
 
