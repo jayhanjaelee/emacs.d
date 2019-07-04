@@ -326,6 +326,7 @@
 ;; ----------------
 ;;
 (global-auto-revert-mode 1)
+(setq auto-revert-verbose nil)
 
 ;; save-placemode
 ;; ---------------
@@ -1023,8 +1024,10 @@ Version 2015-12-17"
 
 (setq dumb-jump-selector 'ivy)
 (define-key dumb-jump-mode-map (kbd "C-M-p") nil)
-(global-set-key (kbd "<C-s-268632074>") 'dumb-jump-go)
-(global-set-key (kbd "<C-s-268632080>") 'dumb-jump-back)
+(global-set-key (kbd "C-c j") 'dumb-jump-go)
+(global-set-key (kbd "C-c C-j") 'dumb-jump-go)
+(global-set-key (kbd "C-c k") 'dumb-jump-back)
+(global-set-key (kbd "C-c C-k") 'dumb-jump-back)
 
 ;; git gutter
 ;; ---------
