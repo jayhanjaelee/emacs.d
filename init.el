@@ -319,7 +319,8 @@
       (setq desktop-path (list tmp-directory-p)
 						desktop-dirname tmp-directory-p
 						desktop-restore-eager 5
-						desktop-load-locked-desktop nil)
+						desktop-load-locked-desktop nil
+						desktop-lazy-verbose nil)
       (desktop-save-mode 1)))
 
 ;; auto-revert-mode
@@ -546,6 +547,8 @@ Version 2016-06-19"
 						(setq standard-indent 2)
 						(setq indent-tabs-mode nil)))
 (add-to-list 'auto-mode-alist '("\\.mod\\'" . go-mode))
+(require 'go-imenu) ;; Don't need to require, if you install by package.el
+(add-hook 'go-mode-hook 'go-imenu-setup)
 
 ;; java
 ;; ----
@@ -1037,8 +1040,6 @@ Version 2015-12-17"
 (setq git-gutter:added-sign "|"
 			git-gutter:modified-sign "|"
 			git-gutter:deleted-sign "|")
-;; (custom-set-variables
-;;  '(git-gutter:hide-gutter t))
 
 ;; avy
 ;; ---
