@@ -96,7 +96,6 @@
 ;; show details in dired+.
 (setq diredp-hide-details-initially-flag nil)
 (setq diredp-hide-details-propagate-flag nil)
-;;(add-hook 'dired-mode-hook 'auto-revert-mode) ;; auto revert in dired
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda ()
@@ -710,6 +709,7 @@ Version 2016-06-19"
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
 (add-to-list 'projectile-other-file-alist '("html" "js" "css"))
+
 
 ;; eyebrowse
 ;; ---------
