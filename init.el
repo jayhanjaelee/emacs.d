@@ -48,7 +48,7 @@
     (scroll-bar-mode -1)) ; don't use scrollbar in only gui
 (tooltip-mode -1)
 (display-time-mode -1)
-(setq frame-title-format "\n")
+(setq frame-title-format "\n") ;; remove annoying frame title about dimension.
 ;; (display-time)				      ; Display time
 ;; (setq display-time-default-load-average nil)
 ;; (setq display-time-day-and-date t)
