@@ -106,7 +106,7 @@
 (setq dired-filter-stack nil)
 ;; (add-hook 'dired-mode-hook 'auto-revert-mode) ;; enable auto revert mode in dired mode.
 (setq dired-dwim-target t) ;; convenient manipulating for files
-(setq dired-omit-verbose nil) ;; hidden annoying message about omit
+(setq dired-omit-verbose nil) ;; hide annoying message about omit
 ;; sort directory first in dired
 (require 'ls-lisp)
 (setq ls-lisp-dirs-first t)
@@ -711,7 +711,8 @@ Version 2016-06-19"
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
 (add-to-list 'projectile-other-file-alist '("html" "js" "css"))
-
+(setq projectile-enable-caching t)
+(setq projectile-indexing-method 'native)
 
 ;; eyebrowse
 ;; ---------
