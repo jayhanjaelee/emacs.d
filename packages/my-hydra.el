@@ -230,7 +230,7 @@ _h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
          (split-window-below)
          (windmove-down))
    "horz")
-  ("t" transpose-frame "'")
+  ("t" transpose-frame "tr")
   ("o" delete-other-windows "one" :color blue)
   ("a" ace-window "ace")
   ("s" ace-swap-window "swap")
