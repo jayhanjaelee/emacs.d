@@ -970,6 +970,7 @@ Version 2015-12-17"
 ;; ------------
 ;; auto complete
 ;; (add-hook 'after-init-hook 'global-company-mode)
+;; (setq company-show-numbers t)
 ;; (setq company-idle-delay 0)
 ;; (defun try-flyspell (arg) ;; check spelling for only comment
 ;;   (if (nth 4 (syntax-ppss))
