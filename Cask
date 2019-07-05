@@ -42,7 +42,6 @@
 (depends-on "dired-subtree")
 (depends-on "dired-filter")
 (depends-on "ibuffer-projectile")
-(depends-on "go-imenu")
 
 ;; code
 (depends-on "rust-mode")

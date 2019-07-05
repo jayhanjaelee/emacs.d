@@ -549,8 +549,6 @@ Version 2016-06-19"
 						(setq standard-indent 2)
 						(setq indent-tabs-mode nil)))
 (add-to-list 'auto-mode-alist '("\\.mod\\'" . go-mode))
-(require 'go-imenu) ;; Don't need to require, if you install by package.el
-(add-hook 'go-mode-hook 'go-imenu-setup)
 
 ;; java
 ;; ----
