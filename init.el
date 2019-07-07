@@ -713,6 +713,7 @@ Version 2016-06-19"
 (add-to-list 'projectile-other-file-alist '("html" "js" "css"))
 (setq projectile-enable-caching t)
 (setq projectile-indexing-method 'native)
+(setq projectile-sort-order 'recently-active)
 
 ;; eyebrowse
 ;; ---------
