@@ -732,6 +732,7 @@ Version 2016-06-19"
 (global-set-key (kbd "s-7") 'eyebrowse-switch-to-window-config-7)
 (global-set-key (kbd "s-8") 'eyebrowse-switch-to-window-config-8)
 (global-set-key (kbd "s-9") 'eyebrowse-switch-to-window-config-9)
+(setq eyebrowse-mode-line-style 'current)
 
 ;; ibuffer-projectile
 ;; ------------------
