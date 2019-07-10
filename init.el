@@ -65,7 +65,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 15" nil t)
+(set-frame-font "menlo 14" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -469,6 +469,7 @@ Version 2016-06-19"
 (setq ispell-program-name "/usr/local/bin/ispell")
 (flyspell-mode) ;; check spelling
 (delete-selection-mode 1) ;; replacing highlight text
+(require 'tramp)
 (setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
 ;; disable prompt when killing buffers running process.
 (setq kill-buffer-query-functions
