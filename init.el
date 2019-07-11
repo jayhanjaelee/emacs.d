@@ -475,6 +475,7 @@ Version 2016-06-19"
 (setq kill-buffer-query-functions
 			(remq 'process-kill-buffer-query-function
 						kill-buffer-query-functions))
+(setq-default blink-cursor-delay 0) ;; solve disappearing cursor using ace-window or moving cursor fast.
 
 ;; ===========================================================================
 ;; Code For Development
