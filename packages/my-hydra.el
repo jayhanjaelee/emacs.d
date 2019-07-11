@@ -233,7 +233,7 @@ _h_ ^+^ _l_ |	_u_: unmark		 | _D_:	delete			| _s_: sort
   ("t" transpose-frame "tr")
   ("o" delete-other-windows "one" :color blue)
   ("a" ace-window "ace")
-  ("s" ace-swap-window "swap")
+  ("c" ace-swap-window "swap")
   ("d" ace-delete-window "del")
   ("i" ace-maximize-window "ace-one" :color blue)
   ("b" ivy-switch-buffer "buf")
