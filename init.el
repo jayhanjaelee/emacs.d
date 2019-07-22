@@ -955,10 +955,10 @@ Version 2015-12-17"
 ;; beacon
 ;; ------
 ;; make it easier to find cursor
-;; (if (display-graphic-p)
-;;     (progn
-;;       (beacon-mode 1)
-;;       (setq beacon-color "#f2777a"))) ;; red 1 color
+(if (display-graphic-p)
+    (progn
+      (beacon-mode 1)
+      (setq beacon-color "#f2777a"))) ;; red 1 color
 
 ;; flycheck
 ;; --------
