@@ -169,7 +169,7 @@
 (global-set-key (kbd "<C-tab>") 'next-buffer)
 (global-set-key (kbd "C-x C-g") 'revert-buffer)
 (global-set-key (kbd "<f5>") 'transpose-frame)
-;; (global-set-key (kbd "<f6>") 'transpose-windows)
+(global-set-key (kbd "<f6>") 'transpose-windows)
 (global-set-key (kbd "s-t") 'eyebrowse-create-window-config)
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-buffer-and-window)
