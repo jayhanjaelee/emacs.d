@@ -58,9 +58,9 @@
 (show-paren-mode t)         ; Show parenthesis match
 (transient-mark-mode t)			; Highlight region
 ;; (global-hl-line-mode 1)
-;; (which-function-mode)
-;; (setq which-func-unknown "?")
-;; (set-face-attribute 'which-func nil :box '(:color "#000000") :bold t :foreground "#c98459")
+(which-function-mode)
+(setq which-func-unknown "?")
+(set-face-attribute 'which-func nil :box '(:color "#000000") :bold t :foreground "#c98459")
 (setq inhibit-startup-message t)	; Inhibit startup message
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
