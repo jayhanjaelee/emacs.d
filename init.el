@@ -236,8 +236,8 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 ;;
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
+;; (setq interprogram-cut-function 'paste-to-osx)
+;; (setq interprogram-paste-function 'copy-from-osx)
 (setq mac-allow-anti-aliasing t)
 ;; keybinding
 (when (and (eq system-type 'darwin) window-system) ;; check if mac os and gui
@@ -879,8 +879,6 @@ Version 2015-12-17"
 (global-set-key (kbd "C-c y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
-(global-set-key (kbd "M-[") 'multi-term-prev)
-(global-set-key (kbd "M-]") 'multi-term-next)
 (add-hook 'term-mode-hook (lambda ()
 														(setq-local scroll-margin 0)
 														(setq-local hscroll-margin 0)
