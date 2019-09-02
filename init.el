@@ -81,7 +81,6 @@
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'morning-star t)
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 ;; (set-fringe-mode '(0 . 0)) ;; remove fringe
 (setq-default cursor-type 'bar)
 (global-visual-line-mode 1)
@@ -1063,12 +1062,6 @@ Version 2015-12-17"
 ;; (add-hook 'dired-initial-position-hook #'hydra-dired/body)
 ;; (global-set-key (kbd "M-g") 'hydra-avy/body)
 (global-set-key (kbd "C-M-o") 'hydra-window/body)
-
-;; goto-chg
-;; --------
-;;
-(global-set-key (kbd "C-,") 'goto-last-change)
-(global-set-key (kbd "C-<") 'goto-last-change-reverse)
 
 ;; livedown
 ;; --------

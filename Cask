@@ -37,8 +37,6 @@
 (depends-on "realgud")
 (depends-on "dumb-jump")
 (depends-on "avy")
-(depends-on "undo-tree")
-(depends-on "goto-chg")
 (depends-on "dired-subtree")
 (depends-on "dired-filter")
 (depends-on "ibuffer-projectile")
