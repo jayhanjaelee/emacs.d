@@ -871,7 +871,7 @@ Version 2015-12-17"
 ;; ----------
 ;;
 (require 'multi-term)
-(setq multi-term-program "/usr/local/bin/zsh")
+(setq multi-term-program "/bin/zsh")
 ;;(setq multi-term-program-switches "--login")
 (global-set-key (kbd "C-c v") 'multi-term)
 (global-set-key (kbd "C-c C-v") 'multi-term)
