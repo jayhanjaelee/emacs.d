@@ -970,6 +970,7 @@ Version 2015-12-17"
 (define-key yas-minor-mode-map [(tab)]        nil)
 (define-key yas-minor-mode-map (kbd "TAB")    nil)
 (define-key yas-minor-mode-map (kbd "<tab>")  nil)
+(global-set-key (kbd "C-c C-s") 'yas-insert-snippet)
 
 ;; company-mode
 ;; ------------
