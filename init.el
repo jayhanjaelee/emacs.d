@@ -573,7 +573,7 @@ Version 2016-06-19"
 ;; ------
 ;;
 (add-hook 'python-mode-hook (lambda ()
-															(setq python-indent-offset 4)
+															(setq python-indent-offset 2)
 															(local-unset-key (kbd "C-c C-s"))
 															(local-unset-key (kbd "C-c C-v"))))
 
