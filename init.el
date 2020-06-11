@@ -65,7 +65,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 14" nil t)
+(set-frame-font "menlo 12" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -288,7 +288,6 @@
 (setq python-environment-directory (expand-file-name ".python-environments" tmp-directory-p))
 (setq transient-history-file (expand-file-name "history" tmp-directory-p))
 (setq eshell-directory-name (expand-file-name "eshell" tmp-directory-p))
-(setq treemacs-persist-file (expand-file-name "treemacs-persist" tmp-directory-p))
 (setq auto-package-update-last-update-day-filename (expand-file-name ".last-package-update-day" tmp-directory-p))
 
 ;; scroll setup
@@ -602,6 +601,7 @@ Version 2016-06-19"
 (setq web-mode-enable-auto-expanding t)
 (setq web-mode-enable-css-colorization t)
 (add-hook 'web-mode-hook (lambda () (local-unset-key (kbd "C-c C-s"))))
+
 
 ;; markdown
 ;; --------
@@ -1069,24 +1069,6 @@ Version 2015-12-17"
 ;; markdown preview
 (add-to-list 'load-path "~/.emacs.d/packages/emacs-livedown")
 (require 'livedown)
-
-;; treemacs
-;; --------
-;; tree style project navigation
-(require 'treemacs)
-(setq treemacs-is-never-other-window t)
-(setq treemacs-width 25)
-(setq treemacs-show-hidden-files nil)
-(setq treemacs-no-png-images t)
-(global-set-key (kbd "C-x C-t") 'treemacs)
-(global-set-key (kbd "C-x t") 'treemacs-select-window)
-(define-key treemacs-mode-map (kbd "M-o") 'ace-window)
-(define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
-;; vi style keymap
-(define-key treemacs-mode-map (kbd "j") 'treemacs-next-line)
-(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line)
-(define-key treemacs-mode-map (kbd "M-j") 'treemacs-next-neighbour)
-(define-key treemacs-mode-map (kbd "M-k") 'treemacs-previous-neighbour)
 
 ;; ===========================================================================
 ;; Unknown
