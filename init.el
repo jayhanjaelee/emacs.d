@@ -177,23 +177,19 @@
 ;; Encoding
 ;; --------
 ;;
-(set-language-environment 'utf-8)
 ;; korean input setting
 (setq default-input-method "korean-hangul")
 (setq default-korean-keyboard "2")
+(define-coding-system-alias 'UTF-8 'utf-8)
+(define-coding-system-alias 'utf8 'utf-8)
 (setq locale-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-next-selection-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
 ;; encoding for mac os file system
 (if (eq system-type 'darwin)
@@ -201,21 +197,15 @@
       (require 'ucs-normalize)
       (set-file-name-coding-system 'utf-8-hfs) ;; UTF-8 based coding system for macOS HFS file names.
       (setq locale-coding-system 'utf-8-hfs)
-      (prefer-coding-system 'utf-8-unix)
+			(prefer-coding-system 'utf-8)
+			(set-buffer-file-coding-system 'utf-8-unix)
+			(set-file-name-coding-system 'utf-8-unix)
+			(set-keyboard-coding-system 'utf-8-unix)
+			(set-next-selection-coding-system 'utf-8-unix)
+			(set-selection-coding-system 'utf-8-unix)
       (set-terminal-coding-system 'utf-8-unix)
-      (set-keyboard-coding-system 'utf-8-unix)
-      (set-selection-coding-system 'utf-8-unix)
-      (prefer-coding-system 'utf-8-unix)
-      (set-terminal-coding-system 'utf-8-unix)
-      (set-keyboard-coding-system 'utf-8-unix)
-      (set-selection-coding-system 'utf-8-unix)
-      (set-buffer-file-coding-system 'utf-8-unix)
       (set-clipboard-coding-system 'utf-8-unix)
       ))
-;; (defun activate-default-input-method ()
-;;   (interactive)
-;;   (activate-input-method default-input-method))
-;;(add-hook 'org-mode-hook 'activate-default-input-method)
 
 ;; ===========================================================================
 ;; Miscellaneous Settings
