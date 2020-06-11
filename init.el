@@ -65,7 +65,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 12" nil t)
+(set-frame-font "menlo 14" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -177,11 +177,9 @@
 ;; Encoding
 ;; --------
 ;;
-;; korean input setting
-(setq default-input-method "korean-hangul")
+(setq load-prefer-newer t)
 (setq default-korean-keyboard "2")
-(define-coding-system-alias 'UTF-8 'utf-8)
-(define-coding-system-alias 'utf8 'utf-8)
+(setq default-input-method "korean-hangul")
 (setq locale-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
@@ -470,7 +468,6 @@ Version 2016-06-19"
 ;; ===========================================================================
 
 ;; settings
-(setq-default tab-width 2) ;; set tab width
 (setq-default truncate-lines t)
 (setq-default line-spacing 2)
 (add-hook 'before-save-hook #'delete-trailing-whitespace) ;; delete whitespace when file was saved.
