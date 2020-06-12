@@ -98,10 +98,10 @@
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda ()
-														 ;;(dired-omit-mode 1)
-														 (local-set-key (kbd "C-c o") 'dired-omit-mode)
-														 ;; enable dired filter mode (external package)
-														 (dired-filter-mode)))
+			     ;;(dired-omit-mode 1)
+			     (local-set-key (kbd "C-c o") 'dired-omit-mode)
+			     ;; enable dired filter mode (external package)
+			     (dired-filter-mode)))
 (setq dired-filter-stack nil)
 ;; (add-hook 'dired-mode-hook 'auto-revert-mode) ;; enable auto revert mode in dired mode.
 (setq dired-dwim-target t) ;; convenient manipulating for files
@@ -195,12 +195,12 @@
       (require 'ucs-normalize)
       (set-file-name-coding-system 'utf-8-hfs) ;; UTF-8 based coding system for macOS HFS file names.
       (setq locale-coding-system 'utf-8-hfs)
-			(prefer-coding-system 'utf-8)
-			(set-buffer-file-coding-system 'utf-8-unix)
-			(set-file-name-coding-system 'utf-8-unix)
-			(set-keyboard-coding-system 'utf-8-unix)
-			(set-next-selection-coding-system 'utf-8-unix)
-			(set-selection-coding-system 'utf-8-unix)
+      (prefer-coding-system 'utf-8)
+      (set-buffer-file-coding-system 'utf-8-unix)
+      (set-file-name-coding-system 'utf-8-unix)
+      (set-keyboard-coding-system 'utf-8-unix)
+      (set-next-selection-coding-system 'utf-8-unix)
+      (set-selection-coding-system 'utf-8-unix)
       (set-terminal-coding-system 'utf-8-unix)
       (set-clipboard-coding-system 'utf-8-unix)
       ))
@@ -248,14 +248,14 @@
   (global-set-key (kbd "s-}") 'eyebrowse-next-window-config)
   ;; (global-set-key (kbd "s-[") 'xah-previous-user-buffer)
   ;; (global-set-key (kbd "s-]") 'xah-next-user-buffer)
-	(global-set-key (kbd "s-[") 'previous-buffer)
+  (global-set-key (kbd "s-[") 'previous-buffer)
   (global-set-key (kbd "s-]") 'next-buffer)
   (global-set-key (kbd "s-`") 'other-frame)
   (global-set-key (kbd "s-~") '(lambda () (interactive) (other-frame -1)))
   (global-set-key (kbd "s-W") 'delete-frame)
   ;; (add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; set defulat frame to maximized.
-	(global-set-key (kbd "<s-left>") 'projectile-previous-project-buffer)
-	(global-set-key (kbd "<s-right>") 'projectile-next-project-buffer)
+  (global-set-key (kbd "<s-left>") 'projectile-previous-project-buffer)
+  (global-set-key (kbd "<s-right>") 'projectile-next-project-buffer)
   )
 
 ;; tmp files
@@ -304,10 +304,10 @@
 (if (display-graphic-p)
     (progn
       (setq desktop-path (list tmp-directory-p)
-						desktop-dirname tmp-directory-p
-						desktop-restore-eager 5
-						desktop-load-locked-desktop nil
-						desktop-lazy-verbose nil)
+	    desktop-dirname tmp-directory-p
+	    desktop-restore-eager 5
+	    desktop-load-locked-desktop nil
+	    desktop-lazy-verbose nil)
       (desktop-save-mode 1)))
 
 ;; auto-revert-mode
@@ -379,9 +379,9 @@ version 2016-06-18"
   (if (string-equal "*" (substring (buffer-name) 0 1))
       nil
     (if (or (string-prefix-p "magit" (prin1-to-string major-mode)) (string-equal major-mode "dired-mode"))
-				nil
-			t
-			)))
+	nil
+      t
+      )))
 (defun xah-next-user-buffer ()
   "Switch to the next user buffer.
 'user buffer' is determined by `xah-user-buffer-q'.
@@ -459,8 +459,8 @@ Version 2016-06-19"
 (setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
 ;; disable prompt when killing buffers running process.
 (setq kill-buffer-query-functions
-			(remq 'process-kill-buffer-query-function
-						kill-buffer-query-functions))
+      (remq 'process-kill-buffer-query-function
+	    kill-buffer-query-functions))
 (setq-default blink-cursor-delay 0) ;; solve disappearing cursor using ace-window or moving cursor fast.
 
 ;; ===========================================================================
@@ -482,37 +482,37 @@ Version 2016-06-19"
 ;;
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 (add-to-list 'magic-mode-alist
-						 `(,(lambda ()
-									(and (string= (file-name-extension buffer-file-name) "h")
-											 (re-search-forward "@\\<interface\\>"
-																					magic-mode-regexp-match-limit t)))
-							 . objc-mode))
+	     `(,(lambda ()
+		  (and (string= (file-name-extension buffer-file-name) "h")
+		       (re-search-forward "@\\<interface\\>"
+					  magic-mode-regexp-match-limit t)))
+	       . objc-mode))
 ;;
 (require 'find-file) ;; for the "cc-other-file-alist" variable
 (nconc (cadr (assoc "\\.h\\'" cc-other-file-alist)) '(".m" ".mm"))
 ;;
 (defadvice ff-get-file-name (around ff-get-file-name-framework
-																		(search-dirs
-																		 fname-stub
-																		 &optional suffix-list))
+				    (search-dirs
+				     fname-stub
+				     &optional suffix-list))
   "Search for Mac framework headers as well as POSIX headers."
   (or
    (if (string-match "\\(.*?\\)/\\(.*\\)" fname-stub)
        (let* ((framework (match-string 1 fname-stub))
-							(header (match-string 2 fname-stub))
-							(fname-stub (concat framework ".framework/Headers/" header)))
-				 ad-do-it))
+	      (header (match-string 2 fname-stub))
+	      (fname-stub (concat framework ".framework/Headers/" header)))
+	 ad-do-it))
    ad-do-it))
 (ad-enable-advice 'ff-get-file-name 'around 'ff-get-file-name-framework)
 (ad-activate 'ff-get-file-name)
 ;;
 (setq cc-search-directories '("." "../include" "/usr/include" "/usr/local/include/*"
-															"/System/Library/Frameworks" "/Library/Frameworks"))
+			      "/System/Library/Frameworks" "/Library/Frameworks"))
 ;;
 (add-hook 'objc-mode-hook (lambda ()
-														(setq c-basic-offset 2
-																	tab-width 2
-																	indent-tabs-mode t)))
+			    (setq c-basic-offset 2
+				  tab-width 2
+				  indent-tabs-mode t)))
 
 ;; rust
 ;; ----
@@ -531,37 +531,37 @@ Version 2016-06-19"
 ;;
 (require 'go-mode)
 (add-hook 'go-mode-hook
-					(lambda ()
-						(setq-default)
-						(setq tab-width 2)
-						(setq standard-indent 2)
-						(setq indent-tabs-mode nil)))
+	  (lambda ()
+	    (setq-default)
+	    (setq tab-width 2)
+	    (setq standard-indent 2)
+	    (setq indent-tabs-mode nil)))
 (add-to-list 'auto-mode-alist '("\\.mod\\'" . go-mode))
 
 ;; java
 ;; ----
 ;;
 (add-hook 'java-mode-hook
-					(lambda ()
-						"Treat Java 1.5 @-style annotations as comments."
-						(setq c-comment-start-regexp "(@|/(/|[*][*]?))")
-						(modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
+	  (lambda ()
+	    "Treat Java 1.5 @-style annotations as comments."
+	    (setq c-comment-start-regexp "(@|/(/|[*][*]?))")
+	    (modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
 ;;
 (add-hook 'java-mode-hook (lambda ()
-														(setq c-basic-offset 2)))
+			    (setq c-basic-offset 2)))
 ;;
 (add-hook 'java-mode-hook (lambda ()
-														(setq c-basic-offset 2
-																	tab-width 2
-																	indent-tabs-mode t)))
+			    (setq c-basic-offset 2
+				  tab-width 2
+				  indent-tabs-mode t)))
 
 ;; python
 ;; ------
 ;;
 (add-hook 'python-mode-hook (lambda ()
-															(setq python-indent-offset 2)
-															(local-unset-key (kbd "C-c C-s"))
-															(local-unset-key (kbd "C-c C-v"))))
+			      (setq python-indent-offset 2)
+			      (local-unset-key (kbd "C-c C-s"))
+			      (local-unset-key (kbd "C-c C-v"))))
 
 ;; javascript
 ;; ----------
@@ -624,17 +624,17 @@ Version 2016-06-19"
         ))
 (setq org-todo-keyword-faces
       '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-				("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-				("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-				)) ;; inspired by trello
+	("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
+	)) ;; inspired by trello
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda ()
-													 (setq-local global-hl-line-mode nil)
-													 (org-bullets-mode 1)
-													 (set-face-bold 'bold 1) ;; set face to bold in only org mode.
-													 (local-unset-key (kbd "C-c C-v"))
-													 (local-set-key (kbd "C-'") 'swiper)
-													 ))
+			   (setq-local global-hl-line-mode nil)
+			   (org-bullets-mode 1)
+			   (set-face-bold 'bold 1) ;; set face to bold in only org mode.
+			   (local-unset-key (kbd "C-c C-v"))
+			   (local-set-key (kbd "C-'") 'swiper)
+			   ))
 (require 'org-tempo) ;; org template expansion using tab
 ;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
@@ -709,7 +709,7 @@ Version 2016-06-19"
 ;;
 (eyebrowse-mode t)
 (setq eyebrowse-new-workspace t
-			eyebrowse-wrap-around t)
+      eyebrowse-wrap-around t)
 (set-face-attribute 'eyebrowse-mode-line-active nil :box '(:color "#000000") :bold t :foreground "#c98459") ;; #000 is black2 #c98 is orange1 in morning star
 (global-set-key (kbd "s-'") 'eyebrowse-last-window-config)
 (global-set-key (kbd "s-1") 'eyebrowse-switch-to-window-config-1)
@@ -729,22 +729,22 @@ Version 2016-06-19"
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
-													(ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
-													;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
-													;; (add-to-list 'ibuffer-never-show-predicates "magit*")
-													(setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
-													;; (ibuffer-vc-set-filter-groups-by-vc-root)
-													(ibuffer-projectile-set-filter-groups)
-													(ibuffer-do-sort-by-recency)
-													(local-set-key (kbd "<tab>") 'toggle-ibuffer-all-filter-groups)
-													(visual-line-mode -1)))
+			  (ibuffer-auto-mode 1) ;; keeps ibuffer list up to date
+			  ;; (add-to-list 'ibuffer-never-show-predicates "^\\*") ;; disable to show asterisk buffer
+			  ;; (add-to-list 'ibuffer-never-show-predicates "magit*")
+			  (setq ibuffer-show-empty-filter-groups nil) ;; don't show empty group
+			  ;; (ibuffer-vc-set-filter-groups-by-vc-root)
+			  (ibuffer-projectile-set-filter-groups)
+			  (ibuffer-do-sort-by-recency)
+			  (local-set-key (kbd "<tab>") 'toggle-ibuffer-all-filter-groups)
+			  (visual-line-mode -1)))
 ;; Ensure ibuffer opens with point at the current buffer's entry.
 (defadvice ibuffer
-		(around ibuffer-point-to-most-recent) ()
-		"Open ibuffer with cursor pointed to most recent buffer name."
-		(let ((recent-buffer-name (buffer-name)))
-			ad-do-it
-			(ibuffer-jump-to-buffer recent-buffer-name)))
+    (around ibuffer-point-to-most-recent) ()
+    "Open ibuffer with cursor pointed to most recent buffer name."
+    (let ((recent-buffer-name (buffer-name)))
+      ad-do-it
+      (ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
 ;; hide dired buffer in ibuffer.
 (defun my-dired-mode-buffer-p (buf)
@@ -756,8 +756,8 @@ Version 2016-06-19"
 (defface my-ibuffer-filter-group-name-face
   '((t :foreground "#f2777a"
        ))
-	"Face for bifufer-filter-group-name."
-	)
+  "Face for bifufer-filter-group-name."
+  )
 (setq ibuffer-filter-group-name-face 'my-ibuffer-filter-group-name-face)
 ;; ibuffer collaps all & expand
 (defun ibuffer-collapse-all-filter-groups ()
@@ -780,10 +780,10 @@ Version 2015-12-17"
   ;; use a property 'state'. Value is t or nil
   (if (get 'toggle-ibuffer-all-filter-groups 'state)
       (progn
-				(call-interactively 'ibuffer-collapse-all-filter-groups)
+	(call-interactively 'ibuffer-collapse-all-filter-groups)
         (put 'toggle-ibuffer-all-filter-groups 'state nil))
     (progn
-			(call-interactively 'ibuffer-expand-all-filter-groups)
+      (call-interactively 'ibuffer-expand-all-filter-groups)
       (put 'toggle-ibuffer-all-filter-groups 'state t))))
 
 ;; ace-window
@@ -808,7 +808,7 @@ Version 2015-12-17"
                 (winner-undo)
                 (setq this-command 'winner-undo))))
         (?r winner-redo)
-				(?? aw-show-dispatch-help)))
+	(?? aw-show-dispatch-help)))
 
 ;; ivy & swiper & counsel
 ;; ----------------------
@@ -866,11 +866,11 @@ Version 2015-12-17"
 (global-set-key (kbd "C-c C-y") 'multi-term-dedicated-toggle)
 (global-set-key (kbd "s-Y") 'multi-term-dedicated-toggle)
 (add-hook 'term-mode-hook (lambda ()
-														(setq-local scroll-margin 0)
-														(setq-local hscroll-margin 0)
-														(setq multi-term-scroll-to-bottom-on-output t)
-														(setq multi-term-scroll-show-maximum-output t)
-														(setq-local global-hl-line-mode nil)))
+			    (setq-local scroll-margin 0)
+			    (setq-local hscroll-margin 0)
+			    (setq multi-term-scroll-to-bottom-on-output t)
+			    (setq multi-term-scroll-show-maximum-output t)
+			    (setq-local global-hl-line-mode nil)))
 (defun term-send-undo () ;; undo for multi-term
   (interactive)
   (term-send-raw-string "\C-_"))
@@ -880,7 +880,7 @@ Version 2015-12-17"
         ("C-c C-e" . term-send-esc)                    ; default
         ("C-c C-j" . term-line-mode)
         ("C-c C-k" . term-char-mode)
-				("C-l"     . comint-clear-buffer)
+	("C-l"     . comint-clear-buffer)
         ("C-b"     . term-send-left)
         ("C-f"     . term-send-right)
         ("C-m"     . term-send-return)                 ; default
@@ -897,10 +897,10 @@ Version 2015-12-17"
         ("M-r"     . term-send-reverse-search-history) ; default
         ("M-,"     . term-send-raw)                    ; default
         ("M-."     . comint-dynamic-complete)
-				("s-z"     . term-send-undo)
-				("C--"     . term-send-undo)
-				("M-o"     . ace-window)
-				("<s-backspace>" . term-send-raw)))
+	("s-z"     . term-send-undo)
+	("C--"     . term-send-undo)
+	("M-o"     . ace-window)
+	("<s-backspace>" . term-send-raw)))
 
 ;; Exec-path-from-shell
 ;; --------------------
@@ -1032,8 +1032,8 @@ Version 2015-12-17"
 (global-git-gutter-mode +1)
 (setq git-gutter:window-width 1)
 (setq git-gutter:added-sign "|"
-			git-gutter:modified-sign "|"
-			git-gutter:deleted-sign "|")
+      git-gutter:modified-sign "|"
+      git-gutter:deleted-sign "|")
 
 ;; avy
 ;; ---
