@@ -566,7 +566,7 @@ Version 2016-06-19"
 ;; javascript
 ;; ----------
 ;;
-(setq js-indent-level 2)
+;;(setq js-indent-level 2)
 
 ;; css
 ;; ---
