@@ -173,6 +173,8 @@
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x K") 'kill-buffer-and-window)
 (global-set-key (kbd "C-'") 'swiper)
+(global-set-key [wheel-left] 'ignore)
+(global-set-key [wheel-right] 'ignore)
 
 ;; Encoding
 ;; --------
@@ -699,6 +701,7 @@ Version 2016-06-19"
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (global-set-key (kbd "C-c p K") 'projectile-remove-known-project)
+(global-set-key (kbd "C-c p h") 'projectile-previous-project-buffer)
 (add-to-list 'projectile-other-file-alist '("html" "js" "css"))
 (setq projectile-enable-caching t)
 (setq projectile-indexing-method 'native)
