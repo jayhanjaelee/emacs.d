@@ -86,7 +86,7 @@
 (global-visual-line-mode 1)
 ;; default vertical split
 (setq split-height-threshold nil)
-(setq split-width-threshold 160)
+(setq split-width-threshold 80)
 
 ;; Dired
 ;; -----
