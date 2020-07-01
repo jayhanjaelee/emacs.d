@@ -84,6 +84,9 @@
 ;; (set-fringe-mode '(0 . 0)) ;; remove fringe
 (setq-default cursor-type 'bar)
 (global-visual-line-mode 1)
+;; default vertical split
+(setq split-height-threshold nil)
+(setq split-width-threshold 160)
 
 ;; Dired
 ;; -----
