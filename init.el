@@ -202,7 +202,6 @@
       (setq locale-coding-system 'utf-8-hfs)
       (prefer-coding-system 'utf-8)
       (set-buffer-file-coding-system 'utf-8-unix)
-      (set-file-name-coding-system 'utf-8-unix)
       (set-keyboard-coding-system 'utf-8-unix)
       (set-next-selection-coding-system 'utf-8-unix)
       (set-selection-coding-system 'utf-8-unix)
