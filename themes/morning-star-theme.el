@@ -622,7 +622,7 @@
    `(magit-popup-option-value      ((,class (:foreground ,aqua2   :bold t))))
 
    ;; Git
-   `(git-commit-note                 ((,class (:foreground ,brown1))))
+   `(git-commit-keyword              ((,class (:foreground ,brown2 :bold t))))
    `(git-commit-comment-action       ((,class (:foreground ,orange1))))
    `(git-commit-comment-branch       ((,class (:foreground ,blue1 :bold t))))
    `(git-commit-comment-detached     ((,class (:foreground ,aqua1))))
@@ -700,7 +700,8 @@
    `(org-agenda-filter-regexp      ((,class (:foreground ,bg :background ,red3)))) ;; TODO
    `(org-agenda-filter-tags        ((,class (:foreground ,bg :background ,red3)))) ;; TODO
    `(org-agenda-restriction-lock   ((,class (:foreground ,bg :background ,red3)))) ;; TODO
-   `(org-agenda-structure          ((,class (:foreground ,purple1 :bold t :height 1.3))))
+   `(org-agenda-structure          ((,class (:foreground ,purple1 :bold t :height 1.5))))
+   `(org-super-agenda-header       ((,class (:foreground ,green2 :bold t :height 1.3))))
    `(org-archived                  ((,class (:foreground ,grey1 :bold t))))
    `(org-block                     ((,class (:background ,bg2))))
    `(org-block-begin-line          ((,class (:background ,brown2 :foreground ,bg2 :bold t))))
@@ -719,7 +720,7 @@
    `(org-document-info             ((,class (:foreground ,red2    :bold t :height 1.4))))
    `(org-document-info-keyword     ((,class (:foreground ,purple2 :bold t :height 1.4))))
    `(org-document-title            ((,class (:foreground ,red2    :bold t :height 1.4))))
-   `(org-drawer                    ((,class (:foreground ,bg :background ,red3)))) ;; TODO
+   `(org-drawer                    ((,class (:inherit org-special-keyword))))
    `(org-ellipsis                  ((,class (:foreground ,grey1 :bold t :box nil :underline nil :overline nil))))
    `(org-footnote                  ((,class (:foreground ,grey1 :background ,grey3 :bold t))))
    `(org-formula                   ((,class (:foreground ,green1 :background ,bg2))))
@@ -816,10 +817,11 @@
    `(eros-result-overlay-face ((,class (:background ,bg :foreground ,brown1 :box (:line-width -1 :color ,black1)))))
 
    ;; elfeed
-   `(elfeed-search-feed-face          ((,class (:foreground ,brown1))))
-   `(elfeed-search-tag-face           ((,class (:foreground ,green1))))
+   `(elfeed-search-feed-face          ((,class (:foreground ,purple1))))
+   `(elfeed-search-tag-face           ((,class (:foreground ,blue1))))
    `(elfeed-search-unread-title-face  ((,class (:bold t))))
    `(elfeed-search-title-face         ((,class (:foreground ,blue1))))
+   `(elfeed-search-date-face          ((,class (:foreground ,green1))))
    `(elfeed-log-date-face             ((,class (:foreground ,brown1))))
    `(elfeed-log-info-level-face       ((,class (:foreground ,green1))))
    `(elfeed-log-warn-level-face       ((,class (:foreground ,yellow1))))
@@ -847,9 +849,9 @@
    `(mu4e-replied-face                    ((,class (:foreground ,green1 :bold t))))
    `(mu4e-header-face                     ((,class (:foreground ,brown1))))
    `(mu4e-title-face                      ((,class (:foreground ,purple1 :bold t :height 1.1))))
-   `(mu4e-header-key-face                 ((,class (:foreground ,purple1 :bold t))))
+   `(mu4e-header-key-face                 ((,class (:foreground ,brown1))))
+   `(mu4e-header-title-face               ((,class (:foreground ,blue1 :bold t))))
    `(mu4e-header-marks-face               ((,class (:foreground ,purple2 :bold t))))
-   `(mu4e-header-title-face               ((,class (:foreground ,yellow1 :background ,red3))))
    `(mu4e-header-value-face               ((,class (:foreground ,brown1))))
    `(mu4e-header-highlight-face           ((,class (:background ,grey3))))
    `(mu4e-special-header-value-face       ((,class (:foreground ,aqua1))))
