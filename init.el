@@ -33,6 +33,8 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+(setq byte-compile-warnings '(cl-functions))
+
 ;; ===========================================================================
 ;; Simple Settings
 ;; ===========================================================================
