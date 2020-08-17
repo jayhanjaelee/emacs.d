@@ -485,6 +485,8 @@ Version 2016-06-19"
       (remq 'process-kill-buffer-query-function
 	    kill-buffer-query-functions))
 (setq-default blink-cursor-delay 0) ;; solve disappearing cursor using ace-window or moving cursor fast.
+(setq default-directory "~/")
+(setq command-line-default-directory "~/")
 
 ;; ===========================================================================
 ;; Code For Development
