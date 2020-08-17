@@ -1106,16 +1106,3 @@ Version 2015-12-17"
 ;; ;; ===========================================================================
 ;; ;; Unknown
 ;; ;; ===========================================================================
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(dired-subtree dired-filter yasnippet yaml-mode which-key web-mode use-package undo-tree swift-mode ssh-config-mode rust-mode rg realgud prodigy pip-requirements org-bullets nginx-mode multi-term minions markdown-mode magit ivy-rich ivy-hydra iedit ibuffer-projectile groovy-mode go-mode git-gutter flycheck eyebrowse exec-path-from-shell dumb-jump dockerfile-mode counsel-projectile beacon ace-window)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
