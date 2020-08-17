@@ -20,3 +20,4 @@ packages/prodigy-conf.el
 tutorial/
 .last-package-update-day
 .projectile
+.packages

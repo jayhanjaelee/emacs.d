@@ -4,18 +4,34 @@
 ;; Cask
 ;; ===========================================================================
 
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
-(cask-initialize)
+;; (require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+;; (when (< emacs-major-version 27)
+;;   (cask-initialize))
+;; (cask-initialize)
 
 ;; ===========================================================================
 ;; Package
 ;; ===========================================================================
 
 (require 'package)
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (when (< emacs-major-version 24) (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+(setq packages-directory-p "~/.emacs.d/.packages")
+(if (not (file-directory-p packages-directory-p))
+    (make-directory packages-directory-p))
+(add-to-list 'load-path packages-directory-p)
+(setq package-user-dir packages-directory-p)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 (package-initialize)
+
+(require 'use-package)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 ;; ===========================================================================
 ;; Simple Settings
@@ -93,6 +109,8 @@
 ;;
 (add-to-list 'load-path "~/.emacs.d/packages/")
 (require 'dired+) ;; powerful dired
+(use-package dired-filter)
+(use-package dired-subtree)
 ;; reuse dired buffer so that dired buffer is not created more than one.
 (diredp-toggle-find-file-reuse-dir 1)
 ;; show details in dired+.
@@ -101,10 +119,11 @@
 ;; hidden dotfiles
 (setq dired-omit-files "^\\...+$")
 (add-hook 'dired-mode-hook (lambda ()
-			     ;;(dired-omit-mode 1)
+			     ;; (dired-omit-mode 1)
 			     (local-set-key (kbd "C-c o") 'dired-omit-mode)
 			     ;; enable dired filter mode (external package)
-			     (dired-filter-mode)))
+			     ;; (dired-filter-mode)
+			     ))
 (setq dired-filter-stack nil)
 ;; (add-hook 'dired-mode-hook 'auto-revert-mode) ;; enable auto revert mode in dired mode.
 (setq dired-dwim-target t) ;; convenient manipulating for files
@@ -522,18 +541,18 @@ Version 2016-06-19"
 ;; ----
 ;;
 (autoload 'rust-mode "rust-mode" nil t)
-(require 'rust-mode)
+(use-package rust-mode)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 ;; swift
 ;; -----
 ;;
-(require 'swift-mode)
+(use-package swift-mode)
 
 ;; go
 ;; --
 ;;
-(require 'go-mode)
+(use-package go-mode)
 (add-hook 'go-mode-hook
 	  (lambda ()
 	    (setq-default)
@@ -570,7 +589,7 @@ Version 2016-06-19"
 ;; javascript
 ;; ----------
 ;;
-;;(setq js-indent-level 2)
+(setq js-indent-level 2)
 
 ;; css
 ;; ---
@@ -580,7 +599,7 @@ Version 2016-06-19"
 ;; web
 ;; ---
 ;;
-(require 'web-mode)
+(use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)) ;; You can also edit plain js, jsx, css, scss, xml files.
 (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
@@ -593,11 +612,10 @@ Version 2016-06-19"
 (setq web-mode-enable-css-colorization t)
 (add-hook 'web-mode-hook (lambda () (local-unset-key (kbd "C-c C-s"))))
 
-
 ;; markdown
 ;; --------
 ;;
-(require 'markdown-mode)
+(use-package markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (setq markdown-command "/usr/local/bin/pandoc")
@@ -605,13 +623,13 @@ Version 2016-06-19"
 ;; yaml
 ;; ----
 ;;
-(require 'yaml-mode)
+(use-package yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; org
 ;; ---
 ;;
-(require 'org)
+(use-package org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -631,7 +649,7 @@ Version 2016-06-19"
 	("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
 	("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
 	)) ;; inspired by trello
-(require 'org-bullets)
+(use-package org-bullets)
 (add-hook 'org-mode-hook (lambda ()
 			   (setq-local global-hl-line-mode nil)
 			   (org-bullets-mode 1)
@@ -639,7 +657,7 @@ Version 2016-06-19"
 			   (local-unset-key (kbd "C-c C-v"))
 			   (local-set-key (kbd "C-'") 'swiper)
 			   ))
-(require 'org-tempo) ;; org template expansion using tab
+;; (use-package org-tempo) ;; org template expansion using tab
 ;; org-babel
 (org-babel-do-load-languages ;; add programming languages to org babel list
  'org-babel-load-languages
@@ -656,35 +674,38 @@ Version 2016-06-19"
 ;; nginx
 ;; -----
 ;; nginx config mode
-(require 'nginx-mode)
+(use-package nginx-mode)
 
 ;; dockerfile
 ;; ----------
 ;; dockerfile mode
-(require 'dockerfile-mode)
+(use-package dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 ;; ssh-config-mode
 ;; ---------------
 ;; autoload
+(use-package ssh-config-mode)
 
 ;; pip-requirements
 ;; ----------------
 ;; autoload
+(use-package pip-requirements)
 
 ;; groovy-mode
 ;; -----------
 ;;
+(use-package groovy-mode)
 (setq groovy-indent-offset 2)
 
 ;; ============================================================================
-;; External Packages
+;; external Packages
 ;; ============================================================================
 
 ;; magit
 ;; -----
 ;;
-(require 'magit)
+(use-package magit)
 (setq auto-revert-check-vc-info t) ;; update branch name when reverting magit buffer
 (setq vc-handled-backends '(Git))
 (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
@@ -696,6 +717,7 @@ Version 2016-06-19"
 ;; projectile
 ;; ----------
 ;;
+(use-package projectile)
 (projectile-mode +1)
 (setq projectile-use-git-grep t)
 (setq projectile-completion-system 'ivy)
@@ -709,12 +731,13 @@ Version 2016-06-19"
 (add-to-list 'projectile-other-file-alist '("css" "html" "js" "go"))
 (add-to-list 'projectile-other-file-alist '("go" "html" "js" "css"))
 (setq projectile-enable-caching t)
-(setq projectile-indexing-method 'native)
+(setq projectile-indexing-method 'hybrid)
 (setq projectile-sort-order 'recently-active)
 
 ;; eyebrowse
 ;; ---------
 ;;
+(use-package eyebrowse)
 (eyebrowse-mode t)
 (setq eyebrowse-new-workspace t
       eyebrowse-wrap-around t)
@@ -734,6 +757,7 @@ Version 2016-06-19"
 ;; ibuffer-projectile
 ;; ------------------
 ;;
+(use-package ibuffer-projectile)
 (setq ibuffer-expert t) ;; disable prompt when deleting modified buffer.
 (define-key ibuffer-mode-map (kbd "M-o") 'ace-window) ;; override ibuffer mode map for M-o
 (add-hook 'ibuffer-hook (lambda ()
@@ -797,6 +821,7 @@ Version 2015-12-17"
 ;; ace-window
 ;; ----------
 ;;
+(use-package ace-window)
 (when (fboundp 'winner-mode) ;; if winner mode exist, enable it.
   (winner-mode 1))
 (global-set-key (kbd "M-o") 'ace-window)
@@ -821,6 +846,7 @@ Version 2015-12-17"
 ;; ivy & swiper & counsel
 ;; ----------------------
 ;;
+(use-package ivy)
 (ivy-mode 1)
 (setq ivy-wrap t)
 (setq ivy-use-ignore-default 'always)
@@ -843,12 +869,13 @@ Version 2015-12-17"
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 (global-set-key (kbd "C-.") 'counsel-imenu)
+(use-package counsel-projectile)
 (counsel-projectile-mode 1)
-(require 'ivy-hydra)
+(use-package ivy-hydra)
 ;; (setq ivy-re-builders-alist
 ;;       '((t . ivy--regex-fuzzy))) ;; fuzzy maching
 ;; (setq ivy-initial-inputs-alist nil) ;; (optional) fuzzy maching
-(require 'ivy-rich)
+(use-package ivy-rich)
 (ivy-rich-mode 1)
 (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
 (setq ivy-rich-path-style 'abbrev)
@@ -859,13 +886,13 @@ Version 2015-12-17"
 ;; which-key
 ;; ---------
 ;; cheatsheet
-(require 'which-key)
+(use-package which-key)
 (which-key-mode)
 
 ;; multi-term
 ;; ----------
 ;;
-(require 'multi-term)
+(use-package multi-term)
 (setq multi-term-program "/bin/zsh")
 ;;(setq multi-term-program-switches "--login")
 (global-set-key (kbd "C-c v") 'multi-term)
@@ -914,26 +941,28 @@ Version 2015-12-17"
 ;; --------------------
 ;; Get path env using shell.
 ;;
+
 (when (memq window-system '(mac ns x))
+  (use-package exec-path-from-shell)
   (exec-path-from-shell-initialize))
 
 ;; wgrep
 ;; -----
 ;; edit grep buffer
-(require 'wgrep)
+(use-package wgrep)
 (setq wgrep-auto-save-buffer t)
 (setq wgrep-change-readonly-file t)
 
 ;; rg
 ;; --
 ;; ripgrep
-(require 'rg)
+(use-package rg)
 (rg-enable-default-bindings)
 
 ;; Undo-tree
 ;; ---------
 ;;
-(require 'undo-tree)
+(use-package undo-tree)
 (global-undo-tree-mode 1)
 (defalias 'redo 'undo-tree-redo)
 ;; (setq undo-tree-auto-save-history t)
@@ -943,11 +972,13 @@ Version 2015-12-17"
 ;; minions
 ;; -------
 ;; make modeline more simpler
+(use-package minions)
 (minions-mode)
 
 ;; beacon
 ;; ------
 ;; make it easier to find cursor
+(use-package beacon)
 (if (display-graphic-p)
     (progn
       (beacon-mode 1)
@@ -956,11 +987,13 @@ Version 2015-12-17"
 ;; flycheck
 ;; --------
 ;; syntax check
+(use-package flycheck)
 (add-hook 'python-mode-hook #'flycheck-mode)
 
 ;; yasnippet
 ;; ---------
 ;; template system
+(use-package yasnippet)
 (yas-global-mode 1)
 (define-key yas-minor-mode-map [(tab)]        nil)
 (define-key yas-minor-mode-map (kbd "TAB")    nil)
@@ -970,6 +1003,7 @@ Version 2015-12-17"
 ;; company-mode
 ;; ------------
 ;; auto complete
+;; (use-package compnay)
 ;; (add-hook 'after-init-hook 'global-company-mode)
 ;; (setq company-show-numbers t)
 ;; (setq company-idle-delay 0)
@@ -989,6 +1023,7 @@ Version 2015-12-17"
 ;; company-jedi
 ;; ------------
 ;; backend for company-mode
+;; (use-package compnay-jedi)
 ;; (defun my/python-mode-hook ()
 ;;   (add-to-list 'company-backends 'company-jedi))
 ;; (add-hook 'python-mode-hook 'my/python-mode-hook)
@@ -996,20 +1031,21 @@ Version 2015-12-17"
 ;; iedit
 ;; -----
 ;; edit equal text at same time
-(require 'iedit)
+(use-package iedit)
 
 ;; prodigy
 ;; -------
 ;; process manager
+(use-package prodigy)
 ;; (global-set-key (kbd "C-c r") 'prodigy)
 ;; (global-set-key (kbd "C-c C-r") 'prodigy)
 (if (file-exists-p "~/.emacs.d/packages/prodigy-conf.el")
-    (require 'prodigy-conf))
+    (use-package prodigy-conf))
 
 ;; realgud
 ;; -------
 ;; debugger
-(require 'realgud)
+(use-package realgud)
 (setq realgud:pdb-command-name "python -m pdb")
 (add-hook 'python-mode-hook
           (lambda () (local-set-key (kbd "<f8>") #'realgud:ipdb)))
@@ -1024,7 +1060,7 @@ Version 2015-12-17"
 ;; dumb-jump
 ;; ---------
 ;; go to definition
-(require 'dumb-jump)
+(use-package dumb-jump)
 (dumb-jump-mode)
 
 (setq dumb-jump-selector 'ivy)
@@ -1037,6 +1073,7 @@ Version 2015-12-17"
 ;; git gutter
 ;; ---------
 ;; To see git diff
+(use-package git-gutter)
 (global-git-gutter-mode +1)
 (setq git-gutter:window-width 1)
 (setq git-gutter:added-sign "|"
@@ -1046,6 +1083,7 @@ Version 2015-12-17"
 ;; avy
 ;; ---
 ;;
+(use-package avy)
 (avy-setup-default)
 
 ;; hydra
@@ -1065,6 +1103,19 @@ Version 2015-12-17"
 (add-to-list 'load-path "~/.emacs.d/packages/emacs-livedown")
 (require 'livedown)
 
-;; ===========================================================================
-;; Unknown
-;; ===========================================================================
+;; ;; ===========================================================================
+;; ;; Unknown
+;; ;; ===========================================================================
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(dired-subtree dired-filter yasnippet yaml-mode which-key web-mode use-package undo-tree swift-mode ssh-config-mode rust-mode rg realgud prodigy pip-requirements org-bullets nginx-mode multi-term minions markdown-mode magit ivy-rich ivy-hydra iedit ibuffer-projectile groovy-mode go-mode git-gutter flycheck eyebrowse exec-path-from-shell dumb-jump dockerfile-mode counsel-projectile beacon ace-window)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
