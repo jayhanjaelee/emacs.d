@@ -957,11 +957,10 @@ Version 2015-12-17"
 (setq wgrep-auto-save-buffer t)
 (setq wgrep-change-readonly-file t)
 
-;; rg
+;; ripgrep
 ;; --
 ;; ripgrep
-(use-package rg)
-(rg-enable-default-bindings)
+(use-package ripgrep)
 
 ;; Undo-tree
 ;; ---------
