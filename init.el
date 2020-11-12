@@ -332,7 +332,8 @@
 	    desktop-dirname tmp-directory-p
 	    desktop-restore-eager 5
 	    desktop-load-locked-desktop nil
-	    desktop-lazy-verbose nil)
+	    desktop-lazy-verbose nil
+	    desktop-save t)
       (desktop-save-mode 1)))
 
 ;; auto-revert-mode
@@ -559,10 +560,8 @@ Version 2016-06-19"
 (use-package go-mode)
 (add-hook 'go-mode-hook
 	  (lambda ()
-	    (setq-default)
-	    (setq tab-width 2)
-	    (setq standard-indent 2)
-	    (setq indent-tabs-mode nil)))
+	    (setq indent-tabs-mode 1)
+	    (setq tab-width 2)))
 (add-to-list 'auto-mode-alist '("\\.mod\\'" . go-mode))
 
 ;; java
