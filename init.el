@@ -257,9 +257,9 @@
   (setq mac-command-modifier 'super)
   (setq mac-option-modifier 'meta)
   ;; mac style keybinding
-  (global-set-key (kbd "<C-s-268632090>") 'toggle-frame-maximized)
+  ;; (global-set-key (kbd "<C-s-268632090>") 'toggle-frame-maximized)
   (global-set-key (kbd "<M-return>") 'toggle-frame-maximized)
-  (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
+  (global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen)
   (global-set-key (kbd "s-h") 'ns-do-hide-emacs)
   (global-set-key (kbd "s-M-h") 'ns-do-hide-others)
   (global-set-key (kbd "s-r") 'revert-buffer)
