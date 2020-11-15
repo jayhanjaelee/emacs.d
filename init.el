@@ -253,7 +253,7 @@
 (setq mac-allow-anti-aliasing t)
 ;; keybinding
 (when (and (eq system-type 'darwin) window-system) ;; check if mac os and gui
-  (setq ns-use-native-fullscreen nil)
+  (setq ns-use-native-fullscreen t)
   (setq mac-command-modifier 'super)
   (setq mac-option-modifier 'meta)
   ;; mac style keybinding
