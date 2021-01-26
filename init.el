@@ -1087,6 +1087,8 @@ Version 2015-12-17"
 ;;
 (use-package avy)
 (avy-setup-default)
+(setq avy-all-windows nil)
+(global-set-key (kbd "C-c SPC") 'avy-goto-line)
 
 ;; hydra
 ;; -----
