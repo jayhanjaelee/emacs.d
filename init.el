@@ -143,7 +143,7 @@
 (define-key dired-mode-map "i" 'dired-subtree-insert)
 (define-key dired-mode-map ";" 'dired-subtree-remove)
 ;; dired open file with ace window.
-(require 'ace-window)
+(use-package ace-window)
 (defun find-file-ace-window ()
   "Use ace window to select a window for opening a file from dired."
   (interactive)
