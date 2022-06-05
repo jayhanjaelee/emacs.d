@@ -135,41 +135,41 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 (setq dired-listing-switches "-alh") ;; human readable size in dired
-;; (setq dired-use-ls-dired  nil)
-;; (setq insert-directory-program "/usr/local/bin/gls")
-;; (setq dired-listing-switches "-alh --group-directories-first") ;; human readable size in dired
+(setq dired-use-ls-dired  nil)
+(setq insert-directory-program "/usr/local/bin/gls")
+(setq dired-listing-switches "-alh --group-directories-first") ;; human readable size in dired
 ;; dired-subtree (external package)
 (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-toggle)
 (define-key dired-mode-map "i" 'dired-subtree-insert)
 (define-key dired-mode-map ";" 'dired-subtree-remove)
 ;; dired open file with ace window.
-;; (require 'ace-window)
-;; (defun find-file-ace-window ()
-;;   "Use ace window to select a window for opening a file from dired."
-;;   (interactive)
-;;   (let ((file (dired-get-file-for-visit)))
-;;     (if (> (length (aw-window-list)) 1)
-;;         (aw-select "" (lambda (window)
-;;                         (aw-switch-to-window window)
-;;                         (find-file file)))
-;;       (find-file-other-window file))))
-;; (define-key dired-mode-map "o" 'find-file-ace-window)
-;; (defun xah-dired-sort ()
-;;   "Sort dired dir listing in different ways.
-;; Prompt for a choice.
-;; URL `http://ergoemacs.org/emacs/dired_sort.html'
-;; Version 2018-12-23"
-;;   (interactive)
-;;   (let ($sort-by $arg)
-;;     (setq $sort-by (ivy-completing-read "Sort by:" '( "date" "size" "name" )))
-;;     (cond
-;;      ((equal $sort-by "name") (setq $arg "-alh "))
-;;      ((equal $sort-by "date") (setq $arg "-alh -t"))
-;;      ((equal $sort-by "size") (setq $arg "-alh -S"))
-;;      ;; ((equal $sort-by "dir") (setq $arg "-Al --group-directories-first"))
-;;      (t (error "logic error 09535" )))
-;;     (dired-sort-other $arg )))
-;; (define-key dired-mode-map (kbd "s") 'xah-dired-sort)
+(require 'ace-window)
+(defun find-file-ace-window ()
+  "Use ace window to select a window for opening a file from dired."
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if (> (length (aw-window-list)) 1)
+        (aw-select "" (lambda (window)
+                        (aw-switch-to-window window)
+                        (find-file file)))
+      (find-file-other-window file))))
+(define-key dired-mode-map "o" 'find-file-ace-window)
+(defun xah-dired-sort ()
+  "Sort dired dir listing in different ways.
+Prompt for a choice.
+URL `http://ergoemacs.org/emacs/dired_sort.html'
+Version 2018-12-23"
+  (interactive)
+  (let ($sort-by $arg)
+    (setq $sort-by (ivy-completing-read "Sort by:" '( "date" "size" "name" )))
+    (cond
+     ((equal $sort-by "name") (setq $arg "-alh "))
+     ((equal $sort-by "date") (setq $arg "-alh -t"))
+     ((equal $sort-by "size") (setq $arg "-alh -S"))
+     ;; ((equal $sort-by "dir") (setq $arg "-Al --group-directories-first"))
+     (t (error "logic error 09535" )))
+    (dired-sort-other $arg )))
+(define-key dired-mode-map (kbd "s") 'xah-dired-sort)
 
 ;; Global Keybindings
 ;; ------------------
