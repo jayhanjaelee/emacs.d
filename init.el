@@ -980,12 +980,6 @@ Version 2015-12-17"
       (beacon-mode 1)
       (setq beacon-color "#f2777a"))) ;; red 1 color
 
-;; flycheck
-;; --------
-;; syntax check
-(use-package flycheck)
-(add-hook 'python-mode-hook #'flycheck-mode)
-
 ;; yasnippet
 ;; ---------
 ;; template system
