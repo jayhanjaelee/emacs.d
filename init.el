@@ -470,7 +470,6 @@ Version 2016-06-19"
 (setq disabled-command-function nil) ;; Enable all disabled command
 (setq load-prefer-newer t) ;; you're never accidentally using outdated compiled files.
 (setq ispell-program-name "/usr/local/bin/ispell")
-(flyspell-mode) ;; check spelling
 (delete-selection-mode 1) ;; replacing highlight text
 (require 'tramp)
 (setq tramp-default-method "ssh") ;; set tramp (Transparent Remote Access) default method to ssh
