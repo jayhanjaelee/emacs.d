@@ -74,7 +74,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 14" nil t)
+(set-frame-font "menlo 12" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -692,7 +692,14 @@ Version 2016-06-19"
 ;; -----------
 ;;
 (use-package groovy-mode)
-(setq groovy-indent-offset 2)
+(setq groovy-indent-offset 4)
+
+
+;; gradle-mode
+;; -----------
+;;
+(use-package gradle-mode)
+(gradle-mode 1)
 
 ;; ============================================================================
 ;; external Packages
