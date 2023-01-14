@@ -2,7 +2,6 @@
 # name: html
 # key: html
 # --
-html
 <!DOCTYPE html>
 <html>
   <head>

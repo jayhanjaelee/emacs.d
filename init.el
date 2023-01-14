@@ -62,6 +62,7 @@
 ;; (setq display-time-default-load-average nil)
 ;; (setq display-time-day-and-date t)
 ;; (setq display-time-format "%a %I:%M %p")
+(linum-mode -1)
 (line-number-mode 1)			  ; line number mode in modeline
 (column-number-mode 1)			; show column number
 (show-paren-mode t)         ; Show parenthesis match
@@ -1098,8 +1099,15 @@ Version 2015-12-17"
 ;; livedown
 ;; --------
 ;; markdown preview
+
 (add-to-list 'load-path "~/.emacs.d/packages/emacs-livedown")
 (require 'livedown)
+
+;; dbd-mode (db diagram)
+;; --------
+;; dbml file syntax
+(load-file "~/.emacs.d/packages/dbdiagram-mode.el")
+
 
 ;; ===========================================================================
 ;; Custom
