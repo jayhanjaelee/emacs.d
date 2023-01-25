@@ -51,6 +51,12 @@
 ;; Appearance
 ;; ----------
 ;;
+
+;; indent tab to space
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq indent-line-function 'insert-tab)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (if (window-system)
