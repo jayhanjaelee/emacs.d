@@ -1,6 +1,6 @@
 ;;; morning-star-theme.el --- Emacs 24 theme with a dark background.
 
-;; Copyright (C) 2016, Alexander Miller
+;; Copyright (C) 2024, Alexander Miller
 
 ;; Author: Alexander Miller
 ;;
@@ -41,8 +41,10 @@
       (red1    "#f2777a")
       (red2    "#bb6666")
       (red3    "#ab3737")
+      (red4    "#221111")
       (green1  "#66aa66")
       (green2  "#559955")
+      (green3  "#112211")
       (aqua1   "#55a9a9")
       (aqua2   "#1e8f8f")
       (purple1 "#997799")
@@ -102,11 +104,11 @@
    `(show-paren-match           ((,class (:underline ,aqua2 :bold t))))
    `(isearch                    ((,class (:background ,red3   :foreground ,yellow2))))
    `(internal-border            ((,class (:background ,black2))))
+   `(child-frame-border         ((,class (:background ,black2))))
    `(lazy-highlight             ((,class (:background ,red1   :foreground ,black1))))
    `(link                       ((,class (:foreground ,aqua1  :underline  (:color ,aqua1)))))
    `(link-visited               ((,class (:foreground ,aqua2  :underline  (:color ,aqua2)))))
-   `(button                     ((,class (:foreground ,blue1  :background ,bg :bold t :box (:line-width -1 :color ,black2 :style released-button)))))
-   `(custom-button              ((,class (:inherit    button))))
+   `(button                     ((,class (:background ,bg2  :foreground ,blue1 :box (:color ,grey3 :line-width 2 :style released-button) :bold t))))
    `(linum                      ((,class (:background ,bg :foreground ,grey1  :bold nil :box nil :overline nil :underline nil :italic nil))))
    `(line-number                ((,class (:background ,bg :foreground ,grey1  :bold t))))
    `(line-number-current-line   ((,class (:background ,bg :foreground ,green1 :bold t))))
@@ -114,24 +116,42 @@
    `(highlight                  ((,class (:background ,black1 :foreground ,fg))))
    `(hl-line                    ((,class (:background ,grey2))))
    `(highlight-indentation-face ((,class (:background ,grey2))))
-   `(header-line                ((,class (:background ,bg))))
-   `(fringe                     ((,class (:background ,bg))))
+   `(header-line                ((,class (:box (:color ,black2) :background ,black1))))
+   `(fringe                     ((,class (:background ,bg2))))
    `(cursor                     ((,class (:background ,red1))))
    `(minibuffer-prompt          ((,class (:foreground ,purple1))))
    `(vertical-border            ((,class (:foreground ,black2))))
    `(error                      ((,class (:foreground ,red3))))
    `(success                    ((,class (:foreground ,green1))))
-   `(warning                    ((,class (:foreground ,yellow2))))
+   `(warning                    ((,class (:foreground ,yellow2 :bold t :underline ,red3))))
    `(eval-sexp-fu-flash         ((,class (:background ,green1 :foreground ,black1))))
    `(eval-sexp-fu-flash-error   ((,class (:background ,red3   :foreground ,fg))))
    `(secondary-selection        ((,class (nil))))
    `(match                      ((,class (:background ,red3 :foreground ,fg))))
    `(tooltip                    ((,class (:background ,bg2  :foreground ,brown1))))
+   `(bookmark-face              ((,class (:foreground ,orange2))))
+   `(help-key-binding           ((,class (:foreground ,orange2 :bold t))))
+   `(variable-pitch             ((,class (:family "Iosevka Aile"))))
+
+   ;; Widgets
+   `(widget-field ((,class (:foreground ,brown1 :background ,grey3 :bold t :box (:line-width -1 :color ,grey1)))))
+
+   ;; Tabs
+   `(tab-line                   ((,class (:background ,black1 :foreground ,fg :box (:line-width 3 :color ,black1) :overline ,black1))))
+   `(tab-line-tab               ((,class (:background ,black1 :foreground ,fg :box (:line-width 3 :color ,black1) :overline ,black1))))
+   `(tab-line-tab-current       ((,class (:background ,bg2    :foreground ,fg :box (:line-width 3 :color ,bg2)    :overline ,blue1))))
+   `(tab-line-tab-inactive      ((,class (:background ,black1 :foreground ,fg :box (:line-width 3 :color ,black1) :overline ,black1))))
+   `(tab-line-highlight         ((,class (:background ,bg     :foreground ,fg :box (:line-width 3 :color ,bg)     :overline ,blue1))))
 
    ;; Anzu
    `(anzu-mode-line         ((,class (:foreground ,yellow2 :background ,bg2))))
    `(anzu-replace-highlight ((,class (:foreground ,yellow2 :background ,red3))))
    `(anzu-replace-to        ((,class (:foreground ,black1  :background ,blue1))))
+
+   ;; Xref
+   `(xref-file-header ((,class (:foreground ,brown1))))
+   `(xref-line-number ((,class (:foreground ,green1))))
+   `(xref-match       ((,class (:background ,black1))))
 
    ;; Evil
    `(evil-search-highlight-persist-highlight-face ((,class (:foreground ,black1 :background ,red1))))
@@ -175,14 +195,14 @@
    `(ido-vertical-only-match   ((,class (:inherit ido-only-match))))
 
    ;; Group Customization
-   `(custom-button              ((,class (:foreground ,black2  :background ,blue1 :box (:line-width -1 :color ,black1 :style released-button)))))
+   `(custom-button              ((,class (:inherit button))))
    `(custom-button-mouse        ((,class (:background ,blue1   :inherit custom-button))))
    `(custom-button-pressed      ((,class (:foreground ,black1  :background ,blue1 :box (:line-width -1 :color ,black1 :style pressed-button)))))
    `(custom-comment             ((,class (:inherit    font-lock-comment-face))))
    `(custom-comment-tag         ((,class (:inherit    font-lock-comment-face))))
    `(custom-documentation       ((,class (:foreground ,fg))))
    `(custom-group-subtitle      ((,class (:foreground ,purple1 :bold t :underline t))))
-   `(custom-group-tag           ((,class (:foreground ,aqua1   :bold t :underline nil :height 1.25))))
+   `(custom-group-tag           ((,class (:foreground ,purple1 :bold t :underline nil :height 1.25))))
    `(custom-group-tag-1         ((,class (:foreground ,aqua1   :bold t :underline t   :height 1.5))))
    `(custom-state               ((,class (:foreground ,green2))))
    `(custom-variable-tag        ((,class (:foreground ,purple1 :bold t :underline t))))
@@ -204,6 +224,9 @@
    `(ediff-odd-diff-B            ((,class (:foreground ,black2 :background ,blue2))))
    `(ediff-odd-diff-C            ((,class (:foreground ,aqua1   :background ,aqua2))));;TODO
    `(ediff-odd-diff-Ancestor     ((,class (:foreground ,brown1  :background ,aqua2))));;TODO
+
+   ;; Macrostep
+   `(macrostep-expansion-highlight-face ((,class (:inherit region))))
 
    ;; Spacemacs states
    `(spacemacs-transient-state-title-face ((,class (:foreground ,black2 :background ,green2 :bold t :box (:color ,bg2 :line-width -1)))))
@@ -231,6 +254,10 @@
    `(which-key-command-description-face   ((,class (:foreground ,green1))))
    `(which-key-highlighted-command-face   ((,class (:foreground ,red1 :bold t))))
    `(which-key-local-map-description-face ((,class (:foreground ,blue1))))
+
+   ;; Flyspell
+   `(flyspell-incorrect ((,class (:underline (:color ,red3 :style wave)))))
+   `(flyspell-duplicate ((,class (:underline (:color ,orange2 :style wave)))))
 
    ;; Flycheck
    `(flycheck-info                     ((,class (:underline  ,green2))))
@@ -332,7 +359,8 @@
    `(neo-root-dir-face   ((,class (:foreground ,purple1 :bold t :underline t))))
 
    ;; treemacs
-   `(treemacs-root-face   ((,class (:foreground ,purple2 :bold t :underline t :overline t :height 1.2))))
+   `(treemacs-root-face       ((,class (:foreground ,purple2 :bold t :underline t :overline t :height 1.0))))
+   `(treemacs-help-title-face ((,class (:inherit font-lock-doc-face))))
 
    ;; Rust & Racer
    `(cargo-process--standard-face ((,class (:foreground ,blue1))))
@@ -505,6 +533,7 @@
    `(helm-ff-invalid-symlink          ((,class (:foreground ,aqua1   :underline (:style wave :color ,red1)))))
    `(helm-ff-prefix                   ((,class (:foreground ,purple1))))
    `(helm-ff-symlink                  ((,class (:foreground ,aqua1))))
+   `(helm-ff-file-extension           ((,class (:foreground ,green1))))
    `(helm-grep-cmd-line               ((,class (:foreground ,aqua1))))
    `(helm-grep-file                   ((,class (:foreground ,blue1))))
    `(helm-grep-finish                 ((,class (:foreground ,yellow2 :background ,bg2 :box (:color ,black2 :line-width -1) :bold t))))
@@ -522,10 +551,10 @@
    `(helm-M-x-key                     ((,class (:foreground ,yellow1 :bold t))))
    `(helm-prefarg                     ((,class (:foreground ,aqua1   :bold t))))
    `(helm-resume-need-update          ((,class (:height 2.0 :background ,fg :foreground ,aqua2)))) ;; TODO
-   `(helm-selection                   ((,class (:background ,black1))))
+   `(helm-selection                   ((,class (:background ,black1 :extend t))))
    `(helm-selection-line              ((,class (:background ,grey3))))
    `(helm-separator                   ((,class (:foreground ,green1 :bold t))))
-   `(helm-source-header               ((,class (:background ,aqua2  :foreground ,black2 :underline t))))
+   `(helm-source-header               ((,class (:background ,aqua2  :foreground ,black2 :underline t :extend t))))
    `(helm-visible-mark                ((,class (:foreground ,fg     :bold t))))
 
    ;;Helm swoop
@@ -547,9 +576,10 @@
    `(magit-blame-heading               ((,class (:background ,bg2   :bold t))))
    `(magit-blame-name                  ((,class (:background ,bg2   :foreground ,blue2   :bold t))))
    `(magit-blame-summary               ((,class (:background ,bg2   :foreground ,brown1 :bold t))))
-   `(magit-branch-current              ((,class (:background ,bg    :foreground ,blue2   :bold t))))
-   `(magit-branch-local                ((,class (:background ,bg    :foreground ,orange1 :bold t))))
-   `(magit-branch-remote               ((,class (:background ,bg    :foreground ,green1  :bold t))))
+   `(magit-branch-current              ((,class (:foreground ,blue2   :bold t))))
+   `(magit-branch-remote-head          ((,class (:foreground ,purple2 :bold t))))
+   `(magit-branch-remote               ((,class (:foreground ,aqua1   :bold t))))
+   `(magit-branch-local                ((,class (:foreground ,brown2  :bold t))))
    `(magit-cherry-equivalent           ((,class (:foreground ,blue1))))
    `(magit-cherry-unmatched            ((,class (:foreground ,red1))))
    `(magit-diff-added                  ((,class (:foreground ,green1))))
@@ -612,14 +642,12 @@
    `(magit-signature-bad               ((,class (:foreground ,yellow1 :italic t :underline (:style wave)))))
    `(magit-signature-good              ((,class (:foreground ,green1  :italic t :underline t))))
    `(magit-signature-untrusted         ((,class (:foreground ,red1    :italic t :underline (:style wave)))))
-   `(magit-tag                         ((,class (:foreground ,aqua1   :bold t))))
+   `(magit-tag                         ((,class (:foreground ,yellow1 :bold t))))
 
-   ;; Magit Popup
-   `(magit-popup-argument          ((,class (:foreground ,aqua1))))
-   `(magit-popup-disabled-argument ((,class (:foreground ,grey1))))
-   `(magit-popup-heading           ((,class (:foreground ,purple1 :bold t))))
-   `(magit-popup-key               ((,class (:foreground ,blue1   :bold t))))
-   `(magit-popup-option-value      ((,class (:foreground ,aqua2   :bold t))))
+   ;; Diff
+   `(diff-refine-added   ((,class (:foreground ,green2 :background ,green3 :bold t))))
+   `(diff-refine-removed ((,class (:foreground ,red2   :background ,red4   :bold t))))
+   `(diff-refine-changed ((,class (:foreground ,blue1  :background ,black1 :bold t))))
 
    ;; Git
    `(git-commit-keyword              ((,class (:foreground ,brown2 :bold t))))
@@ -656,6 +684,31 @@
    `(git-gutter-fr+deleted            ((,class (:inherit    git-gutter:deleted))))
    `(git-gutter-fr+modified           ((,class (:inherit    git-gutter:modified))))
 
+   ;; Transient
+   `(transient-heading           ((,class (:foreground ,purple1 :bold t))))
+   `(transient-key               ((,class (:foreground ,blue1   :bold t))))
+   `(transient-key-exit          ((,class (:foreground ,red1    :bold t))))
+   `(transient-key-stay          ((,class (:foreground ,blue1  :bold t))))
+   `(transient-value             ((,class (:foreground ,aqua1   :bold t))))
+   `(transient-argument          ((,class (:foreground ,orange1 :bold t))))
+   `(transient-unreachable-key   ((,class (:foreground ,grey1   :bold t))))
+   `(transient-active-infix      ((,class (:foreground ,green2  :bold t))))
+   `(transient-unreachable       ((,class (:foreground ,grey1))))
+   `(transient-teal              ((,class (:inherit hydra-face-teal))))
+   `(transient-pink              ((,class (:inherit hydra-face-pink))))
+   `(transient-amaranth          ((,class (:inherit hydra-face-amaranth))))
+   `(transient-blue              ((,class (:inherit hydra-face-blue))))
+   `(transient-red               ((,class (:inherit hydra-face-red))))
+
+   `(transient-inacitve-argument ((,class (:foreground ,brown1  :background ,black2))))
+   `(transient-inacitve-value    ((,class (:foreground ,orange1  :background ,black2))))
+   `(transient-disabled-suffix   ((,class (:foreground ,purple1 :background ,black2))))
+   `(transient-enabled-suffix    ((,class (:foreground ,red3    :background ,black2))))
+   `(transient-inapt-suffix      ((,class (:foreground ,aqua1 :background ,black2))))
+   `(transient-mismatched-key    ((,class (:foreground ,blue2 :background ,black2))))
+   `(transient-nonstandard-key   ((,class (:foreground ,brown2 :background ,black2))))
+   `(transient-separator         ((,class (:foreground ,orange2 :background ,black2))))
+
    ;; Diff hl
    `(diff-hl-change ((,class (:background ,blue2  :foreground ,black1))))
    `(diff-hl-delete ((,class (:background ,red1   :foreground ,black1))))
@@ -669,7 +722,7 @@
 
    ;; company
    `(company-tooltip-common-selection     ((,class (:background ,bg2 :foreground ,red1))))
-   `(company-tooltip-selection            ((,class (:background ,bg2 :foreground ,fg))))
+   `(company-tooltip-selection            ((,class (:background ,bg2 :foreground ,fg :extend t))))
    `(company-scrollbar-bg                 ((,class (:background ,grey1))))
    `(company-scrollbar-fg                 ((,class (:background ,red3))))
    `(company-tooltip                      ((,class (:background ,grey2 :foreground ,fg ))))
@@ -683,6 +736,7 @@
    `(company-tooltip-mouse                ((,class (:inherit company-tooltip-sele))))
    `(company-echo-common                  ((,class (:background ,fg     :foreground ,red3))))
    `(company-template-field               ((,class (:inherit yas-field-highlight-face))))
+   `(company-posframe-quickhelp           ((,class (:background ,grey2  :foreground ,fg))))
 
    ;; Org-Mode
    `(org-agenda-calendar-event     ((,class (:foreground ,blue2 :bold t))))
@@ -690,9 +744,9 @@
    `(org-agenda-clocking           ((,class (:foreground ,bg :background ,red3)))) ;; TODO
    `(org-agenda-column-dateline    ((,class (:foreground ,bg :background ,red3)))) ;; TODO
    `(org-agenda-current-time       ((,class (:foreground ,brown1 :bold t))))
-   `(org-agenda-date               ((,class (:foreground ,brown1 :bold t))))
-   `(org-agenda-date-weekend       ((,class (:foreground ,brown2 :bold t))))
-   `(org-agenda-date-today         ((,class (:foreground ,red3 :bold t :italic t :height 1.5))))
+   `(org-agenda-date               ((,class (:background ,brown1 :foreground ,black1 :box (:color ,black1 :line-width -1) :bold t :extend t))))
+   `(org-agenda-date-weekend       ((,class (:background ,brown2 :foreground ,black2 :box (:color ,black1 :line-width -1) :bold t :extend t))))
+   `(org-agenda-date-today         ((,class (:background ,red3   :foreground ,black2 :box (:color ,black1 :line-width -1) :bold t :italic t :extend t ))))
    `(org-agenda-diary              ((,class (:foreground ,red2 :bold t))))
    `(org-agenda-dimmed-todo-face   ((,class (:foreground ,grey1))))
    `(org-agenda-done               ((,class (:foreground ,green1))))
@@ -703,9 +757,9 @@
    `(org-agenda-structure          ((,class (:foreground ,purple1 :bold t :height 1.5))))
    `(org-super-agenda-header       ((,class (:foreground ,green2 :bold t :height 1.3))))
    `(org-archived                  ((,class (:foreground ,grey1 :bold t))))
-   `(org-block                     ((,class (:background ,bg2))))
-   `(org-block-begin-line          ((,class (:background ,brown2 :foreground ,bg2 :bold t))))
-   `(org-block-end-line            ((,class (:background ,brown2 :foreground ,bg2 :bold t))))
+   `(org-block                     ((,class (:background ,bg2 :extend t))))
+   `(org-block-begin-line          ((,class (:background ,bg2 :foreground ,grey1 :bold t :extend t))))
+   `(org-block-end-line            ((,class (:background ,bg2 :foreground ,grey1 :bold t :extend t))))
    `(org-checkbox                  ((,class (:background ,bg2 :foreground ,brown2  :bold t :box (:color ,brown2 :line-width -1)))))
    `(org-checkbox-statistics-done  ((,class (:background ,green1 :foreground ,black1 :box (:color ,black1 :line-width -1) :bold t))))
    `(org-checkbox-statistics-todo  ((,class (:background ,red2   :foreground ,black1 :box (:color ,black1 :line-width -1) :bold t))))
@@ -745,7 +799,7 @@
    `(org-level-6                   ((,class (:foreground ,orange1))))
    `(org-level-7                   ((,class (:foreground ,green1))))
    `(org-level-8                   ((,class (:foreground ,yellow1))))
-   `(org-link                      ((,class (:foreground ,aqua2 :bold t :underline t))))
+   `(org-link                      ((,class (:foreground ,aqua1 :bold t :underline t))))
    `(org-list-dt                   ((,class (:foreground ,purple1 :bold t))))
    `(org-macro                     ((,class (:foreground ,bg :background ,red3)))) ;; TODO
    `(org-meta-line                 ((,class (:foreground ,purple2   :bold t))))
@@ -768,7 +822,7 @@
    `(org-agenda-current-time       ((,class (:foreground ,brown1 :background ,bg2 :bold t))))
    `(org-todo                      ((,class (:background ,red2 :foreground ,black1 :bold t :box (:line-width -1 :color ,black2)))))
    `(org-upcoming-deadline         ((,class (:foreground ,orange2))))
-   `(org-verbatim                  ((,class (:foreground ,green2 :bold t :italic t))))
+   `(org-verbatim                  ((,class (:foreground ,red2 :bold t))))
    `(org-warning                   ((,class (:foreground ,yellow2 :bold t))))
 
    ;; Comint
@@ -776,16 +830,26 @@
    `(comint-highlight-input  ((,class (:foreground ,blue1))))
 
    ;; Ledger
-   `(ledger-font-xact-highlight-face    ((,class (:background ,grey3))))
-   `(ledger-font-posting-account-face   ((,class (:foreground ,blue1))))
-   `(ledger-font-posting-amount-face    ((,class (:foreground ,brown1))))
-   `(ledger-font-posting-date-face      ((,class (:foreground ,purple1 :bold t))))
-   `(ledger-font-payee-uncleared-face   ((,class (:foreground ,red2 :bold t))))
-   `(ledger-font-payee-cleared-face     ((,class (:foreground ,green2 :bold t))))
-   `(ledger-font-include-directive-face ((,class (:foreground ,green1))))
-   `(ledger-font-account-directive-face ((,class (:foreground ,purple1 :bold t))))
-   `(ledger-occur-xact-face             ((,class (:background ,grey1 :foreground ,bg))))
-   `(ledger-font-auto-xact-face         ((,class (:foreground ,aqua1))))
+   `(ledger-font-xact-highlight-face      ((,class (:background ,grey3))))
+   `(ledger-font-posting-account-face     ((,class (:foreground ,blue1))))
+   `(ledger-font-posting-amount-face      ((,class (:foreground ,brown1))))
+   `(ledger-font-posting-date-face        ((,class (:foreground ,purple1 :bold t))))
+   `(ledger-font-payee-uncleared-face     ((,class (:foreground ,red2    :bold t))))
+   `(ledger-font-payee-cleared-face       ((,class (:foreground ,green2  :bold t))))
+   `(ledger-font-price-symbol-face        ((,class (:foreground ,red2    :bold t))))
+   `(ledger-font-price-face               ((,class (:foreground ,brown2  :bold t))))
+   `(ledger-font-price-date-face          ((,class (:foreground ,green1  :bold t))))
+   `(ledger-font-price-directive-face     ((,class (:foreground ,aqua2   :bold t))))
+   `(ledger-font-commodity-directive-face ((,class (:foreground ,aqua2   :bold t))))
+   `(ledger-font-include-directive-face   ((,class (:foreground ,aqua2   :bold t))))
+   `(ledger-font-account-directive-face   ((,class (:foreground ,aqua2   :bold t))))
+   `(ledger-font-tag-directive-face       ((,class (:foreground ,aqua2   :bold t))))
+   `(ledger-font-commodity-name-face      ((,class (:foreground ,red2    :bold t))))
+   `(ledger-font-tag-name-face            ((,class (:foreground ,yellow1))))
+   `(ledger-font-commodity-format-face    ((,class (:foreground ,green1))))
+   `(ledger-font-include-filename-face    ((,class (:foreground ,green1))))
+   `(ledger-occur-xact-face               ((,class (:background ,grey1 :foreground ,bg))))
+   `(ledger-font-auto-xact-face           ((,class (:foreground ,aqua1))))
 
    ;; ERC
    `(erc-timestamp-face      ((,class (:foreground ,brown2 :bold t))))
@@ -844,11 +908,61 @@
    `(gnus-header-subject ((,class (:foreground ,green1))))
    `(gnus-button         ((,class (:foreground ,aqua2))))
 
+   ;; frog-menu
+   `(frog-menu-prompt-face              ((,class (:foreground ,green1 :bold t))))
+   `(frog-menu-candidates-face          ((,class (:foreground ,fg))))
+   `(frog-menu-actions-face             ((,class (:foreground ,purple1))))
+   `(frog-menu-action-keybinding-face   ((,class (:foreground ,blue1 :bold t))))
+   `(frog-menu-posframe-background-face ((,class (:background ,bg))))
+
+   ;; markup
+   `(markup-meta-hide-face              ((,class (:foreground ,grey1   :bold t))))
+   `(markup-meta-face                   ((,class (:foreground ,orange1 :bold t))))
+   `(markup-secondary-text-face         ((,class (:foreground ,brown2  :bold t))))
+   `(markup-list-face                   ((,class (:foreground ,green2  :bold t))))
+   `(markup-strong-face                 ((,class (:foreground ,red2    :bold t))))
+   `(markup-code-face                   ((,class (:foreground ,aqua1   :bold t))))
+   `(markup-emphasis-face               ((,class (:foreground ,yellow1 :italic t))))
+   `(markup-typewriter-face             ((,class (:background ,aqua2   :foreground ,black1 :bold t))))
+   `(markup-verbatim-face               ((,class (:background ,aqua2   :foreground ,black1 :bold t))))
+   `(markup-title-0-face                ((,class (:foreground ,purple1 :underline t :height 1.2))))
+   `(markup-title-1-face                ((,class (:foreground ,purple1 :underline t :height 1.15))))
+   `(markup-title-2-face                ((,class (:foreground ,purple1 :underline t :height 1.1))))
+   `(markup-title-3-face                ((,class (:foreground ,purple1 :underline t :height 1.05))))
+   `(markup-title-4-face                ((,class (:foreground ,purple1 :underline t))))
+   `(markup-title-5-face                ((,class (:foreground ,purple1 :underline t))))
+
+   ;; selectrum
+   `(selectrum-current-candidate ((,class (:background ,black1 :extend t))))
+
+   ;; orderless
+   `(orderless-match-face-0 ((,class (:background ,red3   :foreground ,yellow2))))
+   `(orderless-match-face-1 ((,class (:background ,green2 :foreground ,black2))))
+   `(orderless-match-face-2 ((,class (:background ,blue2  :foreground ,black2))))
+   `(orderless-match-face-3 ((,class (:background ,brown2 :foreground ,black2))))
+
+   ;; marginalia
+   `(marginalia-documentation ((,class (:inherit font-lock-doc-face))))
+   `(marginalia-key           ((,class (:foreground ,purple1))))
+   `(marginalia-number        ((,class (:background ,blue2 :foreground ,red3 :bold t))))
+   `(marginalia-size          ((,class (:foreground ,purple1))))
+   `(marginalia-mode          ((,class (:foreground ,orange2 :bold t))))
+   `(marginalia-version       ((,class (:background ,blue2 :foreground ,red3 :bold t))))
+   `(marginalia-ligher        ((,class (:foreground ,green3))))
+
+   ;; epkg
+   `(epkg-help-name ((,class (:foreground ,purple1 :bold t :height 1.3))))
+   `(epkg-help-slot ((,class (:foreground ,blue1   :bold t))))
+
+   ;; mu4e
+   `(consult-preview-match ((,class (:background ,red3 :foreground ,yellow1))))
+
    ;; mu4e
    `(mu4e-unread-face                     ((,class (:foreground ,blue1 :bold t))))
    `(mu4e-replied-face                    ((,class (:foreground ,green1 :bold t))))
    `(mu4e-header-face                     ((,class (:foreground ,brown1))))
    `(mu4e-title-face                      ((,class (:foreground ,purple1 :bold t :height 1.1))))
+   `(mu4e-trashed-face                    ((,class (:foreground ,grey1))))
    `(mu4e-header-key-face                 ((,class (:foreground ,brown1))))
    `(mu4e-header-title-face               ((,class (:foreground ,blue1 :bold t))))
    `(mu4e-header-marks-face               ((,class (:foreground ,purple2 :bold t))))
@@ -859,6 +973,12 @@
    `(mu4e-highlight-face                  ((,class (:foreground ,green1 :bold t))))
    `(mu4e-maildirs-extension-maildir-face ((,class (:foreground ,brown1))))
 
+   `(ansi-color-blue    ((,class (:foreground ,blue1))))
+   `(ansi-color-green   ((,class (:foreground ,green1))))
+   `(ansi-color-magenta ((,class (:foreground ,purple1))))
+   `(ansi-color-red     ((,class (:foreground ,red1))))
+   `(ansi-color-cyan    ((,class (:foreground ,aqua1))))
+   `(ansi-color-yellow  ((,class (:foreground ,yellow1))))
 
    (custom-theme-set-variables
     'morning-star

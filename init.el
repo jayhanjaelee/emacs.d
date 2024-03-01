@@ -6,7 +6,7 @@
 
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (when (< emacs-major-version 24) (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
@@ -68,7 +68,7 @@
 ;; (setq display-time-default-load-average nil)
 ;; (setq display-time-day-and-date t)
 ;; (setq display-time-format "%a %I:%M %p")
-(linum-mode -1)
+(global-display-line-numbers-mode 1)
 (line-number-mode 1)			  ; line number mode in modeline
 (column-number-mode 1)			; show column number
 (show-paren-mode t)         ; Show parenthesis match
@@ -81,7 +81,7 @@
 ;; font
 (global-font-lock-mode t)		; Enable syntax highlight
 (set-face-bold 'bold nil)
-(set-frame-font "menlo 12" nil t)
+(set-frame-font "menlo 16" nil t)
 ;; korean font setting
 ;; (set-frame-font "D2Coding 14" nil t)
 ;; (set-fontset-font nil 'hangul (font-spec :family "D2Coding" :size 14))
@@ -711,6 +711,17 @@ Version 2016-06-19"
 ;; ============================================================================
 ;; external Packages
 ;; ============================================================================
+
+;; Evil
+;; ----
+;;
+;; Download Evil
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
+
+;; Enable Evil
+(require 'evil)
+(evil-mode 1)
 
 ;; magit
 ;; -----
