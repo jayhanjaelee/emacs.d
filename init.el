@@ -629,7 +629,7 @@ Version 2016-06-19"
 (use-package yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-;; org
+;; org-mode
 ;; ---
 ;;
 (use-package org)
@@ -644,14 +644,9 @@ Version 2016-06-19"
 (setq org-agenda-files '("~/org"))
 ;; todo
 (setq org-todo-keywords
-      '((sequence "TODO" "|" "DONE")
-        (sequence "BACKLOG(!)" "READY(!)" "PROGRESS(!)" "|" "DONE")
-        ))
-(setq org-todo-keyword-faces
-      '(("BACKLOG" . (:background "#CF5D50" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-	("READY" . (:background "#D2903A" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-	("PROGRESS" . (:background "#D0BA49" :foreground "#1a1a1a" :weight bold :box '(:line-width -1 :color "#000000")))
-	)) ;; inspired by trello
+      '((sequence "TODO" "STARTED" "|" "DONE"))
+	)
+;; inspired by trello
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda ()
 			   (setq-local global-hl-line-mode nil)
@@ -720,8 +715,11 @@ Version 2016-06-19"
   (package-install 'evil))
 
 ;; Enable Evil
+(setq evil-want-C-i-jump nil)
 (require 'evil)
 (evil-mode 1)
+(when evil-want-C-i-jump
+  (define-key evil-motion-state-map (kbd "C-i") 'evil-jump-forward))
 
 ;; magit
 ;; -----
