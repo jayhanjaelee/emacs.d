@@ -632,20 +632,23 @@ Version 2016-06-19"
 ;; org-mode
 ;; ---
 ;;
-(use-package org)
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(setq org-goto-auto-isearch nil) ;; disable auto search in org goto
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-;; Default directoris for my notes and website.
-(setq org-log-done t) ;; log timestamps when todo is done.
-(setq org-directory (expand-file-name "~/org"))
-(setq org-default-notes-file (concat org-directory "/mygtd.org"))
-(setq org-agenda-files '("~/org"))
-;; todo
-(setq org-todo-keywords
-      '((sequence "TODO" "STARTED" "|" "DONE"))
-	)
+(use-package org
+  :config
+    (setq org-directory (expand-file-name "~/Documents/org"))
+    (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+    (setq org-goto-auto-isearch nil) ;; disable auto search in org goto
+    (global-set-key (kbd "C-c l") 'org-store-link)
+    (global-set-key (kbd "C-c a") 'org-agenda)
+    (setq org-startup-indented t)
+    ;; Default directoris for my notes and website.
+    (setq org-log-done t) ;; log timestamps when todo is done.
+    ;; todo
+    (setq org-todo-keywords
+        ;; '((sequence "TODO" "STARTED" "|" "DONE"))
+        '((sequence "TODO" "|" "DONE"))
+    )
+  )
+
 ;; inspired by trello
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda ()
@@ -668,6 +671,15 @@ Version 2016-06-19"
         ("k" "Kanban" entry (file+headline "~/org/mygtd.org" "Tasks")
          "* BACKLOG %?\nAdded: %U\n" :prepend t :kill-buffer t)
         ))
+
+;; auto-insert
+;; (define-skeleton my-org-file-frontmatter
+;;   "Front matter for new org files."
+;;   "Title: "
+;;   "#+TITLE: " str \n)
+;; (use-package 'auto-insert)
+;; (add-to-list 'auto-insert-alist '("\\.org\\'" . my-org-file-frontmatter))
+;; (auto-insert-mode 1)
 
 ;; nginx
 ;; -----

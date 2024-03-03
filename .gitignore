@@ -21,3 +21,4 @@ tutorial/
 .last-package-update-day
 .projectile
 .packages
+org-persist/
