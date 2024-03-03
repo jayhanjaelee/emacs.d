@@ -722,16 +722,15 @@ Version 2016-06-19"
 ;; Evil
 ;; ----
 ;;
-;; Download Evil
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
-
 ;; Enable Evil
-(setq evil-want-C-i-jump nil)
-(require 'evil)
-(evil-mode 1)
-(when evil-want-C-i-jump
-  (define-key evil-motion-state-map (kbd "C-i") 'evil-jump-forward))
+(use-package evil
+  :ensure t
+  ;;If you diminish undo-tree mode, then you diminish evil-mode
+  ;; I see the evil thing in the mode line on an org buffer, BUT not in an emacs lisp buffer
+  :diminish undo-tree-mode
+  :config
+  (evil-mode 1)
+)
 
 ;; magit
 ;; -----
